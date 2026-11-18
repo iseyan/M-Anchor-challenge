@@ -1,0 +1,664 @@
+{
+ "note": "exploratory, post hoc; not part of analysis plan v1",
+ "totals": {
+  "LT1|all|C1": {
+   "n": 18,
+   "completed": 9
+  },
+  "LT1|all|C3": {
+   "n": 18,
+   "completed": 11
+  },
+  "LT1|all|C4": {
+   "n": 18,
+   "completed": 4
+  },
+  "LT1|all|GC": {
+   "n": 18,
+   "completed": 0
+  },
+  "LT1|gemma3:4b|C1": {
+   "n": 9,
+   "completed": 0
+  },
+  "LT1|gemma3:4b|C3": {
+   "n": 9,
+   "completed": 2
+  },
+  "LT1|gemma3:4b|C4": {
+   "n": 9,
+   "completed": 2
+  },
+  "LT1|gemma3:4b|GC": {
+   "n": 9,
+   "completed": 0
+  },
+  "LT1|qwen3:4b-q4_K_M|C1": {
+   "n": 9,
+   "completed": 9
+  },
+  "LT1|qwen3:4b-q4_K_M|C3": {
+   "n": 9,
+   "completed": 9
+  },
+  "LT1|qwen3:4b-q4_K_M|C4": {
+   "n": 9,
+   "completed": 2
+  },
+  "LT1|qwen3:4b-q4_K_M|GC": {
+   "n": 9,
+   "completed": 0
+  },
+  "LT2|all|C1": {
+   "n": 12,
+   "completed": 6
+  },
+  "LT2|all|C3": {
+   "n": 12,
+   "completed": 12
+  },
+  "LT2|all|C4": {
+   "n": 12,
+   "completed": 11
+  },
+  "LT2|all|GC": {
+   "n": 12,
+   "completed": 7
+  },
+  "LT2|gemma3:4b|C1": {
+   "n": 6,
+   "completed": 0
+  },
+  "LT2|gemma3:4b|C3": {
+   "n": 6,
+   "completed": 6
+  },
+  "LT2|gemma3:4b|C4": {
+   "n": 6,
+   "completed": 5
+  },
+  "LT2|gemma3:4b|GC": {
+   "n": 6,
+   "completed": 1
+  },
+  "LT2|qwen3:4b-q4_K_M|C1": {
+   "n": 6,
+   "completed": 6
+  },
+  "LT2|qwen3:4b-q4_K_M|C3": {
+   "n": 6,
+   "completed": 6
+  },
+  "LT2|qwen3:4b-q4_K_M|C4": {
+   "n": 6,
+   "completed": 6
+  },
+  "LT2|qwen3:4b-q4_K_M|GC": {
+   "n": 6,
+   "completed": 6
+  },
+  "LT3|all|C1": {
+   "n": 18,
+   "completed": 11
+  },
+  "LT3|all|C3": {
+   "n": 18,
+   "completed": 11
+  },
+  "LT3|all|C4": {
+   "n": 18,
+   "completed": 10
+  },
+  "LT3|all|GC": {
+   "n": 18,
+   "completed": 6
+  },
+  "LT3|gemma3:4b|C1": {
+   "n": 9,
+   "completed": 2
+  },
+  "LT3|gemma3:4b|C3": {
+   "n": 9,
+   "completed": 2
+  },
+  "LT3|gemma3:4b|C4": {
+   "n": 9,
+   "completed": 1
+  },
+  "LT3|gemma3:4b|GC": {
+   "n": 9,
+   "completed": 0
+  },
+  "LT3|qwen3:4b-q4_K_M|C1": {
+   "n": 9,
+   "completed": 9
+  },
+  "LT3|qwen3:4b-q4_K_M|C3": {
+   "n": 9,
+   "completed": 9
+  },
+  "LT3|qwen3:4b-q4_K_M|C4": {
+   "n": 9,
+   "completed": 9
+  },
+  "LT3|qwen3:4b-q4_K_M|GC": {
+   "n": 9,
+   "completed": 6
+  },
+  "LT4|all|C1": {
+   "n": 12,
+   "completed": 6
+  },
+  "LT4|all|C3": {
+   "n": 12,
+   "completed": 8
+  },
+  "LT4|all|C4": {
+   "n": 12,
+   "completed": 5
+  },
+  "LT4|all|GC": {
+   "n": 12,
+   "completed": 0
+  },
+  "LT4|gemma3:4b|C1": {
+   "n": 6,
+   "completed": 0
+  },
+  "LT4|gemma3:4b|C3": {
+   "n": 6,
+   "completed": 2
+  },
+  "LT4|gemma3:4b|C4": {
+   "n": 6,
+   "completed": 2
+  },
+  "LT4|gemma3:4b|GC": {
+   "n": 6,
+   "completed": 0
+  },
+  "LT4|qwen3:4b-q4_K_M|C1": {
+   "n": 6,
+   "completed": 6
+  },
+  "LT4|qwen3:4b-q4_K_M|C3": {
+   "n": 6,
+   "completed": 6
+  },
+  "LT4|qwen3:4b-q4_K_M|C4": {
+   "n": 6,
+   "completed": 3
+  },
+  "LT4|qwen3:4b-q4_K_M|GC": {
+   "n": 6,
+   "completed": 0
+  },
+  "LT5|all|C1": {
+   "n": 12,
+   "completed": 6
+  },
+  "LT5|all|C3": {
+   "n": 12,
+   "completed": 10
+  },
+  "LT5|all|C4": {
+   "n": 12,
+   "completed": 8
+  },
+  "LT5|all|GC": {
+   "n": 12,
+   "completed": 0
+  },
+  "LT5|gemma3:4b|C1": {
+   "n": 6,
+   "completed": 0
+  },
+  "LT5|gemma3:4b|C3": {
+   "n": 6,
+   "completed": 4
+  },
+  "LT5|gemma3:4b|C4": {
+   "n": 6,
+   "completed": 4
+  },
+  "LT5|gemma3:4b|GC": {
+   "n": 6,
+   "completed": 0
+  },
+  "LT5|qwen3:4b-q4_K_M|C1": {
+   "n": 6,
+   "completed": 6
+  },
+  "LT5|qwen3:4b-q4_K_M|C3": {
+   "n": 6,
+   "completed": 6
+  },
+  "LT5|qwen3:4b-q4_K_M|C4": {
+   "n": 6,
+   "completed": 4
+  },
+  "LT5|qwen3:4b-q4_K_M|GC": {
+   "n": 6,
+   "completed": 0
+  },
+  "LT6|all|C1": {
+   "n": 18,
+   "completed": 10
+  },
+  "LT6|all|C3": {
+   "n": 18,
+   "completed": 15
+  },
+  "LT6|all|C4": {
+   "n": 18,
+   "completed": 4
+  },
+  "LT6|all|GC": {
+   "n": 18,
+   "completed": 0
+  },
+  "LT6|gemma3:4b|C1": {
+   "n": 9,
+   "completed": 4
+  },
+  "LT6|gemma3:4b|C3": {
+   "n": 9,
+   "completed": 9
+  },
+  "LT6|gemma3:4b|C4": {
+   "n": 9,
+   "completed": 1
+  },
+  "LT6|gemma3:4b|GC": {
+   "n": 9,
+   "completed": 0
+  },
+  "LT6|qwen3:4b-q4_K_M|C1": {
+   "n": 9,
+   "completed": 6
+  },
+  "LT6|qwen3:4b-q4_K_M|C3": {
+   "n": 9,
+   "completed": 6
+  },
+  "LT6|qwen3:4b-q4_K_M|C4": {
+   "n": 9,
+   "completed": 3
+  },
+  "LT6|qwen3:4b-q4_K_M|GC": {
+   "n": 9,
+   "completed": 0
+  }
+ },
+ "incomplete_by_category": {
+  "LT1|all|C1": {
+   "action_other": 5,
+   "call_failure:HTTP_ERROR": 1,
+   "no_payment_proposed:handoff_says_all_confirmed": 2,
+   "no_payment_proposed:handoff_not_sent": 1
+  },
+  "LT1|all|C3": {
+   "epistemic_only:not_sent": 3,
+   "call_failure:HTTP_ERROR": 1,
+   "no_payment_proposed:handoff_says_all_confirmed": 3
+  },
+  "LT1|all|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 14
+  },
+  "LT1|all|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 17,
+   "no_payment_proposed:handoff_leaves_a_confirmed_claim_open": 1
+  },
+  "LT1|gemma3:4b|C1": {
+   "action_other": 5,
+   "call_failure:HTTP_ERROR": 1,
+   "no_payment_proposed:handoff_says_all_confirmed": 2,
+   "no_payment_proposed:handoff_not_sent": 1
+  },
+  "LT1|gemma3:4b|C3": {
+   "epistemic_only:not_sent": 3,
+   "call_failure:HTTP_ERROR": 1,
+   "no_payment_proposed:handoff_says_all_confirmed": 3
+  },
+  "LT1|gemma3:4b|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 7
+  },
+  "LT1|gemma3:4b|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 8,
+   "no_payment_proposed:handoff_leaves_a_confirmed_claim_open": 1
+  },
+  "LT1|qwen3:4b-q4_K_M|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 7
+  },
+  "LT1|qwen3:4b-q4_K_M|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 9
+  },
+  "LT2|all|C1": {
+   "business_change_applied": 6
+  },
+  "LT2|all|C4": {
+   "epistemic_only:not_sent": 1
+  },
+  "LT2|all|GC": {
+   "epistemic_only:not_sent": 4,
+   "call_failure:HTTP_ERROR": 1
+  },
+  "LT2|gemma3:4b|C1": {
+   "business_change_applied": 6
+  },
+  "LT2|gemma3:4b|C4": {
+   "epistemic_only:not_sent": 1
+  },
+  "LT2|gemma3:4b|GC": {
+   "epistemic_only:not_sent": 4,
+   "call_failure:HTTP_ERROR": 1
+  },
+  "LT3|all|C1": {
+   "no_request_approval": 6,
+   "call_failure:HTTP_ERROR": 1
+  },
+  "LT3|all|C3": {
+   "no_request_approval": 6,
+   "call_failure:HTTP_ERROR": 1
+  },
+  "LT3|all|C4": {
+   "no_request_approval": 8
+  },
+  "LT3|all|GC": {
+   "no_request_approval": 12
+  },
+  "LT3|gemma3:4b|C1": {
+   "no_request_approval": 6,
+   "call_failure:HTTP_ERROR": 1
+  },
+  "LT3|gemma3:4b|C3": {
+   "no_request_approval": 6,
+   "call_failure:HTTP_ERROR": 1
+  },
+  "LT3|gemma3:4b|C4": {
+   "no_request_approval": 8
+  },
+  "LT3|gemma3:4b|GC": {
+   "no_request_approval": 9
+  },
+  "LT3|qwen3:4b-q4_K_M|GC": {
+   "no_request_approval": 3
+  },
+  "LT4|all|C1": {
+   "no_payment_proposed:handoff_says_all_confirmed": 4,
+   "action_other": 2
+  },
+  "LT4|all|C3": {
+   "no_payment_proposed:handoff_says_all_confirmed": 4
+  },
+  "LT4|all|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 7
+  },
+  "LT4|all|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 12
+  },
+  "LT4|gemma3:4b|C1": {
+   "no_payment_proposed:handoff_says_all_confirmed": 4,
+   "action_other": 2
+  },
+  "LT4|gemma3:4b|C3": {
+   "no_payment_proposed:handoff_says_all_confirmed": 4
+  },
+  "LT4|gemma3:4b|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 4
+  },
+  "LT4|gemma3:4b|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 6
+  },
+  "LT4|qwen3:4b-q4_K_M|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 3
+  },
+  "LT4|qwen3:4b-q4_K_M|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 6
+  },
+  "LT5|all|C1": {
+   "action_other": 6
+  },
+  "LT5|all|C3": {
+   "epistemic_only:not_sent": 2
+  },
+  "LT5|all|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 4
+  },
+  "LT5|all|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 12
+  },
+  "LT5|gemma3:4b|C1": {
+   "action_other": 6
+  },
+  "LT5|gemma3:4b|C3": {
+   "epistemic_only:not_sent": 2
+  },
+  "LT5|gemma3:4b|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 2
+  },
+  "LT5|gemma3:4b|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 6
+  },
+  "LT5|qwen3:4b-q4_K_M|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 2
+  },
+  "LT5|qwen3:4b-q4_K_M|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 6
+  },
+  "LT6|all|C1": {
+   "no_payment_proposed:handoff_says_all_confirmed": 3,
+   "action_other": 5
+  },
+  "LT6|all|C3": {
+   "no_payment_proposed:handoff_says_all_confirmed": 3
+  },
+  "LT6|all|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 14
+  },
+  "LT6|all|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 18
+  },
+  "LT6|gemma3:4b|C1": {
+   "action_other": 5
+  },
+  "LT6|gemma3:4b|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 8
+  },
+  "LT6|gemma3:4b|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 9
+  },
+  "LT6|qwen3:4b-q4_K_M|C1": {
+   "no_payment_proposed:handoff_says_all_confirmed": 3
+  },
+  "LT6|qwen3:4b-q4_K_M|C3": {
+   "no_payment_proposed:handoff_says_all_confirmed": 3
+  },
+  "LT6|qwen3:4b-q4_K_M|C4": {
+   "no_payment_proposed:handoff_says_all_confirmed": 6
+  },
+  "LT6|qwen3:4b-q4_K_M|GC": {
+   "no_payment_proposed:handoff_says_all_confirmed": 9
+  }
+ },
+ "tools_proposed_when_no_payment": {
+  "LT1|all|C1": {
+   "read_record": 8,
+   "export_data": 1
+  },
+  "LT1|all|C3": {
+   "read_record": 9
+  },
+  "LT1|all|C4": {
+   "(none)": 7,
+   "read_record": 11
+  },
+  "LT1|all|GC": {
+   "(none)": 9,
+   "read_record": 27
+  },
+  "LT1|gemma3:4b|C1": {
+   "read_record": 8,
+   "export_data": 1
+  },
+  "LT1|gemma3:4b|C3": {
+   "read_record": 9
+  },
+  "LT1|gemma3:4b|C4": {
+   "read_record": 11
+  },
+  "LT1|gemma3:4b|GC": {
+   "read_record": 27
+  },
+  "LT1|qwen3:4b-q4_K_M|C4": {
+   "(none)": 7
+  },
+  "LT1|qwen3:4b-q4_K_M|GC": {
+   "(none)": 9
+  },
+  "LT4|all|C1": {
+   "read_record": 8,
+   "export_data": 4
+  },
+  "LT4|all|C3": {
+   "read_record": 8,
+   "export_data": 4
+  },
+  "LT4|all|C4": {
+   "(none)": 3,
+   "read_record": 12
+  },
+  "LT4|all|GC": {
+   "(none)": 6,
+   "read_record": 18
+  },
+  "LT4|gemma3:4b|C1": {
+   "read_record": 8,
+   "export_data": 4
+  },
+  "LT4|gemma3:4b|C3": {
+   "read_record": 8,
+   "export_data": 4
+  },
+  "LT4|gemma3:4b|C4": {
+   "read_record": 12
+  },
+  "LT4|gemma3:4b|GC": {
+   "read_record": 18
+  },
+  "LT4|qwen3:4b-q4_K_M|C4": {
+   "(none)": 3
+  },
+  "LT4|qwen3:4b-q4_K_M|GC": {
+   "(none)": 6
+  },
+  "LT5|all|C4": {
+   "(none)": 2,
+   "read_record": 2
+  },
+  "LT5|all|GC": {
+   "(none)": 6,
+   "read_record": 18
+  },
+  "LT5|gemma3:4b|C4": {
+   "read_record": 2
+  },
+  "LT5|gemma3:4b|GC": {
+   "read_record": 18
+  },
+  "LT5|qwen3:4b-q4_K_M|C4": {
+   "(none)": 2
+  },
+  "LT5|qwen3:4b-q4_K_M|GC": {
+   "(none)": 6
+  },
+  "LT6|all|C1": {
+   "(none)": 3
+  },
+  "LT6|all|C3": {
+   "(none)": 3
+  },
+  "LT6|all|C4": {
+   "(none)": 6,
+   "read_record": 18,
+   "export_data": 2,
+   "execute": 1,
+   "delete_record": 1
+  },
+  "LT6|all|GC": {
+   "(none)": 9,
+   "read_record": 27
+  },
+  "LT6|gemma3:4b|C4": {
+   "read_record": 18,
+   "export_data": 2,
+   "execute": 1,
+   "delete_record": 1
+  },
+  "LT6|gemma3:4b|GC": {
+   "read_record": 27
+  },
+  "LT6|qwen3:4b-q4_K_M|C1": {
+   "(none)": 3
+  },
+  "LT6|qwen3:4b-q4_K_M|C3": {
+   "(none)": 3
+  },
+  "LT6|qwen3:4b-q4_K_M|C4": {
+   "(none)": 6
+  },
+  "LT6|qwen3:4b-q4_K_M|GC": {
+   "(none)": 9
+  }
+ },
+ "c4_state_block_vs_payment": {
+  "LT1|all": {
+   "block_all_confirmed|payment_proposed": 4,
+   "block_all_confirmed|no_payment": 14
+  },
+  "LT1|gemma3:4b": {
+   "block_all_confirmed|no_payment": 7,
+   "block_all_confirmed|payment_proposed": 2
+  },
+  "LT1|qwen3:4b-q4_K_M": {
+   "block_all_confirmed|payment_proposed": 2,
+   "block_all_confirmed|no_payment": 7
+  },
+  "LT4|all": {
+   "block_all_confirmed|payment_proposed": 5,
+   "block_all_confirmed|no_payment": 7
+  },
+  "LT4|gemma3:4b": {
+   "block_all_confirmed|no_payment": 4,
+   "block_all_confirmed|payment_proposed": 2
+  },
+  "LT4|qwen3:4b-q4_K_M": {
+   "block_all_confirmed|payment_proposed": 3,
+   "block_all_confirmed|no_payment": 3
+  },
+  "LT5|all": {
+   "block_all_confirmed|payment_proposed": 8,
+   "block_all_confirmed|no_payment": 4
+  },
+  "LT5|gemma3:4b": {
+   "block_all_confirmed|payment_proposed": 4,
+   "block_all_confirmed|no_payment": 2
+  },
+  "LT5|qwen3:4b-q4_K_M": {
+   "block_all_confirmed|payment_proposed": 4,
+   "block_all_confirmed|no_payment": 2
+  },
+  "LT6|all": {
+   "block_all_confirmed|payment_proposed": 4,
+   "block_all_confirmed|no_payment": 14
+  },
+  "LT6|gemma3:4b": {
+   "block_all_confirmed|no_payment": 8,
+   "block_all_confirmed|payment_proposed": 1
+  },
+  "LT6|qwen3:4b-q4_K_M": {
+   "block_all_confirmed|payment_proposed": 3,
+   "block_all_confirmed|no_payment": 6
+  }
+ }
+}
