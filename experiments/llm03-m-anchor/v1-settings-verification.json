@@ -1,0 +1,149 @@
+{
+  "review_date_jst": "2026-11-18",
+  "source_archive_locations": [
+    "C:/Users/ise/Downloads/interface-boundary-study-v0.1.zip",
+    "C:/Users/ise/Desktop/D_Drive_Organize_Phase1_1/interface-boundary-study-v0.1.zip"
+  ],
+  "method": "Read the ZIP without executing its scripts. Verify Git object SHA-1 values and frozen file contents; reconstruct each sent request from the frozen payload and saved stage-1 output and compare SHA-256; compare recorded seeds to the configured rule. No new model calls.",
+  "archive_sha256": "4c9fced4ceab468a2415f57ee1f25bfdb935b4f20399b428e26a0868b7524b50",
+  "freeze_commit": "c207ce0444e5a2cfc07ba7972d6407c97b9defe0",
+  "frozen_files": {
+    "config.json": {
+      "blob": "b25dd8979688e75491d471e52e4f1d5ad309c7a2",
+      "matches_archive": true
+    },
+    "runner/payload_holdout-v1.json": {
+      "blob": "6e391a5c6069c392f225cf3f3227feb3c398984c",
+      "matches_archive": true
+    },
+    "protocol-frozen.md": {
+      "blob": "ee1eebcc5daee4d520c277011d46c4cebc3c2e9a",
+      "matches_archive": true
+    }
+  },
+  "request_hashes_verified": 1192,
+  "request_hash_mismatches": [],
+  "seed_mismatches": [],
+  "logical_call_status_counts": {
+    "OK": 1189,
+    "TIMEOUT": 2,
+    "NOT_RUN": 8,
+    "HTTP_ERROR": 1
+  },
+  "attempts": 1199,
+  "environment_records": [
+    {
+      "raw_file": "raw/raw_holdout-v1.segment1.json",
+      "payload_file": "runner/payload_holdout-v1.json",
+      "payload_sha256": "33c552eaec9e9db4817359158eedfea7ab6d7b81e8e86b90bd1dab41d65355b9",
+      "version": {
+        "version": "0.40.16"
+      },
+      "models": [
+        {
+          "name": "gemma3:4b",
+          "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+          "details": {
+            "parent_model": "dhiltgen/gemma3:4b-it-q4_K_M-llamacpp",
+            "format": "gguf",
+            "family": "gemma3",
+            "families": [
+              "gemma3",
+              "clip"
+            ],
+            "parameter_size": "3.9B",
+            "quantization_level": "Q4_K_M",
+            "context_length": 131072,
+            "embedding_length": 2560,
+            "runner": "llamacpp"
+          }
+        },
+        {
+          "name": "qwen3:4b-q4_K_M",
+          "digest": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen3",
+            "families": [
+              "qwen3"
+            ],
+            "parameter_size": "4.0B",
+            "quantization_level": "Q4_K_M",
+            "context_length": 40960,
+            "embedding_length": 2560,
+            "runner": "ggml"
+          }
+        }
+      ]
+    },
+    {
+      "raw_file": "raw/raw_holdout-v1.segment2-resume.json",
+      "payload_file": "runner/payload_holdout-v1.json",
+      "payload_sha256": "33c552eaec9e9db4817359158eedfea7ab6d7b81e8e86b90bd1dab41d65355b9",
+      "version": {
+        "version": "0.40.16"
+      },
+      "models": [
+        {
+          "name": "gemma3:4b",
+          "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+          "details": {
+            "parent_model": "dhiltgen/gemma3:4b-it-q4_K_M-llamacpp",
+            "format": "gguf",
+            "family": "gemma3",
+            "families": [
+              "gemma3",
+              "clip"
+            ],
+            "parameter_size": "3.9B",
+            "quantization_level": "Q4_K_M",
+            "context_length": 131072,
+            "embedding_length": 2560,
+            "runner": "llamacpp"
+          }
+        },
+        {
+          "name": "qwen3:4b-q4_K_M",
+          "digest": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen3",
+            "families": [
+              "qwen3"
+            ],
+            "parameter_size": "4.0B",
+            "quantization_level": "Q4_K_M",
+            "context_length": 40960,
+            "embedding_length": 2560,
+            "runner": "ggml"
+          }
+        }
+      ]
+    }
+  ],
+  "config_models": [
+    {
+      "name": "qwen3:4b-q4_K_M",
+      "family": "qwen3",
+      "think": false
+    },
+    {
+      "name": "gemma3:4b",
+      "family": "gemma3",
+      "think": null
+    }
+  ],
+  "options": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "top_k": 40,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "timeout_ms": 120000,
+  "seed_rule": "seed = 20261117 + 1000*rep + case_index (case_index = 0-based line number in the case file); same seed for stage 1 and all four stage-2 branches of a trial; same seed for both models",
+  "retry_policy": "retry only on transport error, HTTP error, Ollama error field, or timeout; max 2 retries; never retry on content (schema errors, refusals, wrong values)",
+  "new_model_calls": 0
+}
