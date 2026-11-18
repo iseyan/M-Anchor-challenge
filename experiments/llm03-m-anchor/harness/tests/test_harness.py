@@ -304,6 +304,18 @@ class TestCallsAndOrder(unittest.TestCase):
         self.assertIn("M-Anchor", bodies["C4"]["messages"][3]["content"])
         self.assertEqual(len({b["options"]["seed"] for b in bodies.values()}), 1)
 
+    def test_stage2_text_lists_exactly_the_case_keys_in_every_condition(self):
+        for c in MAIN + DEV:
+            base = prompts.stage2_base(c)
+            self.assertNotIn("{claim_keys}", base)
+            self.assertNotIn("{claims_example}", base)
+            keys = [k["key"] for k in c["claims"]]
+            self.assertIn("handoff.claims に書く主張キーは、次のすべてです：" + "、".join(keys), base)
+            self.assertIn('{"claims": {' + ", ".join(f'"{k}": "状態"' for k in keys) + "}}", base)
+            for cond in CFG["conditions"]:
+                block = "BLOCK" if CFG["stage2_block"][cond] == "anchor" else None
+                self.assertTrue(prompts.stage2_instruction(CFG, cond, block, c).endswith(base), (c["case_id"], cond))
+
     def test_stage1_failure_gives_not_run_and_no_receiver_call(self):
         t = pipeline.plan_trials(CFG, DEV)[0]
         send = executors.mock_sender(CFG, {"S1|" + t["trial_id"]: {"call_status": "TIMEOUT", "content": None}})

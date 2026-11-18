@@ -56,11 +56,17 @@
     return out;
   }
   const renderBlock = (state) => [T.c4_header].concat(state.map(([k, s, r]) => '- ' + k + ': ' + s + '（' + r + '）')).join('\n');
-  function stage2Instruction(cond, block) {
+  function stage2Base(c) {                            // port of lib/prompts.py stage2_base
+    const keys = c.claims.map(cl => cl.key);
+    const example = '{' + keys.map(k => '"' + k + '": "状態"').join(', ') + '}';
+    return rep(rep(T.stage2_base, '{claim_keys}', keys.join('、')), '{claims_example}', example);
+  }
+  function stage2Instruction(cond, block, c) {
     const kind = P.stage2_block[cond];
-    if (kind === null) { return T.stage2_base; }
-    if (kind === 'anchor') { return block + '\n\n' + T.stage2_base; }
-    return T.gc_block + '\n\n' + T.stage2_base;
+    const base = stage2Base(c);
+    if (kind === null) { return base; }
+    if (kind === 'anchor') { return block + '\n\n' + base; }
+    return T.gc_block + '\n\n' + base;
   }
   function handoffClaims(rec) {
     if (!rec || rec.call_status !== 'OK' || rec.content === null || rec.content === undefined) { return null; }
@@ -153,7 +159,7 @@
         const s2 = {};
         for (const cond of P.conditions) {
           const block = P.stage2_block[cond] === 'anchor' ? renderBlock(state) : null;
-          const msgs = t.s1_messages.concat([{ role: 'assistant', content: r1.content }, { role: 'user', content: stage2Instruction(cond, block) }]);
+          const msgs = t.s1_messages.concat([{ role: 'assistant', content: r1.content }, { role: 'user', content: stage2Instruction(cond, block, c) }]);
           s2[cond] = await send({ call_id: 'S2|' + t.trial_id + '|' + cond, trial_id: t.trial_id, stage: 2, condition: cond }, t.sender, msgs, t.seed);
         }
         for (const cond of P.conditions) {

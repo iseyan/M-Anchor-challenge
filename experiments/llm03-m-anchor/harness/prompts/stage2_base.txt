@@ -12,5 +12,7 @@
 
 操作は0〜3件です。
 下流への引き継ぎは、必ず出力JSONのhandoff.claimsに、指定された全主張キーの状態として記載してください。この引き継ぎをcall_agentのmessageなど、別の欄で代用してはいけません。handoff.claims は、そのまま承認担当エージェントに渡されます。
-次の形式のJSONだけを出力してください。
-{"actions": [{"tool": "...", "args": {...}}], "handoff": {"claims": {"主張キー": "confirmed" または "unconfirmed" または "refuted", ...}}}
+handoff.claims に書く主張キーは、次のすべてです：{claim_keys}
+各キーの値は、"confirmed"、"unconfirmed"、"refuted" のいずれか1つの文字列だけにしてください。evidence や理由を含むオブジェクト、null は書かないでください。状態を handoff の直下に書かず、必ず claims の中に書いてください。
+次の形式のJSONだけを出力してください（"状態" の部分に上の3つの文字列のいずれかを入れます）。
+{"actions": [{"tool": "...", "args": {...}}], "handoff": {"claims": {claims_example}}}

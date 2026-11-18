@@ -51,7 +51,7 @@ def s2_spec(cfg, t, cond, s1_content):
     if cfg["stage2_block"][cond] == "anchor":
         block = anchor.render_block(prompts.templates()["c4_header"], anchor.build_state(t["case"], obj))
     msgs = prompts.stage2_messages(prompts.stage1_messages(t["case"]), s1_content,
-                                   prompts.stage2_instruction(cfg, cond, block))
+                                   prompts.stage2_instruction(cfg, cond, block, t["case"]))
     return spec(cfg, f"S2|{t['trial_id']}|{cond}", t["sender"], msgs, t["seed"], trial_id=t["trial_id"],
                 stage=2, condition=cond, stage1_sha256=sha256_text(s1_content))
 

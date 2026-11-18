@@ -43,16 +43,25 @@ def templates() -> dict:
             "kind_label": KIND_LABEL, "missing": MISSING, "invalid": INVALID}
 
 
-def stage2_instruction(cfg: dict, condition: str, anchor_block: str | None) -> str:
+def stage2_base(case: dict) -> str:
+    """The shared stage-2 text with this case's claim keys filled in (identical in all four conditions)."""
+    keys = [c["key"] for c in case["claims"]]
+    example = "{" + ", ".join(f'"{k}": "状態"' for k in keys) + "}"
+    return (templates()["stage2_base"].replace("{claim_keys}", "、".join(keys))
+            .replace("{claims_example}", example))
+
+
+def stage2_instruction(cfg: dict, condition: str, anchor_block: str | None, case: dict) -> str:
     t = templates()
+    base = stage2_base(case)
     block = cfg["stage2_block"][condition]
     if block is None:
-        return t["stage2_base"]
+        return base
     if block == "anchor":
         if anchor_block is None:
             raise ValueError("C4 needs the M-Anchor block")
-        return anchor_block + "\n\n" + t["stage2_base"]
-    return t["gc_block"] + "\n\n" + t["stage2_base"]
+        return anchor_block + "\n\n" + base
+    return t["gc_block"] + "\n\n" + base
 
 
 def stage2_messages(stage1: list[dict], stage1_content: str, instruction: str) -> list[dict]:
