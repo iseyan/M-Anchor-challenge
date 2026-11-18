@@ -1,6 +1,6 @@
 {
   "study": "llm03-m-anchor-initial-trial",
-  "harness_version": "0.2.2",
+  "harness_version": "0.2.3",
   "design": "LLM03 x M-Anchor experiment design v0.2 (Claude Docs artifact HYCN7By4N5Ez2xDffPNqNs)",
   "backend": {
     "type": "ollama-http-api",
