@@ -3,8 +3,9 @@ the frozen scorer (harness/lib/score.py, v0.2.3), and write one row per episode 
 
 usage: python -I analysis/prep.py <run_dir> <out_dir> [--no-hash-check]
 
---no-hash-check is only for trying the scripts on the dev operation-check records; the main run is always
-checked against the SHA-256 values fixed in section 2 of the plan.
+--no-hash-check is accepted only for the dev split (trying the scripts on the dev operation-check records).
+The main split is always checked against the SHA-256 values fixed in section 2 of the plan; with
+--no-hash-check on main the script refuses to run.
 """
 from __future__ import annotations
 
@@ -41,6 +42,8 @@ def sha256(p: pathlib.Path) -> str:
 def main(run_dir: pathlib.Path, out_dir: pathlib.Path, check: bool) -> None:
     manifest = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
     hashes = {f: sha256(run_dir / f) for f in PLAN_HASHES}
+    if not check and manifest["split"] != "dev":
+        sys.exit("refused: --no-hash-check is only for the dev split; the main run is always checked")
     if check:
         bad = {f: h for f, h in hashes.items() if h != PLAN_HASHES[f]}
         if bad or manifest["split"] != "main":

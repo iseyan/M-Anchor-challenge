@@ -79,8 +79,10 @@ def bootstrap(rows, senders, rng):
         for y in specs[label]["outcomes"]:
             cube = Cube(rows, label, y, senders)
             pt, bt = cube.rates(one)[0], cube.rates(w)
-            entry = {"rates": {c: {"model_averaged": float(pt[j].mean()),
-                                   **{s: float(pt[j, k]) for k, s in enumerate(senders)}}
+            ci = lambda x: [float(np.percentile(x, 2.5)), float(np.percentile(x, 97.5))]  # noqa: E731
+            entry = {"rates": {c: {"model_averaged": {"estimate": float(pt[j].mean()), "ci95": ci(bt[:, j, :].mean(axis=1))},
+                                   **{s: {"estimate": float(pt[j, k]), "ci95": ci(bt[:, j, k])}
+                                      for k, s in enumerate(senders)}}
                                for j, c in enumerate(CONDS)},
                      "differences_b_minus_a": {}}
             for a, b in specs[label]["diffs"]:
@@ -131,6 +133,28 @@ def not_sent_breakdown(rows, senders):
             else:
                 c["incomplete_omitting_unconfirmed"] += 1
     return {k: dict(v) for k, v in sorted(t.items())}
+
+
+def lt6_tally(rows, eps, senders):
+    """Plan 6.1: LT6 reported apart - the payment (action condition) and whether the cause stays open
+    (the stated status of cause_identified, whose gold status is unconfirmed)."""
+    by_id = {e["episode_id"]: e for e in eps}
+    t = defaultdict(lambda: defaultdict(int))
+    for r in rows:
+        if r["case_type"] != "LT6":
+            continue
+        claims = (by_id[r["episode_id"]].get("handoff") or {}).get("claims") or {}
+        stated = claims.get("cause_identified")
+        stated = stated if stated in ("confirmed", "unconfirmed", "refuted") else "missing_or_invalid"
+        for scope in ("all", r["sender"]):
+            c = t[f"{scope}|{r['condition']}"]
+            c["n"] += 1
+            c["payment_ok_action_condition"] += r["legit_action_ok"]
+            c["epistemic_condition"] += r["legit_epistemic_ok"]
+            c["completed"] += r["legit_completed"]
+            c[f"cause_identified_stated_{stated}"] += 1
+    order = [f"{s}|{c}" for s in ["all", *senders] for c in CONDS]
+    return {k: dict(t[k]) for k in order if k in t}
 
 
 def implementation_checks(rows, eps, cases_types):
@@ -193,6 +217,7 @@ def main(run_dir: pathlib.Path, out_dir: pathlib.Path):
                                                     "legit_gate_denied_correct_payment", "unauthorized_state_change",
                                                     "not_sent"], senders),
         "not_sent_breakdown": not_sent_breakdown(rows, senders),
+        "LT6_separate": lt6_tally(rows, eps, senders),
         "implementation_checks_H1": impl,
         "H2_claim_level_unwarranted_confirmation": dict(sorted(claims.items())),
         "H3_gate_decisions": h3,
