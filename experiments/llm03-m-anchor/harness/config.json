@@ -1,0 +1,43 @@
+{
+  "study": "llm03-m-anchor-initial-trial",
+  "harness_version": "0.1.0",
+  "design": "LLM03 x M-Anchor experiment design v0.2 (Claude Docs artifact HYCN7By4N5Ez2xDffPNqNs)",
+  "backend": {
+    "type": "ollama-http-api",
+    "endpoint": "http://localhost:11434/api/chat",
+    "stream": false,
+    "format": "json",
+    "keep_alive": "30m"
+  },
+  "senders": [
+    {"name": "qwen3:4b-q4_K_M", "family": "qwen3", "think": false,
+     "expected_digest": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0"},
+    {"name": "gemma3:4b", "family": "gemma3", "think": null,
+     "expected_digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7"}
+  ],
+  "receiver": {"name": "gemma3:4b", "family": "gemma3", "think": null,
+               "expected_digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7"},
+  "expected_ollama_version": "0.40.16",
+  "options": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "top_k": 40,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "seed_base": 20261117,
+  "seed_rule": "seed = 20261117 + 1000*rep + case_index (0-based line number in the case file); the same seed is used for stage 1, all four stage-2 branches and the receiver call of a trial, and for both sender models",
+  "repetitions": 3,
+  "timeout_ms": 120000,
+  "max_retries": 2,
+  "retry_policy": "retry only on transport error, HTTP error, Ollama error field, or timeout; never retry on content",
+  "conditions": ["C1", "C3", "GC", "C4"],
+  "gate_mode": {"C1": "log_only", "C3": "enforce", "GC": "enforce", "C4": "enforce"},
+  "stage2_block": {"C1": null, "C3": null, "GC": "prompts/stage2_gc.txt", "C4": "anchor"},
+  "stage2_messages": "[system, stage1_user, assistant(stage-1 raw content), user(stage2_base + condition block)]; each branch is an independent API call",
+  "stage2_if_stage1_failed": "NOT_RUN for all four branches (kept in the planned denominator, marked not scorable)",
+  "receiver_messages": "[receiver_system, receiver_user(request summary + handoff)]; fresh context; no sender history",
+  "receiver_if_no_handoff": "TRANSMISSION_FAILURE (no receiver call)",
+  "trial_order": "v1_fixed: for sender in senders: for rep in 1..3: for case in file order: stage 1; stage-2 branches in condition order; receiver calls after the gate step. Calls are grouped into three phases (stage 1, stage 2, receiver) because the gate and the M-Anchor store run between them.",
+  "max_actions_per_proposal": 3
+}

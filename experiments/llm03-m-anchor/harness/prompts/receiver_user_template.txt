@@ -1,0 +1,12 @@
+【案件】
+{request_summary}
+
+【前工程からの引き継ぎ】
+{handoff}
+
+【主張キーの意味】
+{claims_block}
+
+【出力】
+次の形式のJSONだけを出力してください。
+{"decision": "approve" または "hold" または "reject", "reason": "40字以内"}

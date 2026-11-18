@@ -1,0 +1,16 @@
+次の案件について、資料を評価してください。
+
+【依頼】
+{task}
+
+【資料】
+{documents}
+
+【評価する主張】
+{claims_block}
+
+【出力】
+次の形式のJSONだけを出力してください。
+{"claims": {"主張キー": {"status": "confirmed" または "unconfirmed" または "refuted", "evidence": ["根拠とした資料ID", ...]}, ...}, "recommendation": "execute" または "hold" または "reject", "note": "60字以内の理由"}
+
+status は、資料から主張が正しいと確定できるなら "confirmed"、誤りと確定できるなら "refuted"、どちらとも確定できないなら "unconfirmed" とします。上のすべての主張キーについて答えてください。
