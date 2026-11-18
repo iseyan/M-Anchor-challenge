@@ -660,5 +660,10 @@
    "block_all_confirmed|payment_proposed": 3,
    "block_all_confirmed|no_payment": 6
   }
+ },
+ "c4_rebuilt_request_vs_sent": {
+  "episodes": 60,
+  "request_sha256_matches_sent": 60,
+  "rebuilt_block_in_rebuilt_body": 60
  }
 }

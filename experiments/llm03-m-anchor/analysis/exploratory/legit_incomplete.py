@@ -14,9 +14,11 @@ changing any data. Categories for the execute-type tasks (LT1, LT4, LT5, LT6), i
 
 LT3 (hold) and LT2 (no action) get the analogous categories (no_request_approval / business_change_applied).
 
-For C4, the state block the sender saw is rebuilt from the stored stage-1 output with the frozen rule
+For C4, the state block is rebuilt from the stored stage-1 output with the frozen rule
 (lib.anchor.build_state), and cross-tabulated against whether the payment was proposed: did the block show
-every claim the gold marks confirmed as confirmed?
+every claim the gold marks confirmed as confirmed? The whole stage-2 request is also rebuilt with the frozen
+code (lib.pipeline.s2_spec) and its SHA-256 compared with request_sha256 recorded by the browser for the
+body it actually sent, so a match means the rebuilt block is the text that was sent.
 
 usage: python -I analysis/exploratory/legit_incomplete.py <run_dir> <out_json>
 """
@@ -29,8 +31,8 @@ from collections import Counter, defaultdict
 
 HARNESS = pathlib.Path(__file__).resolve().parents[2] / "harness"
 sys.path.insert(0, str(HARNESS))
-from lib import anchor, score  # noqa: E402
-from lib.common import load_cases, parse_json  # noqa: E402
+from lib import anchor, pipeline, score  # noqa: E402
+from lib.common import load_cases, load_config, parse_json  # noqa: E402
 
 CONDS = ["C1", "C3", "GC", "C4"]
 
@@ -78,6 +80,9 @@ def main(run_dir, out_path):
     cases = {c["case_id"]: c for c in load_cases("main")}
     eps = [json.loads(l) for l in (run_dir / "episodes.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
     recs = {r["call_id"]: r for r in json.loads((run_dir / "records.json").read_text(encoding="utf-8"))}
+    cfg = load_config()
+    trials = {t["trial_id"]: t for t in pipeline.plan_trials(cfg, list(cases.values()))}
+    sent_check = Counter()
     c4_block = defaultdict(Counter)
     table = defaultdict(Counter)
     tools_when_no_payment = defaultdict(Counter)
@@ -94,6 +99,12 @@ def main(run_dir, out_path):
             s1 = recs.get(f"S1|{ep['trial_id']}")
             obj, _ = parse_json(s1["content"]) if s1 and s1.get("content") else (None, None)
             st = anchor.build_state(case, obj)
+            rebuilt = pipeline.s2_spec(cfg, trials[ep["trial_id"]], "C4", s1["content"])
+            sent = recs.get(f"S2|{ep['trial_id']}|C4")
+            block = anchor.render_block(__import__("lib.prompts", fromlist=["templates"]).templates()["c4_header"], st)
+            sent_check["episodes"] += 1
+            sent_check["request_sha256_matches_sent"] += int(bool(sent) and rebuilt["request_sha256"] == sent["request_sha256"])
+            sent_check["rebuilt_block_in_rebuilt_body"] += int(json.dumps(block, ensure_ascii=False)[1:-1] in rebuilt["body"])
             want = [k for k, v in case["gold"]["claims"].items() if v == "confirmed"]
             shown = "block_all_confirmed" if all(st[k]["status"] == "confirmed" for k in want) else "block_some_unconfirmed"
             proposed = "payment_proposed" if any(a["tool"] == "approve_payment" for a in ep["actions"]) else "no_payment"
@@ -116,7 +127,8 @@ def main(run_dir, out_path):
            "totals": {k: dict(v) for k, v in sorted(totals.items())},
            "incomplete_by_category": {k: dict(v) for k, v in sorted(table.items())},
            "tools_proposed_when_no_payment": {k: dict(v) for k, v in sorted(tools_when_no_payment.items())},
-           "c4_state_block_vs_payment": {k: dict(v) for k, v in sorted(c4_block.items())}}
+           "c4_state_block_vs_payment": {k: dict(v) for k, v in sorted(c4_block.items())},
+           "c4_rebuilt_request_vs_sent": dict(sent_check)}
     pathlib.Path(out_path).write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     print("written", out_path)
 
