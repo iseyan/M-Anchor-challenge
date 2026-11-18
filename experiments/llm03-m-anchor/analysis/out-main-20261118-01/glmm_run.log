@@ -1,0 +1,21 @@
+boundary (singular) fit: see help('isSingular')
+boundary (singular) fit: see help('isSingular')
+boundary (singular) fit: see help('isSingular')
+written analysis/out-main-20261118-01/glmm_results.json 
+Computing profile confidence intervals ...
+variance components: mis_propagation 
+Computing profile confidence intervals ...
+Computing bootstrap confidence intervals ...
+
+358 message(s): boundary (singular) fit: see help('isSingular')
+14 warning(s): Model failed to converge with max|grad| = 0.0514617 (tol = 0.002, component 1) (and others)
+
+variance components: attempt 
+Computing profile confidence intervals ...
+variance components: mis_propagation_if_not_sent_counted 
+Computing profile confidence intervals ...
+variance components: receiver_false_approval 
+
+real	7m44.170s
+user	7m37.247s
+sys	0m0.186s

@@ -1,0 +1,152 @@
+{
+  "dev_quick": false,
+  "components": [
+    {
+      "outcome": "mis_propagation",
+      "glmm_step": "1_full",
+      "singular": false,
+      "ci_method": "profile",
+      "components": [
+        {
+          "group": "trial_id",
+          "variance": 4.72946158317428,
+          "sd": 2.17473253141031,
+          "ci95_sd": [1.63199209826407, 2.86514134705144],
+          "ci95_variance": [2.66339820879638, 8.20903493858374],
+          "parm": "sd_(Intercept)|trial_id"
+        },
+        {
+          "group": "case_type:case_id",
+          "variance": 0.120288833266015,
+          "sd": 0.346826805864275,
+          "ci95_sd": [0, 1.25693326996287],
+          "ci95_variance": [0, 1.57988124513956],
+          "parm": "sd_(Intercept)|case_type:case_id"
+        },
+        {
+          "group": "case_type",
+          "variance": 0.148592378501134,
+          "sd": 0.385476819667713,
+          "ci95_sd": [0, 1.26202721579402],
+          "ci95_variance": [0, 1.5927126934048],
+          "parm": "sd_(Intercept)|case_type"
+        }
+      ],
+      "profile_error": null,
+      "profile_warnings": [],
+      "bootstrap": null
+    },
+    {
+      "outcome": "attempt",
+      "glmm_step": "1_full",
+      "singular": true,
+      "ci_method": "parametric_bootstrap_percentile",
+      "components": [
+        {
+          "group": "trial_id",
+          "variance": 2.24170981786736,
+          "sd": 1.49723405580669,
+          "ci95_sd": [0.835663530369495, 2.24124406946006],
+          "ci95_variance": [0.698333535989608, 5.02317497888987],
+          "parm": "sd_(Intercept)|trial_id"
+        },
+        {
+          "group": "case_type:case_id",
+          "variance": 0,
+          "sd": 0,
+          "ci95_sd": [0, 0.795327113625478],
+          "ci95_variance": [0, 0.632545217667834],
+          "parm": "sd_(Intercept)|case_type:case_id"
+        },
+        {
+          "group": "case_type",
+          "variance": 0.318182235619206,
+          "sd": 0.564076444836341,
+          "ci95_sd": [0, 0.973629916500966],
+          "ci95_variance": [0, 0.947955214305677],
+          "parm": "sd_(Intercept)|case_type"
+        }
+      ],
+      "profile_error": "profiling detected new, lower deviance (deviance diff = 0.000599, tolerance = 1e-09)",
+      "profile_warnings": [],
+      "bootstrap": {
+        "nsim": 500,
+        "seed": 20261119,
+        "error": null,
+        "warnings": []
+      }
+    },
+    {
+      "outcome": "mis_propagation_if_not_sent_counted",
+      "glmm_step": "1_full",
+      "singular": false,
+      "ci_method": "profile",
+      "components": [
+        {
+          "group": "trial_id",
+          "variance": 3.7834580061653,
+          "sd": 1.94511130945386,
+          "ci95_sd": [1.29500325529192, 2.77993445865137],
+          "ci95_variance": [1.67703343121668, 7.72803559439731],
+          "parm": "sd_(Intercept)|trial_id"
+        },
+        {
+          "group": "case_type:case_id",
+          "variance": 1.28268645877431,
+          "sd": 1.13255748585858,
+          "ci95_sd": [0, 2.28652264534588],
+          "ci95_variance": [0, 5.22818580767953],
+          "parm": "sd_(Intercept)|case_type:case_id"
+        },
+        {
+          "group": "case_type",
+          "variance": 1.28782277615127,
+          "sd": 1.13482279504391,
+          "ci95_sd": [0, 2.49246037810341],
+          "ci95_variance": [0, 6.21235873641539],
+          "parm": "sd_(Intercept)|case_type"
+        }
+      ],
+      "profile_error": null,
+      "profile_warnings": [],
+      "bootstrap": null
+    },
+    {
+      "outcome": "receiver_false_approval",
+      "glmm_step": "1_full",
+      "singular": false,
+      "ci_method": "profile",
+      "components": [
+        {
+          "group": "trial_id",
+          "variance": 0.570178697013488,
+          "sd": 0.755101779241373,
+          "ci95_sd": [0, 1.31711880068458],
+          "ci95_variance": [0, 1.73480193511679],
+          "parm": "sd_(Intercept)|trial_id"
+        },
+        {
+          "group": "case_type:case_id",
+          "variance": 0.979703444003095,
+          "sd": 0.989799698930594,
+          "ci95_sd": [0.494379204802253, 1.80289793318337],
+          "ci95_variance": [0.244410798140908, 3.25044095747687],
+          "parm": "sd_(Intercept)|case_type:case_id"
+        },
+        {
+          "group": "case_type",
+          "variance": 2.02891209831142,
+          "sd": 1.42439885506533,
+          "ci95_sd": [0.644442257583374, 2.71066670802637],
+          "ci95_variance": [0.415305823359156, 7.34771400200251],
+          "parm": "sd_(Intercept)|case_type"
+        }
+      ],
+      "profile_error": null,
+      "profile_warnings": [],
+      "bootstrap": null
+    }
+  ],
+  "done": 4,
+  "of": 4
+}

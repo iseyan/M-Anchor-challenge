@@ -1,0 +1,359 @@
+{
+  "software": {
+    "R": "R version 4.3.3 (2024-02-29)",
+    "lme4": "1.1.35.1",
+    "Matrix": "1.6.5"
+  },
+  "n_attack_episodes": 600,
+  "senders": ["gemma3:4b", "qwen3:4b-q4_K_M"],
+  "observed_rates": {
+    "mis_propagation": {
+      "gemma3:4b": {
+        "C3": 0.653333333333333,
+        "C1": 0.693333333333333,
+        "GC": 0.613333333333333,
+        "C4": 0.32
+      },
+      "qwen3:4b-q4_K_M": {
+        "C3": 0.64,
+        "C1": 0.64,
+        "GC": 0.493333333333333,
+        "C4": 0.04
+      }
+    },
+    "attempt": {
+      "gemma3:4b": {
+        "C3": 0.853333333333333,
+        "C1": 0.88,
+        "GC": 0.866666666666667,
+        "C4": 0.72
+      },
+      "qwen3:4b-q4_K_M": {
+        "C3": 0.88,
+        "C1": 0.88,
+        "GC": 0.133333333333333,
+        "C4": 0.706666666666667
+      }
+    }
+  },
+  "primary": [
+    {
+      "id": "H4a",
+      "outcome": "mis_propagation",
+      "a": "C3",
+      "b": "C4",
+      "method": "glmm_wald",
+      "log_or": -4.16735228931635,
+      "se": 0.502204482581815,
+      "or": 0.0154932274490053,
+      "or_ci95": [0.00578981471917764, 0.0414590290759261],
+      "z": -8.29811846340388,
+      "p": 1.05773178973998e-16,
+      "glmm_step": "1_full",
+      "singular": false,
+      "p_holm": 3.17319536921994e-16,
+      "decision": "significant"
+    },
+    {
+      "id": "H4b",
+      "outcome": "attempt",
+      "a": "C3",
+      "b": "C4",
+      "method": "glmm_wald",
+      "log_or": -1.3294926984524,
+      "se": 0.364672901919559,
+      "or": 0.264611465061795,
+      "or_ci95": [0.129478756683546, 0.540777724745078],
+      "z": -3.64571288805459,
+      "p": 0.00026665155988591,
+      "glmm_step": "1_full",
+      "singular": true,
+      "p_holm": 0.00026665155988591,
+      "decision": "significant"
+    },
+    {
+      "id": "H4prime",
+      "outcome": "mis_propagation",
+      "a": "GC",
+      "b": "C4",
+      "method": "glmm_wald",
+      "log_or": -3.3980465387678,
+      "se": 0.45974740043729,
+      "or": 0.0334385270672476,
+      "or_ci95": [0.0135803024468177, 0.0823350655705804],
+      "z": -7.39111637289464,
+      "p": 1.45601113971533e-13,
+      "glmm_step": "1_full",
+      "singular": false,
+      "p_holm": 2.91202227943066e-13,
+      "decision": "significant"
+    }
+  ],
+  "sensitivity": [
+    {
+      "id": "H4a_not_sent_counted",
+      "a": "C3",
+      "b": "C4",
+      "primary_index": 1,
+      "outcome": "mis_propagation_if_not_sent_counted",
+      "method": "glmm_wald",
+      "log_or": -5.86038961115716,
+      "se": 0.707494763278736,
+      "or": 0.00285013302270589,
+      "or_ci95": [0.000712269742527435, 0.0114047498610483],
+      "z": -8.28329751021536,
+      "p": 1.19810609724987e-16,
+      "glmm_step": "1_full",
+      "singular": false,
+      "p_holm_substituted": 3.59431829174962e-16,
+      "decision": "significant",
+      "same_conclusion_as_primary": true
+    },
+    {
+      "id": "H4prime_not_sent_counted",
+      "a": "GC",
+      "b": "C4",
+      "primary_index": 3,
+      "outcome": "mis_propagation_if_not_sent_counted",
+      "method": "glmm_wald",
+      "log_or": -3.75127566111198,
+      "se": 0.513535605929673,
+      "or": 0.0234877643093915,
+      "or_ci95": [0.00858458648012127, 0.0642634416382197],
+      "z": -7.30480149340551,
+      "p": 2.77676376947991e-13,
+      "glmm_step": "1_full",
+      "singular": false,
+      "p_holm_substituted": 5.55352753895983e-13,
+      "decision": "significant",
+      "same_conclusion_as_primary": true
+    }
+  ],
+  "per_sender": [
+    {
+      "id": "H4a",
+      "outcome": "mis_propagation",
+      "a": "C3",
+      "b": "C4",
+      "sender": "gemma3:4b",
+      "method": "glmm_wald",
+      "log_or": -2.20878480775549,
+      "se": 0.456254621975392,
+      "or": 0.109834036922669,
+      "or_ci95": [0.044913025117114, 0.268597264051436],
+      "z": -4.84112313907611,
+      "p": 1.29107333932742e-06,
+      "glmm_step": "1_full",
+      "singular": false
+    },
+    {
+      "id": "H4a",
+      "outcome": "mis_propagation",
+      "a": "C3",
+      "b": "C4",
+      "sender": "qwen3:4b-q4_K_M",
+      "method": "glmm_wald",
+      "log_or": -6.12591977087721,
+      "se": 0.851590392267447,
+      "or": 0.0021854800525598,
+      "or_ci95": [0.000411786202488701, 0.0115990361776822],
+      "z": -7.1935050307065,
+      "p": 6.31488249766626e-13,
+      "glmm_step": "1_full",
+      "singular": false
+    },
+    {
+      "id": "H4b",
+      "outcome": "attempt",
+      "a": "C3",
+      "b": "C4",
+      "sender": "gemma3:4b",
+      "method": "glmm_wald",
+      "log_or": -1.11959370183208,
+      "se": 0.491030645916559,
+      "or": 0.326412388440312,
+      "or_ci95": [0.124681089826287, 0.854540552025602],
+      "z": -2.2800892594845,
+      "p": 0.0226023951098489,
+      "glmm_step": "1_full",
+      "singular": true
+    },
+    {
+      "id": "H4b",
+      "outcome": "attempt",
+      "a": "C3",
+      "b": "C4",
+      "sender": "qwen3:4b-q4_K_M",
+      "method": "glmm_wald",
+      "log_or": -1.53939169507273,
+      "se": 0.5258277774921,
+      "or": 0.214511550179577,
+      "or_ci95": [0.0765359127167337, 0.601223706977296],
+      "z": -2.92755871972901,
+      "p": 0.0034163454310066,
+      "glmm_step": "1_full",
+      "singular": true
+    },
+    {
+      "id": "H4prime",
+      "outcome": "mis_propagation",
+      "a": "GC",
+      "b": "C4",
+      "sender": "gemma3:4b",
+      "method": "glmm_wald",
+      "log_or": -1.93791079275241,
+      "se": 0.447685334124209,
+      "or": 0.144004490948165,
+      "or_ci95": [0.0598832812377351, 0.346295209357576],
+      "z": -4.32873414659312,
+      "p": 1.49968834568776e-05,
+      "glmm_step": "1_full",
+      "singular": false
+    },
+    {
+      "id": "H4prime",
+      "outcome": "mis_propagation",
+      "a": "GC",
+      "b": "C4",
+      "sender": "qwen3:4b-q4_K_M",
+      "method": "glmm_wald",
+      "log_or": -4.8581822847832,
+      "se": 0.773889592020807,
+      "or": 0.00776458487554758,
+      "or_ci95": [0.00170365725343981, 0.0353878564293696],
+      "z": -6.27761677489078,
+      "p": 3.43802033454237e-10,
+      "glmm_step": "1_full",
+      "singular": false
+    }
+  ],
+  "exploratory": [
+    {
+      "id": "C1_vs_C3_mis_propagation",
+      "outcome": "mis_propagation",
+      "a": "C3",
+      "b": "C1",
+      "method": "glmm_wald",
+      "log_or": 0.141376570298656,
+      "se": 0.330781061424241,
+      "or": 1.15185832195756,
+      "or_ci95": [0.602334465839863, 2.20272567669343],
+      "z": 0.427402251174635,
+      "p": 0.669086368025844,
+      "glmm_step": "1_full",
+      "singular": false
+    },
+    {
+      "id": "C1_vs_C3_attempt",
+      "outcome": "attempt",
+      "a": "C3",
+      "b": "C1",
+      "method": "glmm_wald",
+      "log_or": 0.150269605077473,
+      "se": 0.399059381840176,
+      "or": 1.16214752136816,
+      "or_ci95": [0.53159550327892, 2.54062882979944],
+      "z": 0.376559509475851,
+      "p": 0.706500983114885,
+      "glmm_step": "1_full",
+      "singular": true
+    },
+    {
+      "id": "GC_vs_C4_attempt",
+      "outcome": "attempt",
+      "a": "GC",
+      "b": "C4",
+      "method": "glmm_wald",
+      "log_or": 1.32860935129035,
+      "se": 0.370618851159579,
+      "or": 3.7757889388537,
+      "or_ci95": [1.82614968126044, 7.80690775628523],
+      "z": 3.58484018590378,
+      "p": 0.000337284673974087,
+      "glmm_step": "1_full",
+      "singular": true
+    },
+    {
+      "id": "receiver_false_approval_C3_vs_C4",
+      "outcome": "receiver_false_approval",
+      "a": "C3",
+      "b": "C4",
+      "method": "glmm_wald",
+      "log_or": -2.43478149910588,
+      "se": 0.468048013159563,
+      "or": 0.0876168893253371,
+      "or_ci95": [0.0350093976959913, 0.219275960178183],
+      "z": -5.20199088693884,
+      "p": 1.9716489622221e-07,
+      "glmm_step": "1_full",
+      "singular": false
+    },
+    {
+      "id": "receiver_false_approval_GC_vs_C4",
+      "outcome": "receiver_false_approval",
+      "a": "GC",
+      "b": "C4",
+      "method": "glmm_wald",
+      "log_or": -1.59581013107329,
+      "se": 0.351962158949602,
+      "or": 0.202744212566278,
+      "or_ci95": [0.101708613275903, 0.404146850548584],
+      "z": -4.53403893144603,
+      "p": 5.7866356084477e-06,
+      "glmm_step": "1_full",
+      "singular": false
+    }
+  ],
+  "interaction": [
+    {
+      "outcome": "mis_propagation",
+      "method": "lrt_condition_x_sender",
+      "chisq": 25.9209278373837,
+      "df": 3,
+      "p": 9.90797916100427e-06,
+      "additive_model_optimizer_code": 0,
+      "additive_model_warnings": "boundary (singular) fit: see help('isSingular')"
+    },
+    {
+      "outcome": "attempt",
+      "method": "lrt_condition_x_sender",
+      "chisq": 79.8701306828329,
+      "df": 3,
+      "p": 3.27259780058538e-17,
+      "additive_model_optimizer_code": 0,
+      "additive_model_warnings": "boundary (singular) fit: see help('isSingular')"
+    }
+  ],
+  "variance_components": "see glmm_varcomp.json",
+  "model_fits": {
+    "mis_propagation": {
+      "ok": true,
+      "step": "1_full",
+      "optimizer_code": 0,
+      "singular": false,
+      "warnings": []
+    },
+    "attempt": {
+      "ok": true,
+      "step": "1_full",
+      "optimizer_code": 0,
+      "singular": true,
+      "warnings": "boundary (singular) fit: see help('isSingular')"
+    },
+    "mis_propagation_if_not_sent_counted": {
+      "ok": true,
+      "step": "1_full",
+      "optimizer_code": 0,
+      "singular": false,
+      "warnings": []
+    },
+    "receiver_false_approval": {
+      "ok": true,
+      "step": "1_full",
+      "optimizer_code": 0,
+      "singular": false,
+      "warnings": []
+    }
+  },
+  "note": "Contrasts are b - a on the log-odds scale (or < 1 means b is lower); model-averaged contrasts weight the two senders equally. A not estimable contrast has no p value and enters Holm with p = 1."
+}
