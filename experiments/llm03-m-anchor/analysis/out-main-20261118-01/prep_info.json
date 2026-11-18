@@ -1,0 +1,13 @@
+{
+ "run_id": "main-20261118-01",
+ "split": "main",
+ "episodes": 960,
+ "input_sha256": {
+  "episodes.jsonl": "ef8fd5c74031716b6fabe0f659e182debf43b32ed86d1451c0c9b2acc09c4c31",
+  "summary.json": "a9cb48ada48cdf69e073a1ffc25572f8800dc2dd7f5a650c72e04ebfa84ce7e0",
+  "records.json": "757298e5d91a41f43e2e0e317cd99bc59ebf5da2708e287ea1310110027e6758"
+ },
+ "hash_check": true,
+ "stored_metrics_match": true,
+ "harness_version_scorer": "0.2.3"
+}
