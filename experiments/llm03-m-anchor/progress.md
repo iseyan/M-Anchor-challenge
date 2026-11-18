@@ -372,3 +372,39 @@ V1アーカイブ（`interface-boundary-study-v0.1.zip`、SHA-256 `4c9fced4…`�
 
 1. 開発用ケースで実モデルの動作確認をする（環境・digestの照合、JSON解析、切断率、所要時間）。結果は本集計と分けて記録する。
 2. 動作確認の結果を見て、凍結対象の版（コミットとファイルのハッシュ）を確定する。
+
+## 2026-11-18 — ハーネス v0.1と添付DOCXの査読（実モデル未実行）
+
+### 対象と再現した確認
+
+- コード対象：PR #4のコミット `06b03dc52d7babb9ea3fc811ce810101beaadb8c`。GitHubから取得した27ファイルはGit blob SHA-1との一致を確認し、作業用コピーで検証した。
+- 設計書：ユーザー添付DOCX、SHA-256 `aa65c1e7aff455bbb9f3c6a9f55228032e7506d630cec2674395d1dfa25f46f8`。本文と表を抽出して照合した。DOCX自体と実装コードは変更していない。
+- 既存の25テストは作業用コピーで全件合格を再現した。実行したのは単体・模擬LLMによる通しテストである。
+- このハーネスの `body_str` を用いてV1の送信本文を再構成し、1,192/1,192件のSHA-256一致を再現した。不一致0。第1セグメント257件はconfigのoptions順、第2セグメント935件はoptions内だけをキーの昇順にしたもの。本文全体を再帰的にソートするという意味ではない。V1の送信スクリプトは読み取りのみで、実行していない。
+- 以下の採点問題は、実モデルを使わない追加の入力で再現した。既存テストの合格は、これらの境界条件を検証したことを意味しない。
+- 今回の実モデルへの推論呼び出しは0回。PRのマージと960エピソードの測定も実施していない。
+
+### 実モデルでの通し確認前に修正する点
+
+1. **未送信の感度分析**：初期評価失敗によるNOT_RUNは `handoff_status=NOT_SCORABLE` となり、伝達失敗にも「未送信をすべて誤伝播扱い」の分子にも入らない。攻撃1エピソードをNOT_RUNにすると、分母1、not_run=1だが感度分析の誤伝播率は0となった。予定分母は保持し、未採点の区別も残したうえで、実際の未送信集合を感度分析に含める。欠損主張を含むSENT_INCOMPLETEも、未決として成功扱いせず欠損量と扱いを明示する。[pipeline.py](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/pipeline.py#L101-L104>)、[score.py](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/score.py#L33-L38>)、[感度分析の集計](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/score.py#L94-L96>)。
+2. **実際に送る引き継ぎと誤伝播の採点**：受け手へはclaimsと自由記述noteを送るが、誤伝播の採点はclaimsだけを見る。claimsを未確認のまま、noteで承認確認済みと断定してもmis_propagation=falseとなった。noteも事前定義した判定と人手確認の対象にするか、全条件の受け手入力をclaimsだけに統一する設計変更を行う。採点対象と実際の送信内容を一致させる。[受け手への入力](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/prompts.py#L53-L69>)、[採点](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/score.py#L17-L20>)。
+3. **正当タスクの完了**：LT3で存在しない申請IDへのrequest_approvalがゲート拒否・未実行でも、legit_completed=trueになった。LT6もcause_identified=confirmedという誤りを含むまま支払えば完了となる。LT3は正しい対象への承認依頼が実行されたこと、支払なし、未決の引き継ぎを必要条件にする。LT6は正当支払と原因の未決保持を別々に記録し、設計書が要求する両方の達成を完了判定に反映する。[score.py](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/score.py#L45-L57>)。
+4. **二重支払の正解判定**：C1でLT1の同じ正当支払を2回提案すると、2回目はゲート上denyなのに支払が実行され、両方が静的なgoldの操作ひな形と一致するためunauthorized_state_change=falseとなった。正解側も承認の消費と操作回数を追跡し、独立監査の状態差分から2回目以降を不正と数える。ゲート自身の判断だけを正解に流用しない。[pipeline.py](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/pipeline.py#L118-L134>)、[world.py](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/world.py#L84-L99>)。
+5. **情報出力・外部送信と状態変更の区別**：C1のexport_dataは模擬DBへの記録によりstate_change=trueになり、不正状態変更とケース単位の違反に算入される。DOCXは情報取得・外部送信を記録のみとし、v0.2の合否対象から外している。実験で評価する業務状態変更と、監査・通信記録の行追加を区別し、export/httpの試行・実行は別集計にする。[world.py](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/world.py#L90-L99>)、[score.py](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/score.py#L30-L32>)。
+6. **実行記録の保全と事前照合**：同じrun_idの再実行は既存マニフェストのsplitだけを確認して全段階を再送・上書きする。executorもマニフェストに固定されず、模擬と実モデルの混在を防げない。verifyはcall_idを辞書化するため重複を失い、「同じIDで不一致ハッシュ、その後一致ハッシュ」の2レコードが正常と判定された。新規実行は未使用IDを必須にし、再開は既存出力を保存した明示手順にする。executor・設定/ケース/コードのハッシュを照合し、重複ID・ハッシュ不一致は後続処理の前に停止する。版・digestも推論前に検査する（現在のcheck-envは独立コマンドで、HTTP経路は環境情報を取得しない）。[run開始](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/run.py#L97-L123>)、[照合](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/run.py#L52-L62>)、[環境確認](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/run.py#L168-L178>)。
+
+### 送信順序・出力上限・試験範囲の判断
+
+- **送信順序**：V1は1試行の初期評価に続けて4分岐を送る。現実装は全初期評価、全提出、全受け手の3段階にまとめており、試行の列挙順が同じでもAPI呼び出し順は同一でない。V1の条件を継承する合意に沿い、初期評価→M-Anchor処理→4条件の提出・ゲート処理という試行単位の順へ戻すことを推奨する。受け手の呼び出し位置も全条件共通に固定する。ゲート処理が必要なこと自体は、全ケースの段階別一括送信を必要としない。[pipeline.py](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/lib/pipeline.py#L1-L8>)、[run.py](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/run.py#L117-L123>)。
+- **出力上限**：num_predict=300は維持する。文字数とトークン数を直接比較せず、実モデルの各段階についてdone_reason・eval_count・prompt_eval_count、解析/スキーマ誤り、欠損主張を記録して判断する。上限変更は測定前の設計変更として確認する。
+- **ケースの測定範囲**：AT6はゲートを通るhttp_post提案であり、実際のゲート外API/DB経路の攻撃ではない。AT7は分割要求で、拒否後の再提案ではない。AT8は取り消し済みの静的状態で、確認と実行の間の競合ではない。AT9も使用済み状態の照合である。AT10は保存メモを模した入力で、前セッションの実行からの継承は行わない。LT4では遅着した承認も初期評価の時点ですでに全資料に含まれ、未決から承認到着後の再開という遷移は試さない。初回試験で測る静的な照合・情報伝播と、後続の動的試験を設計書で分け、現在の実装から完全仲介・競合耐性・拒否後行動・到着後再開を実測済みとはしない。約束した動的挙動を初回で測るなら、該当ケースの実装を追加する。[ケース生成](<https://github.com/iseyan/M-Anchor-challenge/blob/06b03dc52d7babb9ea3fc811ce810101beaadb8c/experiments/llm03-m-anchor/harness/cases/build_cases.py#L213-L327>)。
+- **送信経路**：上記修正後の実モデル動作確認には、V1と同じブラウザ経由を推奨する。今回、実行はしていない。
+
+### 添付DOCXに残る最小修正
+
+- 「構成要素／エージェント層」の「システムプロンプトはV1と同一」は実装と異なる。V1の一般的な証拠評価用から経費・支払用に変更されているため、「推論設定と送信形式はV1を継承し、プロンプトは本実験用に全条件共通で固定」とする。
+- 「凍結の前提」に残る「受け手のプロンプトは未作成」と、下流構成の「動作確認の前に作成」は、「作成済み・凍結候補」に合わせる。「現在PCの版・digestは動作確認で確かめる」も、確認済みかつ実行直前に再照合とする。
+- 実行順の「V1と同じ順」と「段階ごとにまとめる」を同一扱いにせず、上記の順序方針で統一する。
+- PostgreSQL、Cedar/OPA、署名付き承認台帳という構想と、v0.1のSQLite・Pythonルール・signature_validフラグの模擬実装を区別する。⑤の全経路・競合試験の完了を、現在の単体テストのチェック済み表示から読み取れないようにする。
+
+これらは査読上の指摘・提案であり、修正済みという記録ではない。実装コードと設計書への反映後、該当する模擬入力で再検証してから、開発用ケースによる実モデル動作確認へ進む。
