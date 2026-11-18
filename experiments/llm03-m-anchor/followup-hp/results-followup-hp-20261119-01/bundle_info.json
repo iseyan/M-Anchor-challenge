@@ -1,0 +1,7 @@
+{
+ "bundle": "bundle_followup-hp-20261119-01.json",
+ "bundle_sha256": "2c23e06e42ef3bebc15b517f3839fe0758f49619ab53833480240b26058bf627",
+ "payload_sha256": "09e8367569e8d346915c5126bedbdc4f8c3279007f4d60e7a4641434c399b277",
+ "trials": 90,
+ "stage2_calls": 360
+}

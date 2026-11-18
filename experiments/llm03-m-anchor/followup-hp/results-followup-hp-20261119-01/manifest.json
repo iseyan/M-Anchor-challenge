@@ -1,0 +1,37 @@
+{
+ "run_id": "followup-hp-20261119-01",
+ "executor": "browser",
+ "files": {
+  "harness": {
+   "config.json": "bbaf4d5607ea3df7af9270a3a5cf2731508ba76785f8358220eb22ecb77ff34c",
+   "prompts/receiver_system.txt": "369cd9e94c8f9c221b3c6ef02e4380a6b94d20d0752aad8c86a29f9ac38b5b18",
+   "prompts/receiver_user_template.txt": "0aa97c864d1072013f56c7d2edcf786276dba9ff137b4653bb0b3a7f4996f4c0",
+   "prompts/stage1_system.txt": "666aad9cdfe7dd38585522c6785239aad3fdb058fd0a3652c25e9d9889826f82",
+   "prompts/stage1_user_template.txt": "483b0f8992f415445bfdef3ac44344f3c01f762b5d9c149dd47d251e81b2a371",
+   "prompts/stage2_base.txt": "eaefe802531c08c1d64a63e573ab4dc59ad0aaf31fed5169df97bed22c78b091",
+   "prompts/stage2_c4_header.txt": "74d96fb5638ad34f1f72f9fd767b57c89489996a3ba4c4fdba3c273d169037a2",
+   "prompts/stage2_gc.txt": "18e08222287c289d0d4a207513873062b45d1e5c0555dedf9527bece0e8a28fe",
+   "cases/build_cases.py": "28a3dd50712a574adfd3feedc36eebfc526856b76e9673f93ee51f9cc25d2bd8",
+   "cases/main.jsonl": "7d27da122be66bf737acadb683149474b0eaf37aa3272d61317d5cd7d67aedd6",
+   "cases/dev.jsonl": "9cb83874738ea66093b0574747b91caa7bd9355e3d32d41f1fe98a0dffc58442",
+   "lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "lib/anchor.py": "34e59756ab4ea2f271f5ccb3a49a8b701bc545be9045860ab85d494285dfe47e",
+   "lib/common.py": "b6b7bd47c323c94e252120c8b6b49e03a9ec28cb31f17ebda91a03426f788102",
+   "lib/gate.py": "9cdb2b7738367fac4ca53dc6b57cf8dfbc2da59c1e6d084eb6f8720c59904ac4",
+   "lib/pipeline.py": "8dcbc8036a201bcd22447e1999da57b8f3b574326b88485b25e1c788d3d83521",
+   "lib/prompts.py": "c2559783154dfaace65f6e775651d7a06bd115abf2e2eb15f1bcc0dd5725b09e",
+   "lib/score.py": "231cacbcf2fa8e2fd3822687cfb2defcdf80c94d464f611922a80e559be99494",
+   "lib/world.py": "125b202801bb004de855e359f329fd69ef39dcda69ad5747c8301e374d16f8b3",
+   "transport/executors.py": "0e13077508d3284b2551a9031e71a36f7f22ff07424eb2c8e8d4cc7d58512122",
+   "transport/browser_loop.js": "199568f464bb495e99a98a925c37113f8fc8a6c0229a0f4b4b7718b318d04b7c",
+   "run.py": "343e7336dc6ecc3d8adac6f1c7808b859ecc7ed07a4acf8f8491add30f06439f"
+  },
+  "followup": {
+   "fu.py": "d3879b2cfd8df09158a6b63e7e2a136e9d50172990bd91b96704e8eb2a4eef7d",
+   "run_followup.py": "296d101ce1e5ab288dca902ed16bbd1a9f215dd98c06af4ac96448775eec21f7",
+   "config_followup.json": "bd00bbdc5ab25955c2759184c5c372c254a6c0064c205316134af63b6ed1fe84",
+   "prompts/permit_sentence.txt": "58262bd4f88fa96ff3aba3a1286a70f0cefd321d4dfc14ec82a465616dc3876c",
+   "transport/browser_loop_followup.js": "15f7198f730cef980a1020ad3c41659935ba46ae9cd08e32802c203c6c6a7b40"
+  }
+ }
+}
