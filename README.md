@@ -29,6 +29,7 @@ V1アーカイブの凍結設定と保存済み送信1,192件すべてのハッ�
 
 ## 記録
 
+- [初回試験の分析実行計画 v1.0](experiments/llm03-m-anchor/analysis-plan-v1.0.md)
 - [初回試験ハーネス](experiments/llm03-m-anchor/harness/README.md)
 - [実験の経過と査読対応](experiments/llm03-m-anchor/progress.md)
 - [設計書（ユーザーから共有された外部リンク）](https://claude.ai/artifact/HYCN7By4N5Ez2xDffPNqNs)
