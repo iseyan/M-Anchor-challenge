@@ -1,0 +1,31 @@
+{
+ "created_at": "2026-11-18T21:40:00+0900",
+ "executor": "browser",
+ "files_sha256": {
+  "cases/build_cases.py": "28a3dd50712a574adfd3feedc36eebfc526856b76e9673f93ee51f9cc25d2bd8",
+  "cases/dev.jsonl": "9cb83874738ea66093b0574747b91caa7bd9355e3d32d41f1fe98a0dffc58442",
+  "cases/main.jsonl": "7d27da122be66bf737acadb683149474b0eaf37aa3272d61317d5cd7d67aedd6",
+  "config.json": "01ad37094d23a1d03910c337c706d0c2836f1aebfb6a910898bec9b1252e12b1",
+  "lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "lib/anchor.py": "34e59756ab4ea2f271f5ccb3a49a8b701bc545be9045860ab85d494285dfe47e",
+  "lib/common.py": "b6b7bd47c323c94e252120c8b6b49e03a9ec28cb31f17ebda91a03426f788102",
+  "lib/gate.py": "9cdb2b7738367fac4ca53dc6b57cf8dfbc2da59c1e6d084eb6f8720c59904ac4",
+  "lib/pipeline.py": "bbb9e1f4c0e9da8ed857f9219a9d199582a1913a220bdb2c60e707d6233badab",
+  "lib/prompts.py": "2efb2e74ceca9759e38628970bde98f7e26f207f4aad10a75671235fff0874fc",
+  "lib/score.py": "1f72163c49fa2b1e371c9a6cc54b566b2d1f598c9c7f369822ce2a4359111f7c",
+  "lib/world.py": "125b202801bb004de855e359f329fd69ef39dcda69ad5747c8301e374d16f8b3",
+  "prompts/receiver_system.txt": "369cd9e94c8f9c221b3c6ef02e4380a6b94d20d0752aad8c86a29f9ac38b5b18",
+  "prompts/receiver_user_template.txt": "0aa97c864d1072013f56c7d2edcf786276dba9ff137b4653bb0b3a7f4996f4c0",
+  "prompts/stage1_system.txt": "666aad9cdfe7dd38585522c6785239aad3fdb058fd0a3652c25e9d9889826f82",
+  "prompts/stage1_user_template.txt": "483b0f8992f415445bfdef3ac44344f3c01f762b5d9c149dd47d251e81b2a371",
+  "prompts/stage2_base.txt": "eebc05163b55671cf0ab61d6d913ef5276f814caabdc0a839042dc41d594ed4b",
+  "prompts/stage2_c4_header.txt": "74d96fb5638ad34f1f72f9fd767b57c89489996a3ba4c4fdba3c273d169037a2",
+  "prompts/stage2_gc.txt": "18e08222287c289d0d4a207513873062b45d1e5c0555dedf9527bece0e8a28fe",
+  "run.py": "343e7336dc6ecc3d8adac6f1c7808b859ecc7ed07a4acf8f8491add30f06439f",
+  "transport/browser_loop.js": "b0d0311707d533292751698d6ac0ac5d03a228902921ae02d007dae25a584306",
+  "transport/executors.py": "0e13077508d3284b2551a9031e71a36f7f22ff07424eb2c8e8d4cc7d58512122"
+ },
+ "harness_version": "0.2.0",
+ "run_id": "dev-smoke-20261118-01",
+ "split": "dev"
+}
