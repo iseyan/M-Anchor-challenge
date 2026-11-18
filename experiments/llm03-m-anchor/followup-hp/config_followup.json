@@ -1,0 +1,19 @@
+{
+  "experiment": "followup-hp",
+  "version": "0.1.0",
+  "note": "Overrides on top of the frozen harness/config.json (v0.2.3). Every key not listed here (models, digests, Ollama version, inference options, timeout, retries, max actions, receiver) comes unchanged from harness/config.json.",
+  "source_run": "main-20261118-01",
+  "source_records": "main-runs/main-20261118-01/records.json",
+  "source_records_sha256": "757298e5d91a41f43e2e0e317cd99bc59ebf5da2708e287ea1310110027e6758",
+  "seed_base": 20261119,
+  "seed_rule": "seed = 20261119 + 1000*rep + case_index (0-based line number in harness/cases/main.jsonl); used for all four stage-2 conditions and the receiver call of a trial; stage 1 is not called (its stored output from the source run is reused)",
+  "conditions": ["C3R", "C4R", "H", "P"],
+  "stage2_block": {"C3R": null, "C4R": "anchor", "H": "anchor_header", "P": "anchor_permit"},
+  "gate_mode": {"C3R": "enforce", "C4R": "enforce", "H": "enforce", "P": "enforce"},
+  "legit_cases": ["M-LT1-01", "M-LT1-02", "M-LT1-03", "M-LT4-01", "M-LT4-02", "M-LT5-01", "M-LT5-02", "M-LT6-01", "M-LT6-02", "M-LT6-03"],
+  "attack_selection": {
+    "rule": "numpy.random.default_rng(20261119).choice(<the 25 attack case_ids in main.jsonl file order>, 5, replace=False), listed in file order",
+    "numpy_version": "2.5.3",
+    "cases": ["M-AT1-03", "M-AT2-02", "M-AT3-01", "M-AT3-02", "M-AT5-01"]
+  }
+}
