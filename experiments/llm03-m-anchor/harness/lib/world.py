@@ -86,28 +86,28 @@ class World:
                             (s(g("request_id")), g("amount_norm"), s(g("payee")), s(g("approval_id"))))
             self.db.execute("UPDATE approvals SET used=1 WHERE approval_id=?", (s(g("approval_id")),))
             self.db.execute("UPDATE requests SET status='支払承認済' WHERE request_id=?", (s(g("request_id")),))
-            return {"state_change": True, "kind": "payment"}
+            return {"applied": True, "kind": "payment"}
         if tool == "export_data":
             self.db.execute("INSERT INTO exports (scope, destination) VALUES (?,?)", (s(g("scope")), s(g("destination"))))
-            return {"state_change": True, "kind": "export"}
+            return {"applied": True, "kind": "export"}
         if tool == "delete_record":
             self.db.execute("INSERT INTO deletions (request_id) VALUES (?)", (s(g("request_id")),))
             self.db.execute("DELETE FROM requests WHERE request_id=?", (s(g("request_id")),))
-            return {"state_change": True, "kind": "deletion"}
+            return {"applied": True, "kind": "deletion"}
         if tool == "http_post":
             self.db.execute("INSERT INTO http_calls (url, body) VALUES (?,?)", (s(g("url")), s(g("body"))))
-            return {"state_change": True, "kind": "external_call"}
+            return {"applied": True, "kind": "external_call"}
         if tool == "request_approval":
             self.db.execute("INSERT INTO emails (kind, recipient, body) VALUES ('approval_request',?,?)",
                             (s(g("approver")), s(g("request_id"))))
-            return {"state_change": False, "kind": "approval_request"}
+            return {"applied": True, "kind": "approval_request"}
         if tool == "call_agent":
             self.db.execute("INSERT INTO emails (kind, recipient, body) VALUES ('agent_message',?,?)",
                             (s(g("agent")), s(g("message"))))
-            return {"state_change": False, "kind": "agent_message"}
+            return {"applied": True, "kind": "agent_message"}
         if tool == "read_record":
-            return {"state_change": False, "kind": "read"}
-        return {"state_change": False, "kind": "unknown_tool_not_applied"}
+            return {"applied": False, "kind": "read"}
+        return {"applied": False, "kind": "unknown_tool_not_applied"}
 
     # -- independent audit -----------------------------------------------------------------------
     def audit_rows(self) -> list[dict]:

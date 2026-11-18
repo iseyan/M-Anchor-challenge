@@ -1,7 +1,10 @@
-"""Render the messages each call sends. Nothing from `world` or `gold` is ever rendered."""
-from __future__ import annotations
+"""Render the messages each call sends. Nothing from `world` or `gold` is ever rendered.
 
-import json
+transport/browser_loop.js re-implements stage2_instruction, render_handoff and receiver_messages; the
+ingest step rebuilds every request body in Python and compares hashes, so the two must agree exactly.
+Placeholders are replaced with str.replace (all occurrences); the JS side uses split/join for the same.
+"""
+from __future__ import annotations
 
 from .common import read_text
 
@@ -9,6 +12,8 @@ KIND_LABEL = {
     "request": "申請システムの記録", "ledger": "承認台帳の記録", "authority": "権限台帳の記録",
     "email": "メール", "pdf": "添付PDF", "wiki": "社内Wiki", "agent": "エージェント連絡", "memory": "長期記憶",
 }
+MISSING = "（記載なし）"
+INVALID = "（不正な値）"
 
 
 def documents_block(case: dict) -> str:
@@ -28,16 +33,26 @@ def stage1_messages(case: dict) -> list[dict]:
             {"role": "user", "content": user}]
 
 
+def templates() -> dict:
+    """The fixed texts the browser loop needs, already stripped exactly as the Python side uses them."""
+    return {"stage2_base": read_text("prompts/stage2_base.txt").strip(),
+            "gc_block": read_text("prompts/stage2_gc.txt").strip(),
+            "c4_header": read_text("prompts/stage2_c4_header.txt").strip(),
+            "receiver_system": read_text("prompts/receiver_system.txt").strip(),
+            "receiver_user_template": read_text("prompts/receiver_user_template.txt"),
+            "kind_label": KIND_LABEL, "missing": MISSING, "invalid": INVALID}
+
+
 def stage2_instruction(cfg: dict, condition: str, anchor_block: str | None) -> str:
-    base = read_text("prompts/stage2_base.txt").strip()
+    t = templates()
     block = cfg["stage2_block"][condition]
     if block is None:
-        return base
+        return t["stage2_base"]
     if block == "anchor":
         if anchor_block is None:
             raise ValueError("C4 needs the M-Anchor block")
-        return anchor_block + "\n\n" + base
-    return read_text(block).strip() + "\n\n" + base
+        return anchor_block + "\n\n" + t["stage2_base"]
+    return t["gc_block"] + "\n\n" + t["stage2_base"]
 
 
 def stage2_messages(stage1: list[dict], stage1_content: str, instruction: str) -> list[dict]:
@@ -50,22 +65,25 @@ def request_summary(case: dict) -> str:
     return f"{r['request_id']}／金額 {r['amount']:,}円／支払先 {r['payee']}／用途 {case['purpose']}"
 
 
-def render_handoff(handoff: dict) -> str:
-    claims = handoff.get("claims") if isinstance(handoff, dict) else None
+def render_handoff(case: dict, claims: dict) -> str:
+    """Only the scored claim keys, in case order. This is exactly what the receiver sees and what is scored."""
     lines = []
-    if isinstance(claims, dict):
-        for k, v in claims.items():
-            lines.append(f"- {k}: {v if isinstance(v, str) else json.dumps(v, ensure_ascii=False)}")
-    note = handoff.get("note") if isinstance(handoff, dict) else None
-    if isinstance(note, str) and note.strip():
-        lines.append(f"メモ: {note.strip()}")
-    return "\n".join(lines) if lines else "（内容なし）"
+    for c in case["claims"]:
+        v = claims.get(c["key"], None) if isinstance(claims, dict) else None
+        if c["key"] not in claims:
+            shown = MISSING
+        elif isinstance(v, str):
+            shown = v
+        else:
+            shown = INVALID
+        lines.append(f"- {c['key']}: {shown}")
+    return "\n".join(lines)
 
 
-def receiver_messages(case: dict, handoff: dict) -> list[dict]:
-    user = (read_text("prompts/receiver_user_template.txt")
+def receiver_messages(case: dict, claims: dict) -> list[dict]:
+    t = templates()
+    user = (t["receiver_user_template"]
             .replace("{request_summary}", request_summary(case))
-            .replace("{handoff}", render_handoff(handoff))
+            .replace("{handoff}", render_handoff(case, claims))
             .replace("{claims_block}", claims_block(case))).strip()
-    return [{"role": "system", "content": read_text("prompts/receiver_system.txt").strip()},
-            {"role": "user", "content": user}]
+    return [{"role": "system", "content": t["receiver_system"]}, {"role": "user", "content": user}]

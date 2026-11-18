@@ -1,9 +1,10 @@
-"""Executors take call specs and return records in the shape V1's browser loop produced.
+"""Python-side senders. Each takes one call spec and returns a record in the shape the browser loop writes.
 
-  http  : POSTs the frozen body string to Ollama's /api/chat from Python (urllib, no dependencies).
+  http  : POSTs the frozen body string to Ollama's /api/chat (urllib, no dependencies). `preflight_http`
+          checks the Ollama version and the model digests before any inference call.
   mock  : deterministic stand-ins for tests and the pipeline check. Their behaviour says nothing about
           real models. "qwen" senders act credulously, "gemma" senders act carefully.
-The browser executor (V1's transport) is transport/browser_loop.js; see the harness README.
+The browser transport (V1's) is transport/browser_loop.js.
 """
 from __future__ import annotations
 
@@ -17,45 +18,63 @@ from lib.common import sha256_text
 
 
 # --------------------------------------------------------------------------------------------- http
-def run_http(calls: list[dict], cfg: dict, endpoint: str | None = None, log=print) -> list[dict]:
-    url = endpoint or cfg["backend"]["endpoint"]
-    out = []
-    for n, c in enumerate(calls, 1):
+def _get(url: str, timeout: float = 10.0):
+    with urllib.request.urlopen(url, timeout=timeout) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def preflight_http(cfg: dict, base: str) -> dict:
+    """Ollama version and the digests of every model the run uses, compared with config.json."""
+    version = _get(base + "/api/version").get("version")
+    tags = {m["name"]: m.get("digest") for m in _get(base + "/api/tags").get("models", [])}
+    return env_check(cfg, {"version": {"version": version}, "tags": {"models": [{"name": k, "digest": v}
+                                                                             for k, v in tags.items()]}})
+
+
+def env_check(cfg: dict, env: dict) -> dict:
+    want = {s["name"]: s["expected_digest"] for s in cfg["senders"]}
+    want[cfg["receiver"]["name"]] = cfg["receiver"]["expected_digest"]
+    tags = {m["name"]: m.get("digest") for m in (env.get("tags") or {}).get("models", [])}
+    v = (env.get("version") or {}).get("version")
+    res = {"ollama_version": v, "ollama_version_matches": v == cfg["expected_ollama_version"],
+           "models": {n: {"expected": w, "found": tags.get(n), "matches": tags.get(n) == w} for n, w in want.items()}}
+    res["all_match"] = res["ollama_version_matches"] and all(m["matches"] for m in res["models"].values())
+    return res
+
+
+def http_sender(cfg: dict, endpoint: str):
+    def send(c: dict) -> dict:
         attempts, result = [], None
+        ts = time.strftime("%Y-%m-%dT%H:%M:%S%z")
         for a in range(cfg["max_retries"] + 1):
             t0 = time.perf_counter()
-            req = urllib.request.Request(url, data=c["body"].encode("utf-8"), method="POST",
+            req = urllib.request.Request(endpoint, data=c["body"].encode("utf-8"), method="POST",
                                          headers={"Content-Type": "application/json"})
+            ms = lambda: round((time.perf_counter() - t0) * 1000)  # noqa: E731
             try:
                 with urllib.request.urlopen(req, timeout=cfg["timeout_ms"] / 1000) as r:
-                    txt = r.read().decode("utf-8")
-                j = json.loads(txt)
+                    j = json.loads(r.read().decode("utf-8"))
                 if j.get("error"):
-                    attempts.append({"attempt": a, "status": "HTTP_ERROR", "error": str(j["error"])[:500],
-                                     "ms": round((time.perf_counter() - t0) * 1000)})
+                    attempts.append({"attempt": a, "status": "HTTP_ERROR", "error": str(j["error"])[:500], "ms": ms()})
                     continue
-                attempts.append({"attempt": a, "status": "OK", "ms": round((time.perf_counter() - t0) * 1000)})
+                attempts.append({"attempt": a, "status": "OK", "ms": ms()})
                 msg = j.get("message") or {}
                 result = {"call_status": "OK", "content": msg.get("content"), "thinking": msg.get("thinking"),
                           "done_reason": j.get("done_reason"), "eval_count": j.get("eval_count"),
                           "prompt_eval_count": j.get("prompt_eval_count"), "total_duration_ns": j.get("total_duration"),
-                          "response_model": j.get("model")}
+                          "load_duration_ns": j.get("load_duration"), "response_model": j.get("model")}
                 break
             except urllib.error.HTTPError as e:
-                attempts.append({"attempt": a, "status": "HTTP_ERROR", "http": e.code,
-                                 "ms": round((time.perf_counter() - t0) * 1000)})
+                attempts.append({"attempt": a, "status": "HTTP_ERROR", "http": e.code, "ms": ms()})
             except TimeoutError:
-                attempts.append({"attempt": a, "status": "TIMEOUT", "ms": round((time.perf_counter() - t0) * 1000)})
+                attempts.append({"attempt": a, "status": "TIMEOUT", "ms": ms()})
             except (urllib.error.URLError, OSError, ValueError) as e:
                 status = "TIMEOUT" if "timed out" in str(e) else "TRANSPORT_ERROR"
-                attempts.append({"attempt": a, "status": status, "error": str(e)[:300],
-                                 "ms": round((time.perf_counter() - t0) * 1000)})
+                attempts.append({"attempt": a, "status": status, "error": str(e)[:300], "ms": ms()})
         if result is None:
             result = {"call_status": attempts[-1]["status"], "content": None}
-        out.append(dict(result, call_id=c["call_id"], request_sha256=sha256_text(c["body"]), attempts=attempts,
-                        ts=time.strftime("%Y-%m-%dT%H:%M:%S%z")))
-        log(f"[{n}/{len(calls)}] {c['call_id']} {result['call_status']}")
-    return out
+        return dict(result, call_id=c["call_id"], ts=ts, request_sha256=sha256_text(c["body"]), attempts=attempts)
+    return send
 
 
 # --------------------------------------------------------------------------------------------- mock
@@ -66,9 +85,7 @@ KIND_FOR = {"approver_authorized": "権限台帳の記録", "request_recorded": 
 
 
 def _kind_for(key: str):
-    if key == "cause_identified":
-        return None
-    return KIND_FOR.get(key, "承認台帳の記録")
+    return None if key == "cause_identified" else KIND_FOR.get(key, "承認台帳の記録")
 
 
 def _stage1(user: str, careful: bool) -> dict:
@@ -77,8 +94,7 @@ def _stage1(user: str, careful: bool) -> dict:
     claims = {}
     for k in keys:
         if careful:
-            kind = _kind_for(k)
-            ev = [d for d, kd, _ in docs if kd == kind]
+            ev = [d for d, kd, _ in docs if kd == _kind_for(k)]
             pending = any("未決裁" in t for _, kd, t in docs if kd == "承認台帳の記録")
             status = "refuted" if (k == "approval_valid" and pending) else ("confirmed" if ev else "unconfirmed")
         else:
@@ -97,10 +113,9 @@ def _stage2(msgs: list[dict], careful: bool) -> dict:
     docs = DOC.findall(user1)
     req = next((t for _, kd, t in docs if kd == "申請システムの記録"), "")
     rid = (re.search(r"EXP-\d+", req) or re.search(r"EXP-\d+", user1)).group(0)
-    amount = re.search(r"金額 ([\d,]+)円", req)
-    payee = re.search(r"支払先 ([^／]+)", req)
+    amount, payee = re.search(r"金額 ([\d,]+)円", req), re.search(r"支払先 ([^／]+)", req)
     apr = re.search(r"APR-\d+", user1)
-    approval_keys = [k for k in statuses if k != "cause_identified" and k != "request_recorded"]
+    approval_keys = [k for k in statuses if k not in ("cause_identified", "request_recorded")]
     acts = []
     if not careful:
         for _, _, t in docs:
@@ -116,30 +131,38 @@ def _stage2(msgs: list[dict], careful: bool) -> dict:
                                                          "approval_id": apr.group(0) if apr else ""}})
     else:
         acts.append({"tool": "request_approval", "args": {"request_id": rid}})
-    return {"actions": acts[:3], "handoff": {"claims": statuses, "note": "模擬出力"}}
+    return {"actions": acts[:3], "handoff": {"claims": statuses}}
 
 
 def _receiver(user: str) -> dict:
-    stated = dict(re.findall(r"^- (\w+): (\w+)$", user.split("【前工程からの引き継ぎ】", 1)[1].split("【主張キーの意味】", 1)[0], re.M))
+    part = user.split("【前工程からの引き継ぎ（各主張の状態）】", 1)[1].split("【主張キーの意味】", 1)[0]
+    stated = dict(re.findall(r"^- (\w+): (\S+)$", part, re.M))
     keys = [k for k in stated if k not in ("cause_identified", "request_recorded")]
     ok = keys and all(stated[k] == "confirmed" for k in keys)
     return {"decision": "approve" if ok else "hold", "reason": "模擬出力"}
 
 
-def run_mock(calls: list[dict], cfg: dict, log=None) -> list[dict]:
-    out = []
-    for c in calls:
+def mock_content(body: dict, call_id: str) -> str:
+    careful = "gemma" in body["model"]
+    msgs = body["messages"]
+    if call_id.startswith("S1|"):
+        content = _stage1(msgs[1]["content"], careful)
+    elif call_id.startswith("S2|"):
+        content = _stage2(msgs, careful)
+    else:
+        content = _receiver(msgs[1]["content"])
+    return json.dumps(content, ensure_ascii=False)
+
+
+def mock_sender(cfg: dict, overrides: dict | None = None):
+    """overrides: call_id -> partial record, to inject timeouts, truncation or bad output in tests."""
+    def send(c: dict) -> dict:
         body = json.loads(c["body"])
-        careful = "gemma" in body["model"]
-        msgs = body["messages"]
-        if c["call_id"].startswith("S1|"):
-            content = _stage1(msgs[1]["content"], careful)
-        elif c["call_id"].startswith("S2|"):
-            content = _stage2(msgs, careful)
-        else:
-            content = _receiver(msgs[1]["content"])
-        out.append({"call_id": c["call_id"], "call_status": "OK", "request_sha256": sha256_text(c["body"]),
-                    "attempts": [{"attempt": 0, "status": "OK", "ms": 0}],
-                    "content": json.dumps(content, ensure_ascii=False), "done_reason": "stop",
-                    "response_model": "mock:" + body["model"]})
-    return out
+        rec = {"call_id": c["call_id"], "call_status": "OK", "request_sha256": sha256_text(c["body"]),
+               "ts": "mock", "attempts": [{"attempt": 0, "status": "OK", "ms": 1}],
+               "content": mock_content(body, c["call_id"]), "done_reason": "stop", "eval_count": 100,
+               "prompt_eval_count": 500, "response_model": body["model"]}
+        if overrides and c["call_id"] in overrides:
+            rec.update(overrides[c["call_id"]])
+        return rec
+    return send
