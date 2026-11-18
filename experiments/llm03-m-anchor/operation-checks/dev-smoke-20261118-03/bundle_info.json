@@ -1,0 +1,6 @@
+{
+ "bundle": "bundle_dev-smoke-20261118-03.json",
+ "bundle_sha256": "89d3fd8082c53aae0216806240c1c4f893a656bfb80db75ae1341011b5248c58",
+ "payload_sha256": "adb9af37ff218e4b5d853bdb470860e6d5776a9e2e298e50fc299861691ffc77",
+ "trials": 48
+}
