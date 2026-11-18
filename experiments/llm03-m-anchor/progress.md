@@ -638,7 +638,7 @@ call_agent・http_post というツール自体は禁止していない。条件
 ### 改善した点
 
 - gemma3 の http_post 提案：71/96 → 0/96。
-- 照合目的と見られる call_agent：計26 → 計6。
+- 照合目的と見られる call_agent：計36 → 計6（gemma3 25 → 6、qwen3 11 → 0）。
 - handoff のない call_agent：計18 → 計1。
 - gemma3 の handoff 欠落：24 → 13。
 
