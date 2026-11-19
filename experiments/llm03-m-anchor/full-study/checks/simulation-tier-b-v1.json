@@ -1,0 +1,541 @@
+{
+ "meta": {
+  "spec": "simulation-spec-v1.md",
+  "addendum": "simulation-spec-v1-addendum-01.md",
+  "interval_method": "jackknife_t (provisional, simulation-spec-v1-addendum-01)",
+  "seed": 20261125,
+  "r_lme4": "R version 4.3.3 (2024-02-29)|1.1.35.1",
+  "numpy": "2.5.3",
+  "python": "3.13.18",
+  "code_sha256": {
+   "sim_tier_b.py": "bff1193fa29b6b5b688f6324e52ce56787101c2cd1df01c515f31bc04da48ae7",
+   "sim_glmm.R": "978f9760b51e1cce5267c02670d6a4c900c09186218b3196ea24d6b63836b276",
+   "primary_glmm.R": "ad029d8974273e99a3d190de29b27e85808c2166db17e76e8e68eafef34337f9",
+   "simulate_intervals.py": "ab9ed0db3c52e259955dc54f50022c0e304616d579e8929980ea2f7a3f3c1139"
+  }
+ },
+ "scenarios": {
+  "B1": {
+   "replicates": 40,
+   "errors": [],
+   "truth": {
+    "mis_c4_minus_c3": -0.41481481481481475,
+    "mis_c4_minus_gc": -0.33777777777777773,
+    "att_c4_minus_c3": -0.15333333333333338
+   },
+   "H4a": {
+    "not_estimable": {
+     "value": 0.475,
+     "mc_se": 0.07895805848676878,
+     "n": 40
+    },
+    "not_estimable_separation": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "not_estimable_not_converged": {
+     "value": 0.475,
+     "mc_se": 0.07895805848676878,
+     "n": 40
+    },
+    "step2": {
+     "value": 0.075,
+     "mc_se": 0.04164582812239421,
+     "n": 40
+    },
+    "singular": {
+     "value": 0.375,
+     "mc_se": 0.07654655446197431,
+     "n": 40
+    },
+    "significant_reduction": {
+     "value": 0.525,
+     "mc_se": 0.07895805848676878,
+     "n": 40
+    },
+    "significant_increase": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "mean_log_or": -15.133298311491929
+   },
+   "H4b": {
+    "not_estimable": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "not_estimable_separation": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "not_estimable_not_converged": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "step2": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "singular": {
+     "value": 0.95,
+     "mc_se": 0.03446012188022557,
+     "n": 40
+    },
+    "significant_reduction": {
+     "value": 1.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "significant_increase": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "mean_log_or": -5.297997975054587
+   },
+   "H4prime": {
+    "not_estimable": {
+     "value": 0.65,
+     "mc_se": 0.07541551564499178,
+     "n": 40
+    },
+    "not_estimable_separation": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "not_estimable_not_converged": {
+     "value": 0.65,
+     "mc_se": 0.07541551564499178,
+     "n": 40
+    },
+    "step2": {
+     "value": 0.05,
+     "mc_se": 0.034460121880225555,
+     "n": 40
+    },
+    "singular": {
+     "value": 0.325,
+     "mc_se": 0.07405656621799313,
+     "n": 40
+    },
+    "significant_reduction": {
+     "value": 0.35,
+     "mc_se": 0.07541551564499178,
+     "n": 40
+    },
+    "significant_increase": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "mean_log_or": -12.79186709647506
+   },
+   "family_any_significant": {
+    "value": 1.0,
+    "mc_se": 0.0,
+    "n": 40
+   },
+   "tost_H4a": {
+    "run": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "equivalent_unconditional": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "equivalent_given_run": {
+     "value": NaN,
+     "mc_se": null,
+     "n": 0
+    },
+    "interval_only_inside": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "mean_rate_diff": -0.4143888888888889
+   },
+   "tost_H4b": {
+    "run": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "equivalent_unconditional": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "equivalent_given_run": {
+     "value": NaN,
+     "mc_se": null,
+     "n": 0
+    },
+    "interval_only_inside": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "mean_rate_diff": -0.15031944444444442
+   }
+  },
+  "B2": {
+   "replicates": 60,
+   "errors": [],
+   "truth": {
+    "mis_c4_minus_c3": 0.0,
+    "mis_c4_minus_gc": 0.0,
+    "att_c4_minus_c3": 0.0
+   },
+   "H4a": {
+    "not_estimable": {
+     "value": 0.016666666666666666,
+     "mc_se": 0.01652719420071502,
+     "n": 60
+    },
+    "not_estimable_separation": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 60
+    },
+    "not_estimable_not_converged": {
+     "value": 0.016666666666666666,
+     "mc_se": 0.01652719420071502,
+     "n": 60
+    },
+    "step2": {
+     "value": 0.05,
+     "mc_se": 0.028136571693556888,
+     "n": 60
+    },
+    "singular": {
+     "value": 0.95,
+     "mc_se": 0.0281365716935569,
+     "n": 60
+    },
+    "significant_reduction": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 60
+    },
+    "significant_increase": {
+     "value": 0.08333333333333333,
+     "mc_se": 0.03568120160740314,
+     "n": 60
+    },
+    "mean_log_or": 0.14017409411661455
+   },
+   "H4b": {
+    "not_estimable": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 60
+    },
+    "not_estimable_separation": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 60
+    },
+    "not_estimable_not_converged": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 60
+    },
+    "step2": {
+     "value": 0.016666666666666666,
+     "mc_se": 0.01652719420071502,
+     "n": 60
+    },
+    "singular": {
+     "value": 1.0,
+     "mc_se": 0.0,
+     "n": 60
+    },
+    "significant_reduction": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 60
+    },
+    "significant_increase": {
+     "value": 0.2833333333333333,
+     "mc_se": 0.05817438662555248,
+     "n": 60
+    },
+    "mean_log_or": 0.6234041541296627
+   },
+   "H4prime": {
+    "not_estimable": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 60
+    },
+    "not_estimable_separation": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 60
+    },
+    "not_estimable_not_converged": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 60
+    },
+    "step2": {
+     "value": 0.016666666666666666,
+     "mc_se": 0.01652719420071502,
+     "n": 60
+    },
+    "singular": {
+     "value": 0.8666666666666667,
+     "mc_se": 0.04388537257362555,
+     "n": 60
+    },
+    "significant_reduction": {
+     "value": 0.016666666666666666,
+     "mc_se": 0.01652719420071502,
+     "n": 60
+    },
+    "significant_increase": {
+     "value": 0.08333333333333333,
+     "mc_se": 0.03568120160740314,
+     "n": 60
+    },
+    "mean_log_or": 0.0879689356708614
+   },
+   "family_any_significant": {
+    "value": 0.35,
+    "mc_se": 0.06157651067303722,
+    "n": 60
+   },
+   "tost_H4a": {
+    "run": {
+     "value": 0.9,
+     "mc_se": 0.03872983346207417,
+     "n": 60
+    },
+    "equivalent_unconditional": {
+     "value": 0.25,
+     "mc_se": 0.05590169943749474,
+     "n": 60
+    },
+    "equivalent_given_run": {
+     "value": 0.2777777777777778,
+     "mc_se": 0.060951906352257716,
+     "n": 54
+    },
+    "interval_only_inside": {
+     "value": 0.26666666666666666,
+     "mc_se": 0.05708992257184502,
+     "n": 60
+    },
+    "mean_rate_diff": -0.002055555555555561
+   },
+   "tost_H4b": {
+    "run": {
+     "value": 0.7166666666666667,
+     "mc_se": 0.05817438662555248,
+     "n": 60
+    },
+    "equivalent_unconditional": {
+     "value": 0.5166666666666667,
+     "mc_se": 0.06451385151296608,
+     "n": 60
+    },
+    "equivalent_given_run": {
+     "value": 0.7209302325581395,
+     "mc_se": 0.06840199785294701,
+     "n": 43
+    },
+    "interval_only_inside": {
+     "value": 0.6166666666666667,
+     "mc_se": 0.06276794416591015,
+     "n": 60
+    },
+    "mean_rate_diff": 0.0005833333333333366
+   }
+  },
+  "B3": {
+   "replicates": 40,
+   "errors": [],
+   "truth": {
+    "mis_c4_minus_c3": 0.030000000000000027,
+    "mis_c4_minus_gc": 0.030000000000000027,
+    "att_c4_minus_c3": 0.030000000000000027
+   },
+   "H4a": {
+    "not_estimable": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "not_estimable_separation": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "not_estimable_not_converged": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "step2": {
+     "value": 0.025,
+     "mc_se": 0.024685522072664372,
+     "n": 40
+    },
+    "singular": {
+     "value": 1.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "significant_reduction": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "significant_increase": {
+     "value": 0.775,
+     "mc_se": 0.06602556323122129,
+     "n": 40
+    },
+    "mean_log_or": 0.9627857083807513
+   },
+   "H4b": {
+    "not_estimable": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "not_estimable_separation": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "not_estimable_not_converged": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "step2": {
+     "value": 0.025,
+     "mc_se": 0.024685522072664372,
+     "n": 40
+    },
+    "singular": {
+     "value": 1.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "significant_reduction": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "significant_increase": {
+     "value": 1.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "mean_log_or": 2.665940272396471
+   },
+   "H4prime": {
+    "not_estimable": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "not_estimable_separation": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "not_estimable_not_converged": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "step2": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "singular": {
+     "value": 0.975,
+     "mc_se": 0.024685522072664386,
+     "n": 40
+    },
+    "significant_reduction": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "significant_increase": {
+     "value": 0.575,
+     "mc_se": 0.07816249100431741,
+     "n": 40
+    },
+    "mean_log_or": 0.5155473877243837
+   },
+   "family_any_significant": {
+    "value": 1.0,
+    "mc_se": 0.0,
+    "n": 40
+   },
+   "tost_H4a": {
+    "run": {
+     "value": 0.225,
+     "mc_se": 0.06602556323122129,
+     "n": 40
+    },
+    "equivalent_unconditional": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "equivalent_given_run": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 9
+    },
+    "interval_only_inside": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "mean_rate_diff": 0.030291666666666668
+   },
+   "tost_H4b": {
+    "run": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "equivalent_unconditional": {
+     "value": 0.0,
+     "mc_se": 0.0,
+     "n": 40
+    },
+    "equivalent_given_run": {
+     "value": NaN,
+     "mc_se": null,
+     "n": 0
+    },
+    "interval_only_inside": {
+     "value": 0.025,
+     "mc_se": 0.024685522072664372,
+     "n": 40
+    },
+    "mean_rate_diff": 0.02995833333333333
+   }
+  }
+ }
+}

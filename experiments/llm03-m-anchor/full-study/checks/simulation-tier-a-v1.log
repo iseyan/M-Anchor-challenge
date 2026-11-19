@@ -1,0 +1,5 @@
+{"selected": null, "passing": [], "failures": {"percentile": 273, "bca": 275, "raowu": 41, "jackknife_t": 8}, "wall": 816.6}
+
+real	13m36.860s
+user	25m32.092s
+sys	0m0.706s
