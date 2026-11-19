@@ -1,0 +1,163 @@
+{
+ "run_id": "followup-hp-20261119-01",
+ "executor": "browser",
+ "started_at": "2026-11-18T23:13:37.456Z",
+ "finished_at": "2026-11-18T23:28:32.585Z",
+ "fatal": null,
+ "done_trials": 90,
+ "total_trials": 90,
+ "env": {
+  "ollama_version": "0.40.16",
+  "ollama_version_matches": true,
+  "models": {
+   "qwen3:4b-q4_K_M": {
+    "expected": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+    "found": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+    "matches": true
+   },
+   "gemma3:4b": {
+    "expected": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "found": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "matches": true
+   }
+  },
+  "all_match": true
+ },
+ "first_call_ts": "2026-11-18T23:13:37.850Z",
+ "last_call_ts": "2026-11-18T23:28:32.144Z",
+ "stages": {
+  "RX": {
+   "all": {
+    "calls": 339,
+    "ok": 339,
+    "timeout": 0,
+    "other_call_failure": 0,
+    "retried_calls": 0,
+    "truncated": 0,
+    "truncation_rate": 0.0,
+    "invalid_json": 0,
+    "schema_error": 0,
+    "incomplete": 0,
+    "format_error_rate": 0.0,
+    "eval_count": {
+     "mean": 20.6,
+     "max": 32,
+     "at_limit": 0
+    },
+    "prompt_eval_count_max": 247,
+    "latency_ms": {
+     "mean": 515,
+     "p95": 750,
+     "max": 9508
+    }
+   },
+   "gemma3:4b": {
+    "calls": 339,
+    "ok": 339,
+    "timeout": 0,
+    "other_call_failure": 0,
+    "retried_calls": 0,
+    "truncated": 0,
+    "truncation_rate": 0.0,
+    "invalid_json": 0,
+    "schema_error": 0,
+    "incomplete": 0,
+    "format_error_rate": 0.0,
+    "eval_count": {
+     "mean": 20.6,
+     "max": 32,
+     "at_limit": 0
+    },
+    "prompt_eval_count_max": 247,
+    "latency_ms": {
+     "mean": 515,
+     "p95": 750,
+     "max": 9508
+    }
+   }
+  },
+  "S2": {
+   "all": {
+    "calls": 360,
+    "ok": 355,
+    "timeout": 0,
+    "other_call_failure": 5,
+    "retried_calls": 7,
+    "truncated": 0,
+    "truncation_rate": 0.0,
+    "invalid_json": 0,
+    "schema_error": 16,
+    "incomplete": 0,
+    "format_error_rate": 0.0444,
+    "eval_count": {
+     "mean": 106.5,
+     "max": 189,
+     "at_limit": 0
+    },
+    "prompt_eval_count_max": 1300,
+    "latency_ms": {
+     "mean": 1854,
+     "p95": 2698,
+     "max": 12685
+    }
+   },
+   "gemma3:4b": {
+    "calls": 180,
+    "ok": 175,
+    "timeout": 0,
+    "other_call_failure": 5,
+    "retried_calls": 7,
+    "truncated": 0,
+    "truncation_rate": 0.0,
+    "invalid_json": 0,
+    "schema_error": 16,
+    "incomplete": 0,
+    "format_error_rate": 0.0889,
+    "eval_count": {
+     "mean": 116.8,
+     "max": 189,
+     "at_limit": 0
+    },
+    "prompt_eval_count_max": 1255,
+    "latency_ms": {
+     "mean": 2007,
+     "p95": 2772,
+     "max": 3232
+    }
+   },
+   "qwen3:4b-q4_K_M": {
+    "calls": 180,
+    "ok": 180,
+    "timeout": 0,
+    "other_call_failure": 0,
+    "retried_calls": 0,
+    "truncated": 0,
+    "truncation_rate": 0.0,
+    "invalid_json": 0,
+    "schema_error": 0,
+    "incomplete": 0,
+    "format_error_rate": 0.0,
+    "eval_count": {
+     "mean": 96.5,
+     "max": 149,
+     "at_limit": 0
+    },
+    "prompt_eval_count_max": 1300,
+    "latency_ms": {
+     "mean": 1706,
+     "p95": 2323,
+     "max": 12685
+    }
+   }
+  }
+ },
+ "verification": {
+  "records": 699,
+  "expected": 699,
+  "duplicates": 0,
+  "unplanned": 0,
+  "missing": 0,
+  "hash_mismatch": 0,
+  "order_matches": true
+ }
+}

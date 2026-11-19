@@ -1,0 +1,26 @@
+{
+ "records": 699,
+ "expected": 699,
+ "duplicates": [],
+ "unplanned": [],
+ "missing": [],
+ "hash_mismatch": [],
+ "order_matches": true,
+ "env_check": {
+  "ollama_version": "0.40.16",
+  "ollama_version_matches": true,
+  "models": {
+   "qwen3:4b-q4_K_M": {
+    "expected": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+    "found": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+    "matches": true
+   },
+   "gemma3:4b": {
+    "expected": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "found": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "matches": true
+   }
+  },
+  "all_match": true
+ }
+}
