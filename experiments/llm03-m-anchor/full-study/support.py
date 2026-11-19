@@ -43,7 +43,8 @@ def sources():
     for parent, prefix in ((LEGACY, "harness"), (ROOT, "full-study")):
         for p in sorted(parent.rglob("*")):
             rel = p.relative_to(parent)
-            if not p.is_file() or any(x in rel.parts for x in ("__pycache__", "runs", "results", "checks")):
+            if not p.is_file() or any(x in rel.parts for x in ("__pycache__", "runs", "results", "checks")) \
+                    or any(x.startswith(".") for x in rel.parts):  # local caches such as .pytest_cache
                 continue
             if p.suffix not in (".py", ".js", ".html", ".txt", ".json", ".jsonl", ".md", ".R"):
                 continue
