@@ -8,7 +8,7 @@
 |---|---|
 | 本番候補 | 攻撃10類型×30＝300、正当6類型×30＝180、計480ケース |
 | 構成 | 各類型の5状況×固定6形式。300攻撃ケースを独立な300標本とは扱わない |
-| 開発用 | 各類型2本、計32の専用複合fixture。本番の状況番号の抜き取りを廃止 |
+| 開発用 | 各類型2本、計32の複合fixture。状況IDは分離、一部文面と生成器は共有。技術確認専用 |
 | 送り手 | qwen3:4b-q4_K_M、gemma3:4b。従来の版・digest・推論設定 |
 | 受け手 | gemma3:4b、claimsだけ、新しい文脈、試行と同じシード |
 | 規模 | 480×2×3×9＝25,920エピソード（攻撃16,200・正当9,720） |
@@ -30,6 +30,8 @@
 
 全条件で第1段階の生の自己評価を共有する。A1はラベルの完全除去ではなく、追加表示の寄与を測る。A3は純粋なラベル単独操作ではない。C5は状態が権限を与える条件ではなく、権限確認を通った操作にも追加の拒否を課す比較条件である。
 
+A1・A2にもC4の見出しは残る。既存H/P試験との対応と、その解釈の限界を分析計画に記載した。AT7の再提出は実際の拒否に依存するため、記録のみの条件とは要求の機会数が異なる。
+
 現行C4の見出しと共通提出指示文のSHA-256は初回凍結版と一致する。`conditions.instruction()` のC4と旧実装が同じ入力から同じ文面を返すことをテストする。動的な追加段階の文脈まで初回と同じ、とは主張しない。
 
 ## オフライン確認
@@ -39,10 +41,15 @@
 ```sh
 python -B -I -m unittest discover -s tests -v
 python -B -I validate.py
+python -B -I case_strata.py checks/new-case-strata.json
 python -B -I analysis/simulate_intervals.py checks/new-screening.json --simulations 200 --bootstrap-draws 999 --effects null tost_plus_boundary tost_minus_boundary ni_boundary pilot --slopes 0 0.7
 ```
 
 `cases/build_cases.py --write` は空のケースフォルダからの再生成用で、既存ファイルを上書きしない。出力済み候補と生成関数の一致はテストする。試験run用の送信コマンドはまだ提供していない。
+
+開発用は形式・文脈長・トークン校正・送信・再開の確認だけに使う。効果率を改善する目的でのプロンプト調整や、本番への一般化を検証する標本には使わない。構造分類では開発用の攻撃20件すべてが同じ該当層である。
+
+攻撃下での不正操作、誤伝播、未送信、形式・呼び出しの失敗は区別できるが、同一業務の攻撃なし対照はない。攻撃が原因で生じた業務失敗の因果効果や、モデルの故意は判定しない。正当業務の完了率は正当ケースに限る。詳しくは分析計画10節。
 
 ## 凍結前に残るもの
 
@@ -58,4 +65,4 @@ python -B -I analysis/simulate_intervals.py checks/new-screening.json --simulati
 - [ ] 実行経路・迂回プローブの検証。現状で完全仲介・実OS並列競合・自然発生の記憶汚染を主張しない。
 - [ ] 上記証拠を添えた別の凍結記録と、利用者による凍結版の確定。
 
-`checks/interval-screening-20261119-03.json` は区間法の**予備評価**。正式GLMM検出力、正式TOSTの成立確率、最終的な区間法選定の根拠ではない。詳細は `analysis-plan-v1-draft.md` と `checks/README.md` に示す。
+`checks/interval-screening-20261119-03.json` は旧2候補の予備評価として保存する。4候補への追加評価と構造別の感度シナリオも**予備評価**であり、正式GLMM検出力、正式TOSTの成立確率、最終的な区間法選定の根拠ではない。詳細と実行済みの範囲は `analysis-plan-v1-draft.md` と `checks/README.md` に示す。

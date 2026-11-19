@@ -4,6 +4,8 @@ from copy import deepcopy
 from pathlib import Path
 import argparse
 import json
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from support import ROOT, World, cases, common, config, gate, prompts, read, sha, sources, write_new
 from engine import late_case
 

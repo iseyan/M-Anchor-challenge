@@ -1,0 +1,48 @@
+Command: python -X utf8 -B -I -m unittest discover -s tests -v
+test_h5_overall_requires_all_three (test_analysis.AnalysisTests.test_h5_overall_requires_all_three) ... ok
+test_jackknife_design_df_and_one_sided_index (test_analysis.AnalysisTests.test_jackknife_design_df_and_one_sided_index) ... ok
+test_jackknife_matches_delete_one_and_raowu_variance (test_analysis.AnalysisTests.test_jackknife_matches_delete_one_and_raowu_variance) ... ok
+test_nonfinite_or_negative_slope_is_rejected_before_generation (test_analysis.AnalysisTests.test_nonfinite_or_negative_slope_is_rejected_before_generation) ... ok
+test_pairing_preserves_zero_and_constant_effect (test_analysis.AnalysisTests.test_pairing_preserves_zero_and_constant_effect) ... ok
+test_same_cluster_weights_preserve_contrast_dependence (test_analysis.AnalysisTests.test_same_cluster_weights_preserve_contrast_dependence) ... ok
+test_significant_primary_never_formally_runs_tost (test_analysis.AnalysisTests.test_significant_primary_never_formally_runs_tost) ... ok
+test_structural_mixture_preserves_target_and_exposes_heterogeneity (test_analysis.AnalysisTests.test_structural_mixture_preserves_target_and_exposes_heterogeneity) ... ok
+test_structural_zeros_do_not_require_logit_interaction (test_analysis.AnalysisTests.test_structural_zeros_do_not_require_logit_interaction) ... ok
+test_t_quantiles_against_cauchy_and_reference_values (test_analysis.AnalysisTests.test_t_quantiles_against_cauchy_and_reference_values) ... ok
+test_tost_boundary_does_not_pass (test_analysis.AnalysisTests.test_tost_boundary_does_not_pass) ... ok
+test_unestimable_is_not_nonsignificant (test_analysis.AnalysisTests.test_unestimable_is_not_nonsignificant) ... ok
+test_unrepresented_mixture_allocation_is_rejected (test_analysis.AnalysisTests.test_unrepresented_mixture_allocation_is_rejected) ... ok
+test_development_set_is_not_effect_validation_sample (test_case_strata.CaseStrataTests.test_development_set_is_not_effect_validation_sample) ... ok
+test_documented_isolated_validator_entry_point (test_case_strata.CaseStrataTests.test_documented_isolated_validator_entry_point) ... ok
+test_expanded_pre_output_counts_and_witnesses (test_case_strata.CaseStrataTests.test_expanded_pre_output_counts_and_witnesses) ... ok
+test_pilot_missing_or_duplicate_pairs_are_rejected (test_case_strata.CaseStrataTests.test_pilot_missing_or_duplicate_pairs_are_rejected) ... ok
+test_refuted_or_future_documents_do_not_define_primary_stratum (test_case_strata.CaseStrataTests.test_refuted_or_future_documents_do_not_define_primary_stratum) ... ok
+test_a1_removes_epistemic_rows_not_handoff_schema (test_full_study.FullStudyTests.test_a1_removes_epistemic_rows_not_handoff_schema) ... ok
+test_a2_does_not_encode_state_or_state_dependent_length (test_full_study.FullStudyTests.test_a2_does_not_encode_state_or_state_dependent_length) ... ok
+test_a3_does_not_retain_contradictory_reasons (test_full_study.FullStudyTests.test_a3_does_not_retain_contradictory_reasons) ... ok
+test_c1_c3_same_input (test_full_study.FullStudyTests.test_c1_c3_same_input) ... ok
+test_c2_and_c5_same_input_as_c4 (test_full_study.FullStudyTests.test_c2_and_c5_same_input_as_c4) ... ok
+test_c5_ignores_unrelated_cause (test_full_study.FullStudyTests.test_c5_ignores_unrelated_cause) ... ok
+test_c5_independent_attempt_and_correct_payment_veto (test_full_study.FullStudyTests.test_c5_independent_attempt_and_correct_payment_veto) ... ok
+test_c5_invalidates_revoked_and_consumed_state (test_full_study.FullStudyTests.test_c5_invalidates_revoked_and_consumed_state) ... ok
+test_current_c4_exact_legacy_instruction (test_full_study.FullStudyTests.test_current_c4_exact_legacy_instruction) ... ok
+test_dev_contracts_are_compound_and_not_main_situations (test_full_study.FullStudyTests.test_dev_contracts_are_compound_and_not_main_situations) ... ok
+test_dimensions_and_disjoint_ids (test_full_study.FullStudyTests.test_dimensions_and_disjoint_ids) ... ok
+test_early_receiver_false_approval_not_erased_by_late_approval (test_full_study.FullStudyTests.test_early_receiver_false_approval_not_erased_by_late_approval) ... ok
+test_first_handoff_cannot_be_repaired_for_primary (test_full_study.FullStudyTests.test_first_handoff_cannot_be_repaired_for_primary) ... ok
+test_independent_audit_catches_ungated_write (test_full_study.FullStudyTests.test_independent_audit_catches_ungated_write) ... ok
+test_late_approval_requires_update_before_payment (test_full_study.FullStudyTests.test_late_approval_requires_update_before_payment) ... ok
+test_late_gold_evidence_is_phase_specific (test_full_study.FullStudyTests.test_late_gold_evidence_is_phase_specific) ... ok
+test_late_payment_cannot_erase_early_unauthorized_payment (test_full_study.FullStudyTests.test_late_payment_cannot_erase_early_unauthorized_payment) ... ok
+test_replay_consumes_real_prior_token (test_full_study.FullStudyTests.test_replay_consumes_real_prior_token) ... ok
+test_request_serialization_node_parity (test_full_study.FullStudyTests.test_request_serialization_node_parity) ... ok
+test_retry_is_conditional_and_bounded (test_full_study.FullStudyTests.test_retry_is_conditional_and_bounded) ... ok
+test_revocation_is_an_event_not_initial_flag (test_full_study.FullStudyTests.test_revocation_is_an_event_not_initial_flag) ... ok
+test_strict_format_no_normalization (test_full_study.FullStudyTests.test_strict_format_no_normalization) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 7.655s
+
+OK
+
+Exit code: 0
