@@ -1,0 +1,6 @@
+{"case_t": {"passes": false, "failures": 460}, "jackknife_t": {"passes": false, "failures": 21}} selected None
+wall 107.3
+
+real	1m48.147s
+user	3m31.507s
+sys	0m0.477s
