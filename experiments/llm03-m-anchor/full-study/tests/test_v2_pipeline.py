@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT / "runner"))
 sys.path.insert(0, str(ROOT / "analysis"))
 import mock  # noqa: E402
 import run_analysis_v2 as ra  # noqa: E402
+import report_final as rf  # noqa: E402
 
 
 class V2PipelineTests(unittest.TestCase):
@@ -44,6 +45,16 @@ class V2PipelineTests(unittest.TestCase):
         cases = ra.load_cases("main")
         self.assertEqual(ra.layout(cases, "attack")[1], (10, 5, 6))
         self.assertEqual(ra.layout(cases, "legit")[1], (6, 5, 6))
+
+
+    def test_final_report_focus_counts_partition_lt6(self):
+        f = rf.focus(self.eps, ["gemma3:4b"])
+        for c, row in f["q3_lt6_cause_record_in_final_handoff"].items():
+            x = row["gemma3:4b"]
+            parts = sum(v for k, v in x.items() if k != "episodes")
+            self.assertEqual(parts, x.get("episodes", 0))
+        lt6 = sum(1 for e in self.eps if e["case_type"] == "LT6")
+        self.assertEqual(sum(r["gemma3:4b"].get("episodes", 0) for r in f["q1_lt6_approved_payment_with_cause_open"].values()), lt6)
 
 
 if __name__ == "__main__":
