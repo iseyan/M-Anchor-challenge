@@ -55,19 +55,31 @@ class Fatal(Exception):
     pass
 
 
+class StdioChannel:
+    """JSON lines over stdin/stdout (runner/transport.js, tests)."""
+    def emit(self, msg):
+        sys.stdout.write(json.dumps(msg, ensure_ascii=False) + "\n")
+        sys.stdout.flush()
+
+    def receive(self, expect):
+        line = sys.stdin.readline()
+        if not line:
+            raise Fatal("transport closed the channel")
+        msg = json.loads(line)
+        if msg.get("type") != expect:
+            raise Fatal(f"expected {expect}, got {msg.get('type')}")
+        return msg
+
+
+CHANNEL = StdioChannel()
+
+
 def emit(msg):
-    sys.stdout.write(json.dumps(msg, ensure_ascii=False) + "\n")
-    sys.stdout.flush()
+    CHANNEL.emit(msg)
 
 
 def receive(expect):
-    line = sys.stdin.readline()
-    if not line:
-        raise Fatal("transport closed the channel")
-    msg = json.loads(line)
-    if msg.get("type") != expect:
-        raise Fatal(f"expected {expect}, got {msg.get('type')}")
-    return msg
+    return CHANNEL.receive(expect)
 
 
 def append_durable(path, obj):
@@ -104,14 +116,14 @@ def manifest_for(cfg, split, shard, rows, trials):
                 senders=cfg["senders"], receiver=cfg["receiver"])
 
 
-def main():
+def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--campaign", required=True)
     ap.add_argument("--shard", required=True)
     ap.add_argument("--split", choices=["main", "dev"], required=True)
     ap.add_argument("--max-calls", type=int)
     ap.add_argument("--cases")
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
     cfg = config()
     if a.split == "main" and not cfg.get("run_enabled"):
         emit(dict(type="fatal", error="run_enabled is false in config.json: the main study is not frozen"))
