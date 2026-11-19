@@ -125,6 +125,12 @@ def main():
         if r_.get("prompt_eval_count") is not None:
             ctx[key].append((r_["prompt_eval_count"], r_.get("eval_count") or 0))
     rep["truncated_done_reason_length"] = dict(sorted(trunc.items()))
+    # analysis-plan-v2 s4: retry exhaustion (a call that failed after every allowed attempt) and output truncation
+    # are counted apart, by stage, phase, step and condition.
+    rep["retry_exhausted"] = dict(sorted(Counter(f"{r_['stage']}|p{r_['phase']}|s{r_['step']}|{r_['condition']}"
+                                                 for r_ in recs if r_["call_status"] not in ("OK",)).items()))
+    rep["retry_exhausted_error_text"] = dict(Counter((x.get("error") or "")[:80] for r_ in recs if r_["call_status"] != "OK"
+                                                     for x in r_["attempts"] if x["status"] != "OK"))
     rep["prompt_eval_count_max"] = {k: max(p for p, _ in v) for k, v in sorted(ctx.items())}
     allp = [p for v in ctx.values() for p, _ in v]
     rep["prompt_eval_count_overall_max"] = max(allp) if allp else None
