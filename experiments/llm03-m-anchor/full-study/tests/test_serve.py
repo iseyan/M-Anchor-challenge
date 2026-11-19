@@ -101,5 +101,32 @@ class ChannelTests(unittest.TestCase):
         self.assertEqual(self.ch.next("page1")["type"], "env_request")      # nothing was sent to Ollama
 
 
+
+@unittest.skipIf(NODE is None, "node is not installed")
+class PersistTests(unittest.TestCase):
+    """Two shards in a row with one page loop (persist: true), as on the PC with a PowerShell loop."""
+    def test_two_shards_one_page_loop(self):
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            resp = {}
+            refs = {}
+            for sh in ("0:1", "0:2"):
+                mock.reference("dev", sh, tmp / ("ref" + sh[-1]), set(CASES.split(",")))
+                resp.update(json.loads((tmp / ("ref" + sh[-1]) / "responses.json").read_text(encoding="utf-8")))
+                refs[sh] = read_jsonl(tmp / ("ref" + sh[-1]) / "records.jsonl")
+            (tmp / "responses.json").write_text(json.dumps(resp), encoding="utf-8")
+            p = subprocess.run([NODE, str(HERE / "tests" / "node_page_sim.js"), sys.executable, str(HERE / "runner" / "serve.py"),
+                                str(tmp / "camp"), "0:1,0:2", "dev", str(tmp / "responses.json"), "18771", "3", "0", CASES],
+                               capture_output=True, text=True, encoding="utf-8", timeout=1500,
+                               env={**os.environ, "EXPECTED_DIGESTS": json.dumps(digests())})
+            self.assertEqual(p.returncode, 0, p.stderr[-3000:])
+            out = json.loads(p.stdout)
+            self.assertEqual([f["type"] for f in out["finals"]], ["done", "done"], out)
+            for sh, d in (("0:1", "shard-0-r1"), ("0:2", "shard-0-r2")):
+                recs = read_jsonl(tmp / "camp" / d / "records.jsonl")
+                self.assertEqual([strip(r) for r in recs], [strip(r) for r in refs[sh]])
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
 if __name__ == "__main__":
     unittest.main()

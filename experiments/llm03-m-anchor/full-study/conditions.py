@@ -29,10 +29,11 @@ def block(case, condition, state):
         return "\n".join(lines)
     if condition == "A2":
         # Fixed whitelist. No state-derived padding, IDs, sources, kinds, reasons or timestamps.
-        # Token calibration is a separate, still-pending development check; this is not token matched.
+        # Length calibrated in checks/dev-plan-v2-20261119.md (candidate v3, checks/dev-a2-probe-20261119-01.json):
+        # the claim key and a fixed row number only; re-measured on development cases before it counts as done.
         lines = [header.strip()]
         for i, claim in enumerate(case["claims"]):
-            lines.append(f"- {claim['key']}: 整理行 {i+1:02d}／保管欄 01／帳票区分 00")
+            lines.append(f"- {claim['key']}: 整理行 {i+1:02d}")
         return "\n".join(lines)
     return None
 
