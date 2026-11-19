@@ -18,8 +18,8 @@
   "tost_gate": "corresponding H4a or H4b Holm p >= 0.05; not applied when primary is not estimable",
   "h5_family": "individual one-sided alpha .05; overall H5 requires all three comparisons (IUT)",
   "bootstrap_unit": "situation, stratified by fixed case type; retain all fixed formats, senders, repetitions and conditions",
-  "interval_method_status": "pending coverage simulation; not frozen",
+  "interval_method_status": "not selected: no candidate passed simulation-spec-v1 stage A (checks/simulation-tier-a-v1-report.md); not frozen",
   "a2_token_calibration_status": "pending; metadata whitelist fixed but token matching not implemented",
-  "execution_plan_status": "draft; browser sender and durable resume implementation pending",
+  "execution_plan_status": "freeze candidate, not frozen: runner/serve.py + runner/page_loop.js (V1 page fetch), durable resume tested; dev technical check in checks/dev-tech-20261119-01",
   "run_enabled": false
 }
