@@ -98,7 +98,10 @@ def summarize(a):
                                     interval_only_inside=prop([r["interval_only_inside"][k] for r in rows]),
                                     mean_rate_diff=float(np.mean([r["rate_diff"][k] for r in rows])))
         out[sc] = res
-    meta = dict(spec="simulation-spec-v1.md", seed=SEED,
+    rv = subprocess.run(["Rscript", "-e", "cat(R.version.string, as.character(packageVersion('lme4')), sep='|')"],
+                        capture_output=True, text=True).stdout.strip()
+    meta = dict(spec="simulation-spec-v1.md", addendum=a.addendum, interval_method=a.method, seed=SEED,
+                r_lme4=rv, numpy=np.__version__, python=sys.version.split()[0],
                 code_sha256={f: hashlib.sha256((HERE / f).read_bytes()).hexdigest() for f in ("sim_tier_b.py", "sim_glmm.R", "primary_glmm.R", "simulate_intervals.py")})
     Path(a.out).write_text(json.dumps(dict(meta=meta, scenarios=out), ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps({k: dict(reps=v["replicates"], H4a_ne=v["H4a"]["not_estimable"]["value"]) for k, v in out.items()}))
@@ -116,5 +119,7 @@ if __name__ == "__main__":
     s = sub.add_parser("summarize")
     s.add_argument("work_dir")
     s.add_argument("out")
+    s.add_argument("--method", required=True, help="interval method used for the run, with its status")
+    s.add_argument("--addendum", default=None)
     a = ap.parse_args()
     run(a) if a.cmd == "run" else summarize(a)
