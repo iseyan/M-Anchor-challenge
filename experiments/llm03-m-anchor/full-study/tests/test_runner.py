@@ -117,10 +117,14 @@ class RunnerTests(unittest.TestCase):
         self.assertIn("ENV_MISMATCH", out["final"]["error"])
         self.assertEqual(out["fetch_total"], 0)
 
-    def test_main_split_refused_while_not_frozen(self):
+    def test_main_split_guard_follows_run_enabled(self):
         p = subprocess.run([sys.executable, "-B", "-I", str(HERE / "runner" / "driver.py"), "--campaign", str(self.tmp / "m"),
-                            "--shard", "0:1", "--split", "main"], capture_output=True, text=True, encoding="utf-8")
-        self.assertIn("run_enabled is false", p.stdout)
+                            "--shard", "0:1", "--split", "main"], capture_output=True, text=True, encoding="utf-8", input="")
+        if json.loads((HERE / "config.json").read_text(encoding="utf-8")).get("run_enabled"):
+            self.assertIn('"env_request"', p.stdout)          # frozen: the driver starts with the environment check
+            self.assertNotIn("run_enabled is false", p.stdout)
+        else:
+            self.assertIn("run_enabled is false", p.stdout)
 
 
 if __name__ == "__main__":

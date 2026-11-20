@@ -1,7 +1,7 @@
 {
   "study": "llm03-m-anchor-expanded-study",
-  "harness_version": "full-study-0.2-draft",
-  "protocol_status": "draft",
+  "harness_version": "full-study-1.0",
+  "protocol_status": "frozen 2026-11-19 (analysis-plan-final.md; checks/freeze-record-20261119.md)",
   "base_commit": "84a8383ceb5755d6564b7b67c8d5f16b12f3182a",
   "conditions": ["C1", "C2", "C3", "GC", "C4", "A1", "A2", "A3", "C5"],
   "gate_mode": {"C1": "log_only", "C2": "log_only", "C3": "enforce", "GC": "enforce", "C4": "enforce", "A1": "enforce", "A2": "enforce", "A3": "enforce", "C5": "enforce"},
@@ -18,8 +18,9 @@
   "tost_gate": "corresponding H4a or H4b Holm p >= 0.05; not applied when primary is not estimable",
   "h5_family": "individual one-sided alpha .05; overall H5 requires all three comparisons (IUT)",
   "bootstrap_unit": "situation, stratified by fixed case type; retain all fixed formats, senders, repetitions and conditions",
-  "interval_method_status": "not selected: no candidate passed simulation-spec-v1 stage A (checks/simulation-tier-a-v1-report.md); not frozen",
-  "a2_token_calibration_status": "pending; metadata whitelist fixed but token matching not implemented",
-  "execution_plan_status": "freeze candidate, not frozen: runner/serve.py + runner/page_loop.js (V1 page fetch), durable resume tested; dev technical check in checks/dev-tech-20261119-01",
-  "run_enabled": false
+  "interval_method_status": "none: the single remaining method (situation jackknife-t) did not meet the pre-fixed v2 criteria; the main run is analysed descriptively (analysis-plan-final.md, analysis/report_final.py)",
+  "a2_token_calibration_status": "fixed (claim key + row number); re-measured A2-C4 median qwen -1, gemma about -5 tokens; difference reported beside A2 comparisons (checks/dev-tech-20261119-02)",
+  "execution_plan_status": "frozen: runner/serve.py + runner/page_loop.js (V1 page fetch), six shards, durable resume; dev checks in checks/dev-tech-20261119-01 and -02",
+  "analysis_plan": "analysis-plan-final.md: descriptive report (counts, rates, paired rate differences); H4 tests, TOST, H5 and intervals not performed",
+  "run_enabled": true
 }

@@ -1,0 +1,160 @@
+{
+ "env": {
+  "version": {
+   "version": "0.40.16"
+  },
+  "tags": {
+   "models": [
+    {
+     "name": "gpt-oss:20b",
+     "model": "gpt-oss:20b",
+     "modified_at": "2026-11-19T18:58:49.2828884+09:00",
+     "size": 13793441566,
+     "digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+     "details": {
+      "parent_model": "dhiltgen/gpt-oss:20b-llamacpp",
+      "format": "gguf",
+      "family": "gpt-oss",
+      "families": [
+       "gpt-oss"
+      ],
+      "parameter_size": "20.9B",
+      "quantization_level": "MXFP4",
+      "context_length": 131072,
+      "embedding_length": 2880,
+      "runner": "llamacpp"
+     },
+     "capabilities": [
+      "completion",
+      "tools",
+      "thinking"
+     ]
+    },
+    {
+     "name": "gemma3:4b",
+     "model": "gemma3:4b",
+     "modified_at": "2026-11-17T20:34:31.0082098+09:00",
+     "size": 3350272403,
+     "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+     "details": {
+      "parent_model": "dhiltgen/gemma3:4b-it-q4_K_M-llamacpp",
+      "format": "gguf",
+      "family": "gemma3",
+      "families": [
+       "gemma3",
+       "clip"
+      ],
+      "parameter_size": "3.9B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 131072,
+      "embedding_length": 2560,
+      "runner": "llamacpp"
+     },
+     "capabilities": [
+      "completion",
+      "vision"
+     ]
+    },
+    {
+     "name": "qwen3:4b-q4_K_M",
+     "model": "qwen3:4b-q4_K_M",
+     "modified_at": "2026-11-17T19:08:13.3050388+09:00",
+     "size": 2620788260,
+     "digest": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+     "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+       "qwen3"
+      ],
+      "parameter_size": "4.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 40960,
+      "embedding_length": 2560,
+      "runner": "ggml"
+     },
+     "capabilities": [
+      "completion",
+      "tools",
+      "thinking"
+     ]
+    },
+    {
+     "name": "qwen3:0.6b",
+     "model": "qwen3:0.6b",
+     "modified_at": "2026-10-14T08:32:25.6970173+09:00",
+     "size": 522653767,
+     "digest": "7df6b6e09427a769808717c0a93cadc4ae99ed4eb8bf5ca557c90846becea435",
+     "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+       "qwen3"
+      ],
+      "parameter_size": "751.63M",
+      "quantization_level": "Q4_K_M",
+      "context_length": 40960,
+      "embedding_length": 1024,
+      "runner": "ggml"
+     },
+     "capabilities": [
+      "completion",
+      "tools",
+      "thinking"
+     ]
+    }
+   ]
+  },
+  "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "show_qwen3:4b-q4_K_M": {
+   "details": {
+    "parent_model": "",
+    "format": "gguf",
+    "family": "qwen3",
+    "families": [
+     "qwen3"
+    ],
+    "parameter_size": "4.0B",
+    "quantization_level": "Q4_K_M"
+   },
+   "parameters": "repeat_penalty                 1\nstop                           \"<|im_start|>\"\nstop                           \"<|im_end|>\"\ntemperature                    0.6\ntop_k                          20\ntop_p                          0.95",
+   "modified_at": "2026-11-17T19:08:13.3050388+09:00"
+  },
+  "show_gemma3:4b": {
+   "details": {
+    "parent_model": "dhiltgen/gemma3:4b-it-q4_K_M-llamacpp",
+    "format": "gguf",
+    "family": "gemma3",
+    "families": [
+     "gemma3",
+     "clip"
+    ],
+    "parameter_size": "3.9B",
+    "quantization_level": "Q4_K_M",
+    "runner": "llamacpp"
+   },
+   "parameters": "stop                           \"<end_of_turn>\"\ntemperature                    1\ntop_k                          64\ntop_p                          0.95",
+   "modified_at": "2026-11-17T20:34:31.0082098+09:00"
+  }
+ },
+ "check": {
+  "ollama_version": "0.40.16",
+  "ollama_version_matches": true,
+  "models": {
+   "qwen3:4b-q4_K_M": {
+    "expected": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+    "found": "2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0",
+    "matches": true
+   },
+   "gemma3:4b": {
+    "expected": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "found": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+    "matches": true
+   }
+  },
+  "all_match": true
+ },
+ "ts": "2026-11-20T01:18:31+0900"
+}

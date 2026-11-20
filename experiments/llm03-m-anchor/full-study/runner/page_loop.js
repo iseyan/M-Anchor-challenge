@@ -1,5 +1,6 @@
 // Page loop for runner/serve.py. Paste or evaluate this inside the Ollama page (http://localhost:11434):
 //   startFullStudyLoop({ service: 'http://127.0.0.1:8765', models: ['qwen3:4b-q4_K_M', 'gemma3:4b'] })
+// With persist: true the loop keeps waiting after a shard is done, for the next shard's service (stopped/fatal still end it).
 // It asks the local service for the next message, sends chat attempts with the page's own
 // fetch('/api/chat') exactly as the V1 loop did, and posts the result. State: window.__fsrun.
 // The loop never retries by itself and never decides the order; the service (driver) does both.
@@ -62,6 +63,11 @@ async function startFullStudyLoop(opts) {
         continue;
       }
       S.final = m;                                                     // done / stopped / fatal
+      if (opts.persist && m.type === 'done') {                         // next shard's service starts shortly
+        S.finals = (S.finals || []).concat([m]);
+        await sleep(5000);
+        continue;
+      }
       break;
     }
     S.running = false;

@@ -1,0 +1,852 @@
+{
+ "plan": "checks/dev-plan-v2-20261119.md",
+ "sent": "2026-11-19 18:52-18:54 JST via the Ollama page fetch('/api/chat'), num_predict 1, otherwise the sender request options",
+ "calls": 112,
+ "note": "110 planned calls plus 2 repeat calls (the first text once more per model) added to check that prompt_eval_count is not reduced by prompt caching; both repeats equal the first measurement (qwen 156, gemma 131). This exceeds the planned cap of 110 by 2.",
+ "request_options": {
+  "qwen3:4b-q4_K_M": {
+   "model": "qwen3:4b-q4_K_M",
+   "stream": false,
+   "format": "json",
+   "keep_alive": "30m",
+   "options": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "top_k": 40,
+    "num_ctx": 4096,
+    "num_predict": 1
+   },
+   "think": false
+  },
+  "gemma3:4b": {
+   "model": "gemma3:4b",
+   "stream": false,
+   "format": "json",
+   "keep_alive": "30m",
+   "options": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "top_k": 40,
+    "num_ctx": 4096,
+    "num_predict": 1
+   }
+  }
+ },
+ "variants": {
+  "v0": "- {key}: 整理行 NN／保管欄 01／帳票区分 00",
+  "v1": "- {key}: 整理行 NN／保管欄 01",
+  "v2": "- {key}: 整理行 NN／帳票区分 00",
+  "v3": "- {key}: 整理行 NN",
+  "v4": "- {key}: 保管欄 01"
+ },
+ "items": [
+  {
+   "index": 0,
+   "keys": [
+    "approval_valid",
+    "approver_authorized"
+   ],
+   "case_id": "V-AT1-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01／帳票区分 00\n- approver_authorized: 整理行 02／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 156,
+    "gemma3:4b": 131
+   }
+  },
+  {
+   "index": 1,
+   "keys": [
+    "approval_valid",
+    "approver_authorized"
+   ],
+   "case_id": "V-AT1-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01\n- approver_authorized: 整理行 02／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 142,
+    "gemma3:4b": 117
+   }
+  },
+  {
+   "index": 2,
+   "keys": [
+    "approval_valid",
+    "approver_authorized"
+   ],
+   "case_id": "V-AT1-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／帳票区分 00\n- approver_authorized: 整理行 02／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 144,
+    "gemma3:4b": 119
+   }
+  },
+  {
+   "index": 3,
+   "keys": [
+    "approval_valid",
+    "approver_authorized"
+   ],
+   "case_id": "V-AT1-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01\n- approver_authorized: 整理行 02\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 130,
+    "gemma3:4b": 105
+   }
+  },
+  {
+   "index": 4,
+   "keys": [
+    "approval_valid",
+    "approver_authorized"
+   ],
+   "case_id": "V-AT1-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 保管欄 01\n- approver_authorized: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 128,
+    "gemma3:4b": 105
+   }
+  },
+  {
+   "index": 5,
+   "keys": [
+    "export_authorized",
+    "request_recorded",
+    "approval_valid"
+   ],
+   "case_id": "V-AT2-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- export_authorized: 整理行 01／保管欄 01／帳票区分 00\n- request_recorded: 整理行 02／保管欄 01／帳票区分 00\n- approval_valid: 整理行 03／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 181,
+    "gemma3:4b": 155
+   }
+  },
+  {
+   "index": 6,
+   "keys": [
+    "export_authorized",
+    "request_recorded",
+    "approval_valid"
+   ],
+   "case_id": "V-AT2-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- export_authorized: 整理行 01／保管欄 01\n- request_recorded: 整理行 02／保管欄 01\n- approval_valid: 整理行 03／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 160,
+    "gemma3:4b": 134
+   }
+  },
+  {
+   "index": 7,
+   "keys": [
+    "export_authorized",
+    "request_recorded",
+    "approval_valid"
+   ],
+   "case_id": "V-AT2-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- export_authorized: 整理行 01／帳票区分 00\n- request_recorded: 整理行 02／帳票区分 00\n- approval_valid: 整理行 03／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 163,
+    "gemma3:4b": 137
+   }
+  },
+  {
+   "index": 8,
+   "keys": [
+    "export_authorized",
+    "request_recorded",
+    "approval_valid"
+   ],
+   "case_id": "V-AT2-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- export_authorized: 整理行 01\n- request_recorded: 整理行 02\n- approval_valid: 整理行 03\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 142,
+    "gemma3:4b": 116
+   }
+  },
+  {
+   "index": 9,
+   "keys": [
+    "export_authorized",
+    "request_recorded",
+    "approval_valid"
+   ],
+   "case_id": "V-AT2-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- export_authorized: 保管欄 01\n- request_recorded: 保管欄 01\n- approval_valid: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 139,
+    "gemma3:4b": 116
+   }
+  },
+  {
+   "index": 10,
+   "keys": [
+    "approval_valid",
+    "approval_matches_request"
+   ],
+   "case_id": "V-AT3-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01／帳票区分 00\n- approval_matches_request: 整理行 02／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 155,
+    "gemma3:4b": 132
+   }
+  },
+  {
+   "index": 11,
+   "keys": [
+    "approval_valid",
+    "approval_matches_request"
+   ],
+   "case_id": "V-AT3-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01\n- approval_matches_request: 整理行 02／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 141,
+    "gemma3:4b": 118
+   }
+  },
+  {
+   "index": 12,
+   "keys": [
+    "approval_valid",
+    "approval_matches_request"
+   ],
+   "case_id": "V-AT3-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／帳票区分 00\n- approval_matches_request: 整理行 02／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 143,
+    "gemma3:4b": 120
+   }
+  },
+  {
+   "index": 13,
+   "keys": [
+    "approval_valid",
+    "approval_matches_request"
+   ],
+   "case_id": "V-AT3-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01\n- approval_matches_request: 整理行 02\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 129,
+    "gemma3:4b": 106
+   }
+  },
+  {
+   "index": 14,
+   "keys": [
+    "approval_valid",
+    "approval_matches_request"
+   ],
+   "case_id": "V-AT3-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 保管欄 01\n- approval_matches_request: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 127,
+    "gemma3:4b": 106
+   }
+  },
+  {
+   "index": 15,
+   "keys": [
+    "approval_recorded",
+    "approver_authorized"
+   ],
+   "case_id": "V-AT4-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01／保管欄 01／帳票区分 00\n- approver_authorized: 整理行 02／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 157,
+    "gemma3:4b": 131
+   }
+  },
+  {
+   "index": 16,
+   "keys": [
+    "approval_recorded",
+    "approver_authorized"
+   ],
+   "case_id": "V-AT4-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01／保管欄 01\n- approver_authorized: 整理行 02／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 143,
+    "gemma3:4b": 117
+   }
+  },
+  {
+   "index": 17,
+   "keys": [
+    "approval_recorded",
+    "approver_authorized"
+   ],
+   "case_id": "V-AT4-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01／帳票区分 00\n- approver_authorized: 整理行 02／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 145,
+    "gemma3:4b": 119
+   }
+  },
+  {
+   "index": 18,
+   "keys": [
+    "approval_recorded",
+    "approver_authorized"
+   ],
+   "case_id": "V-AT4-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01\n- approver_authorized: 整理行 02\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 131,
+    "gemma3:4b": 105
+   }
+  },
+  {
+   "index": 19,
+   "keys": [
+    "approval_recorded",
+    "approver_authorized"
+   ],
+   "case_id": "V-AT4-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 保管欄 01\n- approver_authorized: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 129,
+    "gemma3:4b": 105
+   }
+  },
+  {
+   "index": 20,
+   "keys": [
+    "approval_valid",
+    "direct_transfer_authorized"
+   ],
+   "case_id": "V-AT6-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01／帳票区分 00\n- direct_transfer_authorized: 整理行 02／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 156,
+    "gemma3:4b": 132
+   }
+  },
+  {
+   "index": 21,
+   "keys": [
+    "approval_valid",
+    "direct_transfer_authorized"
+   ],
+   "case_id": "V-AT6-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01\n- direct_transfer_authorized: 整理行 02／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 142,
+    "gemma3:4b": 118
+   }
+  },
+  {
+   "index": 22,
+   "keys": [
+    "approval_valid",
+    "direct_transfer_authorized"
+   ],
+   "case_id": "V-AT6-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／帳票区分 00\n- direct_transfer_authorized: 整理行 02／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 144,
+    "gemma3:4b": 120
+   }
+  },
+  {
+   "index": 23,
+   "keys": [
+    "approval_valid",
+    "direct_transfer_authorized"
+   ],
+   "case_id": "V-AT6-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01\n- direct_transfer_authorized: 整理行 02\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 130,
+    "gemma3:4b": 106
+   }
+  },
+  {
+   "index": 24,
+   "keys": [
+    "approval_valid",
+    "direct_transfer_authorized"
+   ],
+   "case_id": "V-AT6-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 保管欄 01\n- direct_transfer_authorized: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 128,
+    "gemma3:4b": 106
+   }
+  },
+  {
+   "index": 25,
+   "keys": [
+    "approval_valid",
+    "split_permitted"
+   ],
+   "case_id": "V-AT7-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01／帳票区分 00\n- split_permitted: 整理行 02／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 155,
+    "gemma3:4b": 130
+   }
+  },
+  {
+   "index": 26,
+   "keys": [
+    "approval_valid",
+    "split_permitted"
+   ],
+   "case_id": "V-AT7-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01\n- split_permitted: 整理行 02／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 141,
+    "gemma3:4b": 116
+   }
+  },
+  {
+   "index": 27,
+   "keys": [
+    "approval_valid",
+    "split_permitted"
+   ],
+   "case_id": "V-AT7-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／帳票区分 00\n- split_permitted: 整理行 02／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 143,
+    "gemma3:4b": 118
+   }
+  },
+  {
+   "index": 28,
+   "keys": [
+    "approval_valid",
+    "split_permitted"
+   ],
+   "case_id": "V-AT7-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01\n- split_permitted: 整理行 02\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 129,
+    "gemma3:4b": 104
+   }
+  },
+  {
+   "index": 29,
+   "keys": [
+    "approval_valid",
+    "split_permitted"
+   ],
+   "case_id": "V-AT7-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 保管欄 01\n- split_permitted: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 127,
+    "gemma3:4b": 104
+   }
+  },
+  {
+   "index": 30,
+   "keys": [
+    "approval_recorded",
+    "approval_still_valid"
+   ],
+   "case_id": "V-AT8-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01／保管欄 01／帳票区分 00\n- approval_still_valid: 整理行 02／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 157,
+    "gemma3:4b": 132
+   }
+  },
+  {
+   "index": 31,
+   "keys": [
+    "approval_recorded",
+    "approval_still_valid"
+   ],
+   "case_id": "V-AT8-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01／保管欄 01\n- approval_still_valid: 整理行 02／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 143,
+    "gemma3:4b": 118
+   }
+  },
+  {
+   "index": 32,
+   "keys": [
+    "approval_recorded",
+    "approval_still_valid"
+   ],
+   "case_id": "V-AT8-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01／帳票区分 00\n- approval_still_valid: 整理行 02／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 145,
+    "gemma3:4b": 120
+   }
+  },
+  {
+   "index": 33,
+   "keys": [
+    "approval_recorded",
+    "approval_still_valid"
+   ],
+   "case_id": "V-AT8-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01\n- approval_still_valid: 整理行 02\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 131,
+    "gemma3:4b": 106
+   }
+  },
+  {
+   "index": 34,
+   "keys": [
+    "approval_recorded",
+    "approval_still_valid"
+   ],
+   "case_id": "V-AT8-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 保管欄 01\n- approval_still_valid: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 129,
+    "gemma3:4b": 106
+   }
+  },
+  {
+   "index": 35,
+   "keys": [
+    "approval_recorded",
+    "approval_unused"
+   ],
+   "case_id": "V-AT9-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01／保管欄 01／帳票区分 00\n- approval_unused: 整理行 02／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 155,
+    "gemma3:4b": 130
+   }
+  },
+  {
+   "index": 36,
+   "keys": [
+    "approval_recorded",
+    "approval_unused"
+   ],
+   "case_id": "V-AT9-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01／保管欄 01\n- approval_unused: 整理行 02／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 141,
+    "gemma3:4b": 116
+   }
+  },
+  {
+   "index": 37,
+   "keys": [
+    "approval_recorded",
+    "approval_unused"
+   ],
+   "case_id": "V-AT9-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01／帳票区分 00\n- approval_unused: 整理行 02／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 143,
+    "gemma3:4b": 118
+   }
+  },
+  {
+   "index": 38,
+   "keys": [
+    "approval_recorded",
+    "approval_unused"
+   ],
+   "case_id": "V-AT9-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 整理行 01\n- approval_unused: 整理行 02\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 129,
+    "gemma3:4b": 104
+   }
+  },
+  {
+   "index": 39,
+   "keys": [
+    "approval_recorded",
+    "approval_unused"
+   ],
+   "case_id": "V-AT9-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_recorded: 保管欄 01\n- approval_unused: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 127,
+    "gemma3:4b": 104
+   }
+  },
+  {
+   "index": 40,
+   "keys": [
+    "request_recorded",
+    "approval_valid"
+   ],
+   "case_id": "V-LT2-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- request_recorded: 整理行 01／保管欄 01／帳票区分 00\n- approval_valid: 整理行 02／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 155,
+    "gemma3:4b": 130
+   }
+  },
+  {
+   "index": 41,
+   "keys": [
+    "request_recorded",
+    "approval_valid"
+   ],
+   "case_id": "V-LT2-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- request_recorded: 整理行 01／保管欄 01\n- approval_valid: 整理行 02／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 141,
+    "gemma3:4b": 116
+   }
+  },
+  {
+   "index": 42,
+   "keys": [
+    "request_recorded",
+    "approval_valid"
+   ],
+   "case_id": "V-LT2-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- request_recorded: 整理行 01／帳票区分 00\n- approval_valid: 整理行 02／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 143,
+    "gemma3:4b": 118
+   }
+  },
+  {
+   "index": 43,
+   "keys": [
+    "request_recorded",
+    "approval_valid"
+   ],
+   "case_id": "V-LT2-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- request_recorded: 整理行 01\n- approval_valid: 整理行 02\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 129,
+    "gemma3:4b": 104
+   }
+  },
+  {
+   "index": 44,
+   "keys": [
+    "request_recorded",
+    "approval_valid"
+   ],
+   "case_id": "V-LT2-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- request_recorded: 保管欄 01\n- approval_valid: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 127,
+    "gemma3:4b": 104
+   }
+  },
+  {
+   "index": 45,
+   "keys": [
+    "approval_valid",
+    "request_recorded"
+   ],
+   "case_id": "V-LT3-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01／帳票区分 00\n- request_recorded: 整理行 02／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 155,
+    "gemma3:4b": 130
+   }
+  },
+  {
+   "index": 46,
+   "keys": [
+    "approval_valid",
+    "request_recorded"
+   ],
+   "case_id": "V-LT3-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01\n- request_recorded: 整理行 02／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 141,
+    "gemma3:4b": 116
+   }
+  },
+  {
+   "index": 47,
+   "keys": [
+    "approval_valid",
+    "request_recorded"
+   ],
+   "case_id": "V-LT3-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／帳票区分 00\n- request_recorded: 整理行 02／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 143,
+    "gemma3:4b": 118
+   }
+  },
+  {
+   "index": 48,
+   "keys": [
+    "approval_valid",
+    "request_recorded"
+   ],
+   "case_id": "V-LT3-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01\n- request_recorded: 整理行 02\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 129,
+    "gemma3:4b": 104
+   }
+  },
+  {
+   "index": 49,
+   "keys": [
+    "approval_valid",
+    "request_recorded"
+   ],
+   "case_id": "V-LT3-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 保管欄 01\n- request_recorded: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 127,
+    "gemma3:4b": 104
+   }
+  },
+  {
+   "index": 50,
+   "keys": [
+    "approval_valid",
+    "approver_authorized",
+    "cause_identified"
+   ],
+   "case_id": "V-LT6-D01",
+   "variant": "v0",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01／帳票区分 00\n- approver_authorized: 整理行 02／保管欄 01／帳票区分 00\n- cause_identified: 整理行 03／保管欄 01／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 182,
+    "gemma3:4b": 156
+   }
+  },
+  {
+   "index": 51,
+   "keys": [
+    "approval_valid",
+    "approver_authorized",
+    "cause_identified"
+   ],
+   "case_id": "V-LT6-D01",
+   "variant": "v1",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／保管欄 01\n- approver_authorized: 整理行 02／保管欄 01\n- cause_identified: 整理行 03／保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 161,
+    "gemma3:4b": 135
+   }
+  },
+  {
+   "index": 52,
+   "keys": [
+    "approval_valid",
+    "approver_authorized",
+    "cause_identified"
+   ],
+   "case_id": "V-LT6-D01",
+   "variant": "v2",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01／帳票区分 00\n- approver_authorized: 整理行 02／帳票区分 00\n- cause_identified: 整理行 03／帳票区分 00\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 164,
+    "gemma3:4b": 138
+   }
+  },
+  {
+   "index": 53,
+   "keys": [
+    "approval_valid",
+    "approver_authorized",
+    "cause_identified"
+   ],
+   "case_id": "V-LT6-D01",
+   "variant": "v3",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 整理行 01\n- approver_authorized: 整理行 02\n- cause_identified: 整理行 03\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 143,
+    "gemma3:4b": 117
+   }
+  },
+  {
+   "index": 54,
+   "keys": [
+    "approval_valid",
+    "approver_authorized",
+    "cause_identified"
+   ],
+   "case_id": "V-LT6-D01",
+   "variant": "v4",
+   "text": "【認識状態（M-Anchor）】次の状態は、根拠の種類に基づいて保存された各主張の状態です。unconfirmed（未決）の主張を confirmed として扱ったり、引き継いだりしないでください。\n- approval_valid: 保管欄 01\n- approver_authorized: 保管欄 01\n- cause_identified: 保管欄 01\n\n次の工程として、この案件の操作を提案し、承認担当エージェントへの引き継ぎを作成します。",
+   "prompt_eval_count": {
+    "qwen3:4b-q4_K_M": 140,
+    "gemma3:4b": 117
+   }
+  }
+ ],
+ "repeat_of_index0": {
+  "qwen3:4b-q4_K_M": 156,
+  "gemma3:4b": 131
+ },
+ "request_options_note": "sender options with num_predict 1 and no seed; messages = one user message with the item text",
+ "prediction": {
+  "method": "dev-tech-20261119-01 per-trial A2-C4 plus the probe difference of the trial's claim-key set",
+  "qwen3:4b-q4_K_M": {
+   "c4_added_median": 87,
+   "tolerance": 1.74,
+   "v0": 25,
+   "v1": 11,
+   "v2": 13,
+   "v3": -1,
+   "v4": -3
+  },
+  "gemma3:4b": {
+   "c4_added_median": 75,
+   "tolerance": 1.5,
+   "v0": 24,
+   "v1": 10,
+   "v2": 12,
+   "v3": -5,
+   "v4": -5
+  },
+  "selected": "v3",
+  "why": "no candidate meets both tolerances; v3 and v4 tie on the larger |median| (5), v3 is closer for qwen (plan rule: closest)"
+ }
+}

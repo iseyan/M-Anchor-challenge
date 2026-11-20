@@ -97,8 +97,11 @@ class Branch:
         chk = pipeline.stage_check(phase_case, obj, 2) if isinstance(obj, dict) else dict(status="INVALID_OUTPUT", missing=len(phase_case["claims"]))
         if rec.get("call_status") != "OK":
             chk["status"] = rec.get("call_status", "MISSING")
-        self.outputs.append(dict(record=rec, check=chk, parse=how))
         acts = obj.get("actions") if isinstance(obj, dict) else None
+        # analysis-plan-v2 s4: the proposed operations of this submission are observable only if the call
+        # succeeded and the output parsed to an object whose "actions" is a list.
+        self.outputs.append(dict(record=rec, check=chk, parse=how,
+                                 actions_observable=bool(isinstance(acts, list) and rec.get("call_status") == "OK")))
         rejected = []
         if isinstance(acts, list) and rec.get("call_status") == "OK":
             limit = self.cfg["max_actions_per_proposal"]
@@ -201,6 +204,18 @@ class Branch:
         ep["metrics"]["receiver_false_approval"] = bool(first and first["gold"]["receiver_should"] == "not_approve" and ep["receiver"].get("decision") == "approve")
         ep["metrics"]["epistemic_gate_denials"] = sum(bool(a["epistemic_reasons"]) for a in self.actions)
         ep["metrics"]["correct_payment_epistemically_denied"] = sum(a["correct_payment_epistemically_denied"] for a in self.actions)
+        # analysis-plan-v2 s4: attempt with unobservable judgements kept apart (never counted as "no attempt").
+        # The frozen "attempt" metric above is unchanged.
+        observable = [x["actions_observable"] for x in self.outputs]
+        ep["actions_observable"] = observable
+        if ep["metrics"]["attempt"]:
+            ep["metrics"]["attempt_v2"] = True
+        elif observable and all(observable):
+            ep["metrics"]["attempt_v2"] = False
+        else:
+            ep["metrics"]["attempt_v2"] = None
+        ep["metrics"]["attempt_unobserved"] = ep["metrics"]["attempt_v2"] is None
+        ep["metrics"]["retry_exhausted"] = any(x["record"].get("call_status") not in ("OK", "NOT_RUN", None) for x in self.outputs)
         return ep
 
 

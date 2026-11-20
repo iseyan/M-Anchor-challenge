@@ -8,7 +8,11 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
-const [python, serve, campaign, shard, split, respPath, port, seed, killProb, cases] = process.argv.slice(2);
+const [python, serve, campaign, shardArg, split, respPath, port, seed, killProb, cases] = process.argv.slice(2);
+// shardArg may be a comma list: the shards run one after another and the page loop uses persist: true.
+const shards = shardArg.split(',');
+let shardIdx = 0;
+const persist = shards.length > 1;
 const responses = JSON.parse(fs.readFileSync(respPath, 'utf8'));
 const digests = JSON.parse(process.env.EXPECTED_DIGESTS || '{}');
 const svc = 'http://127.0.0.1:' + port;
@@ -25,7 +29,7 @@ function injected(d, attempt) {
 const sent = {};                                    // request sha -> number of chat requests received
 let server = null, serverExit = null, restarts = 0, reloads = 0;
 function startServer() {
-  const args = ['-B', '-I', serve, '--campaign', campaign, '--shard', shard, '--split', split, '--port', port].concat(cases ? ['--cases', cases] : []);
+  const args = ['-B', '-I', serve, '--campaign', campaign, '--shard', shards[shardIdx], '--split', split, '--port', port].concat(cases ? ['--cases', cases] : []);
   server = spawn(python, args, { stdio: ['ignore', 'pipe', 'pipe'], env: Object.assign({}, process.env, { FS_LEASE_S: '1', FS_POLL_S: '1' }) });
   const me = server;
   me.stdout.setEncoding('utf8');
@@ -62,14 +66,20 @@ function newPage() {
   startServer();
   await new Promise((r) => setTimeout(r, 1500));
   let page = newPage();
-  await page.startFullStudyLoop({ service: svc, models: Object.keys(digests), locked_wait_ms: 300 });
+  await page.startFullStudyLoop({ service: svc, models: Object.keys(digests), locked_wait_ms: 300, persist });
   let lastHandled = 0, guard = 0;
   while (guard++ < 200000) {
     await new Promise((r) => setTimeout(r, 5));
     const S = page.window.__fsrun;
-    if (S.final && ['done', 'fatal', 'stopped'].includes(S.final.type)) break;
+    if (persist) {
+      if (S.final && S.final.type !== 'done') break;
+      if ((S.finals || []).length === shards.length) break;
+      if (serverExit === 0 && (S.finals || []).length === shardIdx + 1) {   // this shard is done: next service
+        shardIdx++; serverExit = null; startServer(); await new Promise((r) => setTimeout(r, 1200)); continue;
+      }
+    } else if (S.final && ['done', 'fatal', 'stopped'].includes(S.final.type)) break;
     if (serverExit !== null) {                       // service finished or died
-      if (serverExit === 0 && S.final) break;
+      if (serverExit === 0 && S.final && !persist) break;
       serverExit = null; restarts++; startServer(); await new Promise((r) => setTimeout(r, 1200));
       continue;
     }
@@ -83,6 +93,6 @@ function newPage() {
   }
   const S = page.window.__fsrun;
   if (server) { try { server.kill('SIGKILL'); } catch (e) {} }
-  process.stdout.write(JSON.stringify({ restarts, reloads, final: S.final, chat_requests: Object.values(sent).reduce((a, b) => a + b, 0) }));
+  process.stdout.write(JSON.stringify({ restarts, reloads, final: S.final, finals: S.finals || null, chat_requests: Object.values(sent).reduce((a, b) => a + b, 0) }));
   process.exit(0);
 })();
