@@ -1,6 +1,7 @@
 8e97d7e972cca181c78b504fe97ae1f7a008a67aec870f6a57ce7e6a37466d50  verify-shard-0-r1.json
 d759c7df2ce1a28936381f54e53bf04b0f15f36f7e7bb52a9ecc0aef2fa0a6c9  verify-shard-0-r2.json
 8c3cc7fb3ad9e37469530c28c7b781d671cf5333600b86b23c2968ddf14afa49  verify-shard-1-r1.json
+ad1b86f532fe873f7072b93a9ced5cc166b3569794fb711cde5a8ec867caeaba  verify-shard-1-r2.json
 c58424ac0cec59dcceb89a0dd2ff8c31cf508f306a471cda5e024ec08a00b60f  shard-0-r1/attempts.jsonl.gz
 4152e8fc2f67bd8b718e595318ac32bb538f841626756584dd365851ec976db0  shard-0-r1/done.json
 229b0454ccdcbdf8f38f5ecbba165ce38712cd7ce10752201e9027a9f2985968  shard-0-r1/env-1.json
@@ -19,3 +20,9 @@ add8ad5432303949e284ba16fa5dd305b65316ced86dc34d0c3f9227baff139a  shard-1-r1/att
 82e2f628e0c2438735e1bef1b689dedeffeb0fea37280066bb56e4ead7f49d38  shard-1-r1/episodes.jsonl.gz
 ccce95cd6c095568138cdf1a024a0cdfdd3832389ac3b706c72c7e3cda410802  shard-1-r1/manifest.json
 806056f916c21327507169139c7eceb26a48cc8ec1bab2c6a075dc18fa79414b  shard-1-r1/records.jsonl.gz
+7718ac74f1072da57a5e3d97aa5592918606d76a63c3098c4d895b4771a0fa8e  shard-1-r2/attempts.jsonl.gz
+e0d06048f6bfab1dcaeb46267722c633fd28bdf08bf76d100b0c230be8440e55  shard-1-r2/done.json
+dea4a907d3f6a459f997a5f0bf9b3bf50e8f55a43f53ffe21851fa575ef45bca  shard-1-r2/env-1.json
+d68fd5b00cac98d383e8b45fc0226d776f9dc00bbe6a0d7a8a41a2706b5a5d65  shard-1-r2/episodes.jsonl.gz
+050780651b83b9331a5dc231773a3456ce38cb75935eef0bbfd713207d145e92  shard-1-r2/manifest.json
+2058da48568e25cb9a44f0e509e66529f20d5549e1ef2b3fcc38535ff80dfc95  shard-1-r2/records.jsonl.gz
