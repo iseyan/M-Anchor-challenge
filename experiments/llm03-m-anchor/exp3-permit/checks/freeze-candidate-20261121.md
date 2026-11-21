@@ -21,7 +21,7 @@
 | 実験2の凍結コード | `full-study/` と `harness/` は凍結コミット `8a7895b` から、`checks/` の記録と `report-experiment2-final.md` の追加を除いて変わっていない（`git diff 8a7895b` で確認） |
 | 実験3の追加 | `exp3.py` `299c7790…`、`ledger.py` `a1c150eb…`、`runner/run3.py` `6a7ce4eb…`、`analysis/report3.py` `99ec2383…`、`fixtures.py` `140c6d8a…` |
 | ページのループ | `full-study/runner/page_loop.js` SHA-256 `f21c17655f27a332d585a51e2f395451c50c49dfdd6f8121b9d14144643747ca`（ページに入れる前に照合する） |
-| 全ソース | `exp3.sources()` 92ファイル。凍結前の一覧のハッシュ（キー順の JSON）`4dde5f565d6f211e7f39e1f6c6e090441cb0fe13597e8e9cf2a27c701eb5d030`。各分割の `manifest.json` に全ファイルのハッシュが残る |
+| 全ソース | `exp3.sources()` 92ファイル。凍結前の一覧のハッシュ（キー順の JSON）`ae3e61b202f3c88ab888a01297b6001899151de1f9030d1cd0f5d099751384b3`。各分割の `manifest.json` に全ファイルのハッシュが残る |
 | シード | `20361120 + 1000×反復 + 実験2の本番ケースファイルでの番号`。送り手・条件・段階で共通 |
 | 送り手・受け手 | qwen3:4b-q4_K_M（`2bfd38a7daaf4b1037efe517ccb73d1a3bbd4822cf89f1a82be1569050a114e0`、thinking 無効）、gemma3:4b（`68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7`）。受け手は gemma3:4b |
 | Ollama | 0.40.16。トレイアプリを使わず `ollama serve` で起動する。各分割の開始時に照合し、不一致なら推論の前に止まる。全分割の終了後にも版を確認する |
