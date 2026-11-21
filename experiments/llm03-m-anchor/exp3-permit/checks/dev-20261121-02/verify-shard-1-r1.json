@@ -1,0 +1,97 @@
+{
+ "shard_dir": "shard-1-r1",
+ "files": {
+  "attempts.jsonl": "0790e5000ad4b1716ff40898e416d46d65b39323a06ef576eaf5da9348e1820a",
+  "done.json": "057cd190f09cc56eb761be5b5f28202f935d747d96601f3545f3230f4a802f3e",
+  "env-1.json": "1ddf05a90583aa7241182572c681a011dc05a296f45681bf224b0e8a338af213",
+  "episodes.jsonl": "d3f0d05da27f5083c04e55374ec764f6c1101f657827c126de264dd31759ca33",
+  "manifest.json": "922a0cbe1bd27e6355cb0fbd0cc9e095d79dc80f95ce9f5d929717bf70686320",
+  "records.jsonl": "09577737625048fdf8151d9eece4719b9e136c40363cc5d33a0675e586914d61"
+ },
+ "sources_match_manifest": true,
+ "plan_matches_manifest": true,
+ "starts": 1,
+ "env_all_match": [
+  true
+ ],
+ "replay": {
+  "records": 345,
+  "replayed": 345,
+  "mismatch": null,
+  "complete": true,
+  "body_sha256_recomputed": true
+ },
+ "episodes_byte_identical": true,
+ "episodes": 160,
+ "journal_problems": [],
+ "journal_extra_calls": [],
+ "call_status": {
+  "OK": 338,
+  "HTTP_ERROR": 7
+ },
+ "attempt_status": {
+  "OK": 338,
+  "HTTP_ERROR": 29
+ },
+ "retry_exhausted": {
+  "S2|p0|s1|C3": 1,
+  "S2|p0|s1|C4P": 1,
+  "S2|p0|s1|GC": 2,
+  "S2|p0|s1|GCP": 3
+ },
+ "truncated_done_reason_length": {
+  "S1|p0|s0|PRE": 1
+ },
+ "prompt_eval_count_overall_max": 1896,
+ "over_ctx_limit_3796": 0,
+ "stage2_status_by_condition": {
+  "C3": {
+   "OK": 24,
+   "HTTP_ERROR": 1,
+   "SCHEMA_ERROR": 7
+  },
+  "GC": {
+   "OK": 27,
+   "SCHEMA_ERROR": 4,
+   "HTTP_ERROR": 1
+  },
+  "GCP": {
+   "OK": 24,
+   "HTTP_ERROR": 3,
+   "SCHEMA_ERROR": 5
+  },
+  "C4": {
+   "OK": 24,
+   "SCHEMA_ERROR": 8
+  },
+  "C4P": {
+   "OK": 27,
+   "SCHEMA_ERROR": 4,
+   "HTTP_ERROR": 1
+  }
+ },
+ "handoff_status_by_condition": {
+  "C3": {
+   "SENT": 24,
+   "TRANSMISSION_FAILURE": 8
+  },
+  "GC": {
+   "SENT": 27,
+   "TRANSMISSION_FAILURE": 5
+  },
+  "GCP": {
+   "SENT": 24,
+   "TRANSMISSION_FAILURE": 8
+  },
+  "C4": {
+   "SENT": 24,
+   "TRANSMISSION_FAILURE": 8
+  },
+  "C4P": {
+   "SENT": 27,
+   "TRANSMISSION_FAILURE": 5
+  }
+ },
+ "episodes_with_decision_ids_and_final_ledger": 160,
+ "ledger_vs_legit_action_ok_disagreements": []
+}

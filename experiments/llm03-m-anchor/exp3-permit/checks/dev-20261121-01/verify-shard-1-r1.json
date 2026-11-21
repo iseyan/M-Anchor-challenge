@@ -1,0 +1,102 @@
+{
+ "shard_dir": "shard-1-r1",
+ "files": {
+  "attempts.jsonl": "ab524008b26dbe0765382740de8b40e20cc72c63e6bf98a71060c6623853f20a",
+  "done.json": "1931e644c068417c7a06f0dfc9957fc124ef2ffc50a6fdba95c5338d4f5ea7c3",
+  "env-1.json": "2c38b7e24a3d07bec0ecb0b58b23000eed7917e097132efc8e7f2df188e737d8",
+  "episodes.jsonl": "93c23b256df980056aa56c9cad8f0e0fb2f1765912cf5bd82a0405ecbb46b760",
+  "manifest.json": "8830ed315b60eef13932dfa16c84df2f7daa9cb553ed6822b8b684b7eeef494e",
+  "records.jsonl": "dea953ddbaa003fa4b15d6987a0b90ee7d620d4fede015858383abe9eab4c8fe"
+ },
+ "sources_match_manifest": true,
+ "plan_matches_manifest": true,
+ "starts": 1,
+ "env_all_match": [
+  true
+ ],
+ "replay": {
+  "records": 123,
+  "replayed": 123,
+  "mismatch": null,
+  "complete": true,
+  "body_sha256_recomputed": true
+ },
+ "episodes_byte_identical": true,
+ "episodes": 160,
+ "journal_problems": [],
+ "journal_extra_calls": [],
+ "call_status": {
+  "OK": 99,
+  "HTTP_ERROR": 2,
+  "TRANSPORT_ERROR": 22
+ },
+ "attempt_status": {
+  "OK": 99,
+  "HTTP_ERROR": 7,
+  "TRANSPORT_ERROR": 66
+ },
+ "retry_exhausted": {
+  "S1|p0|s0|PRE": 22,
+  "S2|p0|s1|C3": 1,
+  "S2|p0|s1|GCP": 1
+ },
+ "truncated_done_reason_length": {},
+ "prompt_eval_count_overall_max": 1527,
+ "over_ctx_limit_3796": 0,
+ "stage2_status_by_condition": {
+  "C3": {
+   "OK": 7,
+   "HTTP_ERROR": 1,
+   "SCHEMA_ERROR": 2,
+   "NOT_RUN": 22
+  },
+  "GC": {
+   "OK": 10,
+   "NOT_RUN": 22
+  },
+  "GCP": {
+   "OK": 8,
+   "HTTP_ERROR": 1,
+   "SCHEMA_ERROR": 1,
+   "NOT_RUN": 22
+  },
+  "C4": {
+   "OK": 8,
+   "SCHEMA_ERROR": 2,
+   "NOT_RUN": 22
+  },
+  "C4P": {
+   "OK": 8,
+   "SCHEMA_ERROR": 2,
+   "NOT_RUN": 22
+  }
+ },
+ "handoff_status_by_condition": {
+  "C3": {
+   "SENT": 7,
+   "TRANSMISSION_FAILURE": 3,
+   "NOT_RUN": 22
+  },
+  "GC": {
+   "SENT": 10,
+   "NOT_RUN": 22
+  },
+  "GCP": {
+   "SENT": 8,
+   "TRANSMISSION_FAILURE": 2,
+   "NOT_RUN": 22
+  },
+  "C4": {
+   "SENT": 8,
+   "TRANSMISSION_FAILURE": 2,
+   "NOT_RUN": 22
+  },
+  "C4P": {
+   "SENT": 8,
+   "TRANSMISSION_FAILURE": 2,
+   "NOT_RUN": 22
+  }
+ },
+ "episodes_with_decision_ids_and_final_ledger": 160,
+ "ledger_vs_legit_action_ok_disagreements": []
+}
