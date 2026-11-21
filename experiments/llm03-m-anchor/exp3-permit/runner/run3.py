@@ -35,6 +35,26 @@ import driver  # noqa: E402  (full-study/runner/driver.py)
 driver.config = exp3.config
 driver.load_split = exp3.split
 driver.sources = exp3.sources
+_FROZEN_CALL = driver.call
+
+
+def guarded_call(cfg, sp, prior, att_path):
+    """Stop the shard when the model server cannot be reached (added 2026-11-21 after the dev check, where
+    Ollama restarted mid-shard and the remaining 22 trials failed within five seconds).
+
+    The frozen call and its retry rule run unchanged. If every attempt of a call ended in TRANSPORT_ERROR
+    (the page could not connect at all) and at least one of them was sent in this start, the shard stops
+    with a fatal message instead of going on to the next call. That call stays a failure: its attempts are
+    in the journal, and a resume finalizes it from the journal without sending it again."""
+    rec = _FROZEN_CALL(cfg, sp, prior, att_path)
+    sent_now = len(rec["attempts"]) > sum(1 for e in prior if e["event"] == "intent")
+    if sent_now and rec["call_status"] == "TRANSPORT_ERROR" and all(a["status"] == "TRANSPORT_ERROR" for a in rec["attempts"]):
+        raise driver.Fatal("SERVER_UNREACHABLE: every attempt of " + sp["call_id"] + " failed to connect; "
+                           "shard stopped. Check the model server, then start the same shard again to resume")
+    return rec
+
+
+driver.call = guarded_call
 import mock  # noqa: E402  (full-study/runner/mock.py)
 
 mock.config = exp3.config

@@ -134,3 +134,37 @@ def test_serve_entry_uses_the_experiment3_driver(tmp_path):
                         "--campaign", str(tmp_path / "s"), "--shard", "0:1", "--split", "main"],
                        capture_output=True, text=True, encoding="utf-8", env=env, timeout=60)
     assert "run_enabled is false" in p.stdout, p.stdout + p.stderr
+
+
+class DownAfter(MockTransport):
+    """The server becomes unreachable after `ok` attempts."""
+    def __init__(self, cfg, responses, ok):
+        super().__init__(cfg, responses)
+        self.ok = ok
+
+    def receive(self, expect):
+        if expect == "attempt_result" and self.sent >= self.ok:
+            m = self.last
+            self.sent += 1
+            return dict(type="attempt_result", call_id=m["call_id"], attempt=m["attempt"], status="TRANSPORT_ERROR",
+                        error="TypeError: Failed to fetch", ms=3)
+        return super().receive(expect)
+
+
+def test_shard_stops_when_the_server_is_unreachable_and_resumes(tmp_path, reference):
+    recs, eps, responses = reference
+    args = ["--campaign", str(tmp_path / "c"), "--shard", "0:1", "--split", "dev", "--cases", ",".join(dev_ids())]
+    t = DownAfter(exp3.config(), responses, ok=12)
+    driver.CHANNEL = t
+    assert driver.main(args) == 2
+    assert t.finals[-1]["type"] == "fatal" and "SERVER_UNREACHABLE" in t.finals[-1]["error"]
+    d = tmp_path / "c" / "shard-0-r1"
+    saved = lines(d / "records.jsonl")
+    assert all(r["call_status"] != "TRANSPORT_ERROR" for r in saved)           # nothing burned after the outage
+    assert t.sent - 12 == exp3.config()["max_retries"] + 1                       # one call's attempts, then stop
+    code, t2 = run_driver(tmp_path / "c", responses)
+    assert t2.finals[-1]["type"] == "done"
+    final = lines(d / "records.jsonl")
+    lost = [r for r in final if r["call_status"] == "TRANSPORT_ERROR"]
+    assert len(lost) == 1 and lost[0]["call_id"] == final[len(saved)]["call_id"]  # that call stays a failure, not resent
+    assert run3.verify(d)["episodes_byte_identical"]
