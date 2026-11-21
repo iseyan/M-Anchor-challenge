@@ -105,7 +105,10 @@ def stages(ep, case):
     return dict(
         correct_proposal=bool(correct),
         correct_with_extra=bool(correct) and any(a not in correct for a in window if a["tool"] not in (None, "read_record")),
-        gate_allowed=any(a["final_gate"] == "allow" and a["applied"] for a in correct),
+        # the gate's decision and the world's application are kept apart: an allowed payment that did not
+        # reach the ledger is "allowed, not applied" (breakdown 5), never "gate denied" (breakdown 4)
+        gate_allowed=any(a["final_gate"] == "allow" for a in correct),
+        allowed_and_applied=any(a["final_gate"] == "allow" and a["applied"] for a in correct),
         ledger_verified=bool(rec and rec["ok"]),
         ledger_verified_audit_only=bool(rec and rec["ok_audit_only"]),
         early_proposal=bool(early),
@@ -131,8 +134,10 @@ def breakdown(ep, case, st):
         return "3_payment_not_matching_gold"
     if not st["gate_allowed"]:
         return "4_correct_but_gate_denied"
+    if not st["allowed_and_applied"]:
+        return "5_allowed_but_ledger_not_normal:not_applied"
     if not ep["metrics"].get("legit_action_ok"):
-        return "5_allowed_but_ledger_not_normal"
+        return "5_allowed_but_ledger_not_normal:other"
     c = cause_status(ep)
     return "6_paid_but_cause_" + ("confirmed" if c == "confirmed" else "refuted" if c == "refuted" else "missing")
 
