@@ -13,7 +13,10 @@
 | `ledger.py` | §5.2 の台帳照合（6項目）、提案→許可→台帳の3段、LT6 の主指標と §5.1 の未達成の内訳 |
 | `runner/run3.py` | 実行の入口。実験2の `runner/`（driver・serve・page_loop.js）をそのまま使い、設定・ケース・ソースのハッシュだけを実験3に向ける。`verify` で保存した分割を再生して検証する |
 | `fixtures.py` / `checks/scoring-fixtures.md` | 固定入力（開発用ケース）の採点表。期待値は手で書き、採点コードの出力と並べる。LT6 の状況1〜5の正解の一覧も出す |
-| `tests/` | `test_exp3.py`（24件）と `test_runner3.py`（5件） |
+| `analysis/report3.py` | 記述報告（計画書 §5・§6 の表。件数・率・対応のある率差） |
+| `checks/freeze-candidate-20261121.md` | 凍結の候補の記録（固定する内容、済んだ確認と済んでいない確認、本番の手順） |
+| `checks/dev-20261121-01/`・`-02/` | 開発用ケースでの実モデルの技術確認の記録 |
+| `tests/` | `test_exp3.py`・`test_runner3.py`・`test_report3.py`（計31件） |
 
 ## テスト（`python -B -m pytest -q -p no:cacheprovider exp3-permit/tests`、実験2のテストとは別に実行する）
 
