@@ -1,0 +1,74 @@
+{
+ "shard_dir": "shard-0-r3",
+ "files": {
+  "attempts.jsonl": "a634b1416f974f95ad63fd8f9e8e567c3a854fea21fda1e68a88b38d25f45c37",
+  "done.json": "9f3cb2ac0bef86688301ce3068742a9aaddc7ebd84c073bc915f82dce3999c6f",
+  "env-1.json": "be8c846137c253561e24cb0beda91437824c929f73e5a17d6493ee6e50300d37",
+  "episodes.jsonl": "9d0b67387ad1d8c2866134b75c1cedb9189c6d1346076d3aa86bd6d15e01cc13",
+  "manifest.json": "ce66df258400fba4233c59d9ca6a4895c8d16c0febd7169ed7d3c29739ec3857",
+  "records.jsonl": "bd8680c54d156fce3634b7dfcd454a32fe5c846e4087a772bcd5f0ad180d22e3"
+ },
+ "sources_match_manifest": true,
+ "plan_matches_manifest": true,
+ "starts": 1,
+ "env_all_match": [
+  true
+ ],
+ "replay": {
+  "records": 2866,
+  "replayed": 2866,
+  "mismatch": null,
+  "complete": true,
+  "body_sha256_recomputed": true
+ },
+ "episodes_byte_identical": true,
+ "episodes": 1200,
+ "journal_problems": [],
+ "journal_extra_calls": [],
+ "call_status": {
+  "OK": 2866
+ },
+ "attempt_status": {
+  "OK": 2866
+ },
+ "retry_exhausted": {},
+ "truncated_done_reason_length": {},
+ "prompt_eval_count_overall_max": 1578,
+ "over_ctx_limit_3796": 0,
+ "stage2_status_by_condition": {
+  "C3": {
+   "OK": 240
+  },
+  "GC": {
+   "OK": 240
+  },
+  "GCP": {
+   "OK": 240
+  },
+  "C4": {
+   "OK": 240
+  },
+  "C4P": {
+   "OK": 240
+  }
+ },
+ "handoff_status_by_condition": {
+  "C3": {
+   "SENT": 240
+  },
+  "GC": {
+   "SENT": 240
+  },
+  "GCP": {
+   "SENT": 240
+  },
+  "C4": {
+   "SENT": 240
+  },
+  "C4P": {
+   "SENT": 240
+  }
+ },
+ "episodes_with_decision_ids_and_final_ledger": 1200,
+ "ledger_vs_legit_action_ok_disagreements": []
+}

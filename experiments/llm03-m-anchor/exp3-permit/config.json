@@ -1,0 +1,14 @@
+{
+  "study": "llm03-m-anchor-exp3-permit",
+  "harness_version": "exp3-permit-1.0",
+  "protocol_status": "frozen 2026-11-21 15:02 JST by the user (Ise): plan exp3-permit/plan.md v0.2; record exp3-permit/checks/freeze-record-20261121.md",
+  "base_frozen_commit": "8a7895b",
+  "conditions": ["C3", "GC", "GCP", "C4", "C4P"],
+  "gate_mode": {"C3": "enforce", "GC": "enforce", "GCP": "enforce", "C4": "enforce", "C4P": "enforce"},
+  "seed_base": 20361120,
+  "seed_rule": "20361120 + 1000*rep + case index in full-study/cases/main.jsonl; shared across senders, conditions, phases and submission steps",
+  "cases": "cases-selected.json (240 of the 480 experiment-2 main cases; select_cases.py)",
+  "permit_sentence": "followup-hp/prompts/permit_sentence.txt (03ba1e7), SHA-256 58262bd4f88fa96ff3aba3a1286a70f0cefd321d4dfc14ec82a465616dc3876c",
+  "analysis_plan": "plan.md sections 5-6: descriptive counts, rates and paired rate differences; no intervals, tests, equivalence or non-inferiority",
+  "run_enabled": true
+}

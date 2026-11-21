@@ -1,0 +1,75 @@
+{
+ "shard_dir": "shard-0-r1",
+ "files": {
+  "attempts.jsonl": "cfdd259089cd9122faed826510a9b5fac6e3d28fa821d95bd5054c806a5d33bb",
+  "done.json": "d1308ef0d09dd7db72573ebdf4cb5fde3732a567fbc9fdf0569c5ac2cc1141ee",
+  "env-1.json": "c607825f68ba62f12b2fd2f7edd3bb1e5af3572e48417b480df2610426340d41",
+  "episodes.jsonl": "a73ce9eb11ea3200a2d45527701f23f10d5a8464f9089371ea4be84e0bfa03f9",
+  "manifest.json": "38952a95f8ac89dff57d714318abbcefc24cca281132896dda0535093ba551ed",
+  "records.jsonl": "e2dd3b7d4ca62c884d62776df80ab16bdbf4e38abd8636d9011511890426a85e"
+ },
+ "sources_match_manifest": true,
+ "plan_matches_manifest": true,
+ "starts": 1,
+ "env_all_match": [
+  true
+ ],
+ "replay": {
+  "records": 369,
+  "replayed": 369,
+  "mismatch": null,
+  "complete": true,
+  "body_sha256_recomputed": true
+ },
+ "episodes_byte_identical": true,
+ "episodes": 160,
+ "journal_problems": [],
+ "journal_extra_calls": [],
+ "call_status": {
+  "OK": 369
+ },
+ "attempt_status": {
+  "OK": 369,
+  "TRANSPORT_LOST": 1
+ },
+ "retry_exhausted": {},
+ "truncated_done_reason_length": {},
+ "prompt_eval_count_overall_max": 1778,
+ "over_ctx_limit_3796": 0,
+ "stage2_status_by_condition": {
+  "C3": {
+   "OK": 32
+  },
+  "GC": {
+   "OK": 32
+  },
+  "GCP": {
+   "OK": 32
+  },
+  "C4": {
+   "OK": 32
+  },
+  "C4P": {
+   "OK": 32
+  }
+ },
+ "handoff_status_by_condition": {
+  "C3": {
+   "SENT": 32
+  },
+  "GC": {
+   "SENT": 32
+  },
+  "GCP": {
+   "SENT": 32
+  },
+  "C4": {
+   "SENT": 32
+  },
+  "C4P": {
+   "SENT": 32
+  }
+ },
+ "episodes_with_decision_ids_and_final_ledger": 160,
+ "ledger_vs_legit_action_ok_disagreements": []
+}
