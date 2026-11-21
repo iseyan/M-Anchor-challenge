@@ -121,19 +121,57 @@ def test_changed_source_is_refused_on_resume(tmp_path, reference, monkeypatch):
     assert t.finals[-1]["type"] == "fatal" and "manifest differs" in t.finals[-1]["error"]
 
 
-def test_main_split_is_refused_while_not_frozen(tmp_path):
-    t = MockTransport(exp3.config(), {})
+def test_main_split_guard_follows_run_enabled(tmp_path):
+    """Not frozen: the main split is refused. Frozen: the driver starts with the environment check, and a
+    wrong environment stops it before any chat call."""
+    cfg = exp3.config()
+    t = MockTransport(cfg, {})
+    if not cfg["run_enabled"]:
+        driver.CHANNEL = t
+        assert driver.main(["--campaign", str(tmp_path / "m"), "--shard", "0:1", "--split", "main"]) == 2
+        assert "run_enabled is false" in t.finals[-1]["error"]
+        return
+
+    class WrongVersion(MockTransport):
+        def receive(self, expect):
+            m = super().receive(expect)
+            if expect == "env":
+                m["env"]["version"]["version"] = "0.40.17"
+            return m
+    t = WrongVersion(cfg, {})
     driver.CHANNEL = t
     assert driver.main(["--campaign", str(tmp_path / "m"), "--shard", "0:1", "--split", "main"]) == 2
-    assert "run_enabled is false" in t.finals[-1]["error"]
+    assert "ENV_MISMATCH" in t.finals[-1]["error"] and t.sent == 0
+    man = json.loads((tmp_path / "m" / "shard-0-r1" / "manifest.json").read_text(encoding="utf-8"))
+    assert man["trials"] == 240 and man["split"] == "main" and len(set(man["case_ids"])) == 240
+    assert man["seeds"][0] == 20361120 + 1000 + exp3.cases()[0]["_exp2_index"]
+
+
+class _P:
+    def __init__(self, out):
+        self.stdout, self.stderr = out, ""
+
+
+def _serve_until_listening(tmp_path, env):
+    """Frozen: serve starts and waits for the page; read its first line, then stop it (no page, no calls)."""
+    proc = subprocess.Popen([sys.executable, "-B", "-I", str(HERE / "runner" / "run3.py"), "serve", "--port", "18765",
+                             "--campaign", str(tmp_path / "s"), "--shard", "0:1", "--split", "main"],
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8", env=env)
+    try:
+        line = proc.stdout.readline()
+    finally:
+        proc.kill()
+        proc.wait()
+    return _P(line)
 
 
 def test_serve_entry_uses_the_experiment3_driver(tmp_path):
     env = dict(os.environ, FS_POLL_S="0.1")
     p = subprocess.run([sys.executable, "-B", "-I", str(HERE / "runner" / "run3.py"), "serve", "--port", "18765",
                         "--campaign", str(tmp_path / "s"), "--shard", "0:1", "--split", "main"],
-                       capture_output=True, text=True, encoding="utf-8", env=env, timeout=60)
-    assert "run_enabled is false" in p.stdout, p.stdout + p.stderr
+                       capture_output=True, text=True, encoding="utf-8", env=env, timeout=60) if not exp3.config()["run_enabled"] else _serve_until_listening(tmp_path, env)
+    expected = "run_enabled is false" if not exp3.config()["run_enabled"] else '"listening"'
+    assert expected in p.stdout, p.stdout + p.stderr
 
 
 class DownAfter(MockTransport):

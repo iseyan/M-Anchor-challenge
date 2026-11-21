@@ -121,7 +121,7 @@ def test_plans_use_experiment2_case_index_for_seed():
     for t in ts[:5] + ts[-5:]:
         assert t["seed"] == 20361120 + 1000 * t["rep"] + t["case"]["_exp2_index"]
     assert cfg["conditions"] == ["C3", "GC", "GCP", "C4", "C4P"]
-    assert set(cfg["gate_mode"].values()) == {"enforce"} and cfg["run_enabled"] is False
+    assert set(cfg["gate_mode"].values()) == {"enforce"} and isinstance(cfg["run_enabled"], bool)
 
 
 # ---------------------------------------------------------------- section 2: input difference
