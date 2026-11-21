@@ -4,6 +4,11 @@
 
 このデータは、本番の保存記録を表の形に書き出したものである。査読者が自分で件数を数え、報告書の数値と照合し、解釈を検討するために使う。本番の後に書き出したもので、凍結した採点・集計の定義は変えていない。新しい指標も作っていない。
 
+## 版
+
+- **v2（2026-11-22）。** `episodes.csv` の `breakdown` 列の 21 行と、`summary_long.csv` の `payment_breakdown_LT4` の行を訂正した。v1 は、LT4 の gemma3 で支払いを完了した C3 の2件、GC の 13 件、GCP の6件を、途中の提出の再試行の枯渇を理由に `1_not_reached_or_unreadable` としていた。v2 では `paid` である。ほかの列と `actions.csv`・`cases.csv` は v1 と同じである。この誤りは ChatGPT（Codex）の検算で見つかった。
+- **v1。** コミット `e2c0d96` の `exp3_review_data.zip`（SHA-256 `b15612eb…`）。
+
 ## 注意
 
 - **書き出したのは、凍結コードと報告書の作者と同じ AI（Claude）である。** `obs_` の列は記録から読んだ事実、`flag_` の列は凍結した定義を当てた判定である。`flag_` の列は Claude の実装による。独立に確かめるなら、`obs_` の列と `actions.csv`・`cases.csv` から数え直してほしい。

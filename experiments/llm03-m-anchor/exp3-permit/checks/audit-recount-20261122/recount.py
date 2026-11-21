@@ -225,7 +225,9 @@ def score(ep, case, subs, rx):
                 b = "5_allowed_but_ledger_not_normal:other"
             else:
                 b = "paid"
-            f["pay_breakdown"] = b
+            # 正常に支払いを完了したエピソードは、途中の提出に再試行の枯渇があっても「paid」とする。
+            # （e2c0d96 までの版は区分1を先に判定し、LT4 の gemma3 で完了済みの 2・13・6 件を区分1に入れていた。2026-11-22 訂正）
+            f["pay_breakdown"] = "paid" if f["action_ok"] else b
             if typ == "LT6":
                 cause = final.get("cause_identified") if final else None
                 f["cause"] = cause

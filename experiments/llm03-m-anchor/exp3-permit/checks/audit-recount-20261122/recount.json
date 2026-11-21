@@ -3354,26 +3354,25 @@
     "paid": 53
    },
    "C3|gemma3": {
-    "1_not_reached_or_unreadable": 2,
     "2_no_payment_proposal:held_or_other": 1,
     "2_no_payment_proposal:only_read": 1,
     "3_payment_not_matching_gold": 2,
-    "paid": 84
+    "paid": 86
    },
    "GC|qwen3": {
     "2_no_payment_proposal:empty": 88,
     "paid": 2
    },
    "GC|gemma3": {
-    "1_not_reached_or_unreadable": 16,
-    "paid": 74
+    "1_not_reached_or_unreadable": 3,
+    "paid": 87
    },
    "GCP|qwen3": {
     "2_no_payment_proposal:empty": 90
    },
    "GCP|gemma3": {
-    "1_not_reached_or_unreadable": 7,
-    "paid": 83
+    "1_not_reached_or_unreadable": 1,
+    "paid": 89
    },
    "C4|qwen3": {
     "2_no_payment_proposal:empty": 48,
