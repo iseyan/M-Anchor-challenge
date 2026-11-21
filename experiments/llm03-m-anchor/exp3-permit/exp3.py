@@ -78,7 +78,8 @@ class Branch(_FROZEN_BRANCH):
     def submit(self, rec, case, s1_content, step):
         before_actions, before_log = len(self.actions), len(self.apply_log)
         out = super().submit(rec, case, s1_content, step)
-        new_log = iter(self.apply_log[before_log:])
+        # Environment writes (e.g. AT9's "ENV:prior_payment" before the first execution) are not actions.
+        new_log = iter(e for e in self.apply_log[before_log:] if not str(e["decision_id"]).startswith("ENV:"))
         for pos, a in enumerate(self.actions[before_actions:]):
             # The frozen engine calls world.apply(f"{cond}:{step}:{i}", ...) for executed actions only,
             # in proposal order; pair them in that order and keep the ID the world actually received.
@@ -128,6 +129,33 @@ def cases():
             raise RuntimeError(f"case index {r['case_index']} is {c['case_id']}, selection says {r['case_id']}")
         c["_exp2_index"] = r["case_index"]
         out.append(c)
+    return out
+
+
+def split(name):
+    """main: the 240 selected cases. dev: the experiment-2 development cases (fixed inputs, never scored
+    with the main study), tagged with their dev-file index for the seed rule."""
+    if name == "main":
+        return cases()
+    rows = support.cases(name)
+    for i, c in enumerate(rows):
+        c["_exp2_index"] = i
+    return rows
+
+
+SOURCE_SUFFIXES = (".py", ".js", ".html", ".txt", ".json", ".jsonl", ".md", ".R")
+
+
+def sources():
+    """Experiment-2 sources (harness/, full-study/) + this folder + the permit sentence; run files excluded."""
+    out = support.sources()
+    for p in sorted(HERE.rglob("*")):
+        rel = p.relative_to(HERE)
+        if not p.is_file() or p.suffix not in SOURCE_SUFFIXES or any(x.startswith(".") for x in rel.parts) \
+                or any(x in rel.parts for x in ("__pycache__", "runs", "results", "checks")):
+            continue
+        out["exp3-permit/" + rel.as_posix()] = support.sha(p)
+    out["followup-hp/prompts/permit_sentence.txt"] = support.sha(PERMIT_PATH)
     return out
 
 

@@ -336,3 +336,11 @@ def test_breakdown_assigns_every_lt6_miss():
         _, eps, _ = run_trial(cfg, trial_for(cfg, c), honest(c, step1_actions=acts))
         for e in eps:
             assert ledger.lt6(e, c)["breakdown"] == expected, (expected, e["condition"])
+
+
+# ---------------------------------------------------------------- section 8: fixed-input scoring table
+def test_fixed_input_scoring_table_matches_the_hand_written_expectations():
+    out = subprocess.run([sys.executable, "-B", "-I", str(HERE / "fixtures.py")], capture_output=True, text=True)
+    assert out.returncode == 0, out.stdout + out.stderr
+    res = json.loads(out.stdout.splitlines()[0])
+    assert res["mismatches"] == 0 and res["fixtures"] >= 20
