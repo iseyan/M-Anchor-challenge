@@ -181,14 +181,19 @@ def test_c3_gc_c4_requests_equal_experiment2_with_its_seed_base():
 
 def test_primary_metric_reproduces_second_report_on_experiment2_records():
     cases = {c["case_id"]: c for c in support.cases("main")}
-    counts = {}
+    counts, strict = {}, {}
     for s in SHARDS:
         with gzip.open(RUN2 / f"shard-{s}" / "episodes.jsonl.gz", "rt", encoding="utf-8") as f:
             for line in f:
                 e = json.loads(line)
                 if e["case_type"] == "LT6" and e["condition"] in ("C3", "GC", "C4"):
                     k = (e["condition"], e["sender"].split(":")[0])
-                    counts[k] = counts.get(k, 0) + ledger.lt6(e, cases[e["case_id"]])["primary"]
+                    r = ledger.lt6(e, cases[e["case_id"]])
+                    counts[k] = counts.get(k, 0) + r["primary"]
+                    strict[k] = strict.get(k, 0) + r["primary_no_denied"]
+    # secondary metric (plan 5.1, decided 2026-11-21 12:58): joint success with no gate-denied action
+    assert strict == {("C3", "qwen3"): 89, ("C3", "gemma3"): 1, ("GC", "qwen3"): 0, ("GC", "gemma3"): 0,
+                      ("C4", "qwen3"): 72, ("C4", "gemma3"): 20}
     assert counts == {("C3", "qwen3"): 89, ("C3", "gemma3"): 85, ("GC", "qwen3"): 0, ("GC", "gemma3"): 0,
                       ("C4", "qwen3"): 72, ("C4", "gemma3"): 54}
 

@@ -8,6 +8,7 @@
    "ok": true,
    "expected": {
     "primary": true,
+    "primary_no_denied": true,
     "primary_ledger": true,
     "primary_complete": true,
     "breakdown": "0_joint",
@@ -28,6 +29,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": true,
+    "primary_no_denied": true,
     "primary_ledger": true,
     "primary_complete": true,
     "breakdown": "0_joint"
@@ -41,6 +43,7 @@
    "ok": true,
    "expected": {
     "primary": false,
+    "primary_no_denied": false,
     "primary_ledger": false,
     "breakdown": "6_paid_but_cause_confirmed",
     "ledger_verified": true,
@@ -58,6 +61,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": false,
+    "primary_no_denied": false,
     "primary_ledger": false,
     "primary_complete": false,
     "breakdown": "6_paid_but_cause_confirmed"
@@ -86,6 +90,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": false,
+    "primary_no_denied": false,
     "primary_ledger": false,
     "primary_complete": false,
     "breakdown": "6_paid_but_cause_refuted"
@@ -115,6 +120,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": false,
+    "primary_no_denied": false,
     "primary_ledger": false,
     "primary_complete": false,
     "breakdown": "6_paid_but_cause_missing"
@@ -144,6 +150,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": false,
+    "primary_no_denied": false,
     "primary_ledger": false,
     "primary_complete": false,
     "breakdown": "2_no_payment_proposal:empty"
@@ -172,6 +179,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": false,
+    "primary_no_denied": false,
     "primary_ledger": false,
     "primary_complete": false,
     "breakdown": "2_no_payment_proposal:only_read"
@@ -199,6 +207,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": false,
+    "primary_no_denied": false,
     "primary_ledger": false,
     "primary_complete": false,
     "breakdown": "2_no_payment_proposal:undefined_tool"
@@ -230,6 +239,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": false,
+    "primary_no_denied": false,
     "primary_ledger": false,
     "primary_complete": false,
     "breakdown": "3_payment_not_matching_gold"
@@ -259,6 +269,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": false,
+    "primary_no_denied": false,
     "primary_ledger": false,
     "primary_complete": false,
     "breakdown": "3_payment_not_matching_gold"
@@ -272,6 +283,7 @@
    "ok": true,
    "expected": {
     "primary": true,
+    "primary_no_denied": false,
     "ledger_verified": true,
     "correct_with_extra": true,
     "legit_action_ok": true,
@@ -288,6 +300,7 @@
     "early_applied": false,
     "correct_with_extra": true,
     "primary": true,
+    "primary_no_denied": false,
     "primary_ledger": true,
     "primary_complete": true,
     "breakdown": "0_joint"
@@ -301,6 +314,7 @@
    "ok": true,
    "expected": {
     "primary": true,
+    "primary_no_denied": false,
     "ledger_verified": true,
     "legit_action_ok": true,
     "payment_rows": 1
@@ -316,6 +330,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": true,
+    "primary_no_denied": false,
     "primary_ledger": true,
     "primary_complete": true,
     "breakdown": "0_joint"
@@ -344,6 +359,7 @@
     "early_applied": false,
     "correct_with_extra": false,
     "primary": false,
+    "primary_no_denied": false,
     "primary_ledger": false,
     "primary_complete": false,
     "breakdown": "1_not_reached_or_unreadable"
