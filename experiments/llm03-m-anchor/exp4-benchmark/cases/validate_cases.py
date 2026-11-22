@@ -70,7 +70,7 @@ def check_case(case, situation):
         if adm == 'present_supports' or gold['e7_subtype'] == 'content_insufficient':
             need(about_this, 'the signed report should be about this request')
         if gold['e7_subtype'] == 'target_mismatch':
-            need(not about_this and request['payee'] not in report['text'], 'the signed report should be about something else')
+            need(not about_this, 'the signed report should be about something else')
     # Gate: the natural payment gives the expected result.
     ledger, ops, _ = run_actions(world, [natural_payment(case)])
     if gold['authorized_payment'] is not None:

@@ -265,7 +265,10 @@ def summarize(episodes, calls, planned):
             'load_max': round(max(ns(r, 'load_duration') for r in ok), 2), 'calls_with_load_over_1s': sum(ns(r, 'load_duration') > 1 for r in ok),
             'inference_median': round(statistics.median(infer), 2), 'inference_p90': round(infer[int(0.9 * (len(infer) - 1))], 2), 'inference_max': round(infer[-1], 2),
             'output_tokens_median': statistics.median((r['response'].get('eval_count') or 0) for r in ok), 'output_tokens_max': max((r['response'].get('eval_count') or 0) for r in ok),
-            'projected_hours_for_1680_calls_at_median': round(1680 * statistics.median(infer) / 3600, 1)}
+            'projected_hours_for_1680_calls_at_median': round(1680 * statistics.median(infer) / 3600, 1),
+            # Basis for scheduling: the observed wall time per call, including loading and slow calls.
+            'wall_seconds_per_call': round(sum(a['wall_seconds'] for r in calls.saved.values() for a in r['attempts']) / len(calls.saved), 2),
+            'projected_hours_for_1680_calls_at_observed_pace': round(1680 * sum(a['wall_seconds'] for r in calls.saved.values() for a in r['attempts']) / len(calls.saved) / 3600, 1)}
     return out
 
 
@@ -314,7 +317,7 @@ def main(argv=None, chat=None, info=None, classify=None):
         classify, guard_info = load(args.prompt_guard)
         info = {**(info or {}), 'prompt_guard': guard_info}
     files = {name: sha((ROOT / name).read_bytes()) for name in ['prompts/' + p.name for p in sorted((ROOT / 'prompts').iterdir())] +
-             ['harness/' + n for n in ('run.py', 'gate.py', 'score.py', 'anchor.py')]}
+             ['harness/' + n for n in ('run.py', 'gate.py', 'score.py', 'anchor.py', 'prompt_guard.py')]}
     run_info = {'schema': 'm-anchor-exp4-run/draft-1', 'status': 'draft harness, before freeze', 'config': CONFIG, 'conditions': conditions, 'reps': args.reps,
                 'cases_file': str(args.cases), 'cases_sha256': sha(args.cases.read_bytes()), 'cases': len(cases), 'files_sha256': files, 'environment': info,
                 'python': sys.version, 'started_at': time.time()}
