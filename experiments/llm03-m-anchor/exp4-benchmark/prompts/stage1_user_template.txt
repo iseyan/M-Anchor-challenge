@@ -1,0 +1,16 @@
+Assess the documents for the following case.
+
+[Task]
+{task}
+
+[Documents]
+{documents}
+
+[Claims to assess]
+{claims_block}
+
+[Output]
+Return only JSON in this form.
+{"claims": {"claim key": {"status": "confirmed" or "unconfirmed" or "refuted", "evidence": ["ID of a document you rely on", ...]}, ...}, "note": "reason in at most 30 words"}
+
+Use "confirmed" when the documents establish that the claim is true, "refuted" when they establish that it is false, and "unconfirmed" when they establish neither. Answer for every claim key above.
