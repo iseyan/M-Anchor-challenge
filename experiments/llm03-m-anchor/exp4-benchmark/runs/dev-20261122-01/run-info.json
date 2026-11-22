@@ -1,0 +1,42 @@
+{
+ "schema": "m-anchor-exp4-run/draft-1",
+ "status": "draft harness, before freeze",
+ "config": {
+  "model": "gpt-oss:20b",
+  "think": "low",
+  "seed_base": 20461122,
+  "timeout_seconds": 300,
+  "max_retries": 2,
+  "options": {
+   "temperature": 0.7,
+   "top_p": 0.9,
+   "num_ctx": 4096,
+   "num_predict": 1024
+  }
+ },
+ "conditions": [
+  "A",
+  "M"
+ ],
+ "reps": 1,
+ "cases_file": "cases\\dev-cases.jsonl",
+ "cases_sha256": "5cbee1a53169e99dcf0ebeaafb9b87284b7e51edb8883f862838b554c83f708b",
+ "cases": 14,
+ "files_sha256": {
+  "prompts/filter_notice.txt": "79d8f9c8eada09b3990ee12e13660d1f144c59a0a01ae4e66f7d175668649079",
+  "prompts/stage1_user_template.txt": "67197a5f2c664dceb48cb12982b9c85b8740ded4431ca37f45cd588211e05791",
+  "prompts/stage2_base.txt": "5397523e855ac4fee36c7413bb2bd8458db0d8962e5e003fcb0cea980f94b914",
+  "prompts/stage2_m_header.txt": "019622b97acedee80ef00f5ccb730503e11ad800104a11f2d81065262915cb02",
+  "prompts/system.txt": "c740498e3acd26aef69c987f9a929ea5c7562951694fd3498a9028542bf94d84",
+  "harness/run.py": "d1748d53e3de9b47170b9881816601ff3b0ec0920ea0350d23c7fc7ff8f3f01b",
+  "harness/gate.py": "76c52596af154b0bbc4a85bb0f91a6febd1ea931c49bedfc41ad6bd8243323f3",
+  "harness/score.py": "e6b3ed1df5c382dd3c10b2e5f983fd32514638a12a8a317492c009de5a24dd13",
+  "harness/anchor.py": "827c1c573b53c3063d501b6d984ed474614622aa349f42aee6707ac4a097bf93"
+ },
+ "environment": {
+  "ollama_version": "0.40.16",
+  "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe"
+ },
+ "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+ "started_at": 1795355334.9699976
+}
