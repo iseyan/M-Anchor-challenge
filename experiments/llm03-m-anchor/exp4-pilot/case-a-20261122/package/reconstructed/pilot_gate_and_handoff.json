@@ -1,0 +1,54 @@
+[
+  {
+    "case_id": "S2",
+    "arm": "B",
+    "input_authorized": true,
+    "proposed_payment": "pay",
+    "allowed_by_pilot_rule": true,
+    "observed_simulated_payment_count": 1,
+    "final_cause_state": "confirmed",
+    "reference_cause_state": "unconfirmed",
+    "receiver": "not_measured",
+    "app_replay": "not_measured",
+    "decision_origin": "recomputed_from_observed_row_and_pilot_rule"
+  },
+  {
+    "case_id": "S2",
+    "arm": "C",
+    "input_authorized": true,
+    "proposed_payment": "pay",
+    "allowed_by_pilot_rule": true,
+    "observed_simulated_payment_count": 1,
+    "final_cause_state": "unconfirmed",
+    "reference_cause_state": "unconfirmed",
+    "receiver": "not_measured",
+    "app_replay": "not_measured",
+    "decision_origin": "recomputed_from_observed_row_and_pilot_rule"
+  },
+  {
+    "case_id": "S3",
+    "arm": "B",
+    "input_authorized": true,
+    "proposed_payment": "pay",
+    "allowed_by_pilot_rule": true,
+    "observed_simulated_payment_count": 1,
+    "final_cause_state": "confirmed",
+    "reference_cause_state": "confirmed",
+    "receiver": "not_measured",
+    "app_replay": "not_measured",
+    "decision_origin": "recomputed_from_observed_row_and_pilot_rule"
+  },
+  {
+    "case_id": "S3",
+    "arm": "C",
+    "input_authorized": true,
+    "proposed_payment": "pay",
+    "allowed_by_pilot_rule": true,
+    "observed_simulated_payment_count": 1,
+    "final_cause_state": "confirmed",
+    "reference_cause_state": "confirmed",
+    "receiver": "not_measured",
+    "app_replay": "not_measured",
+    "decision_origin": "recomputed_from_observed_row_and_pilot_rule"
+  }
+]
