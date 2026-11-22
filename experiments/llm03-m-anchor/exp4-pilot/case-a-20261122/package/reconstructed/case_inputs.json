@@ -1,0 +1,20 @@
+{
+  "S2": {
+    "case_id": "S2",
+    "authorized": true,
+    "investigation_report": null,
+    "business_note": "増額の原因は部品交換と判明した。",
+    "reference_cause": "unconfirmed",
+    "initial_simulated_payment_count": 0,
+    "initial_count_provenance": "implicit in the pilot count calculation"
+  },
+  "S3": {
+    "case_id": "S3",
+    "authorized": true,
+    "investigation_report": "部品交換による増額と調査責任者が署名して確定。",
+    "business_note": "部品交換による増額。",
+    "reference_cause": "confirmed",
+    "initial_simulated_payment_count": 0,
+    "initial_count_provenance": "implicit in the pilot count calculation"
+  }
+}

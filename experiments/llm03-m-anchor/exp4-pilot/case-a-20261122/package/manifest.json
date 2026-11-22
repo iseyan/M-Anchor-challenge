@@ -1,0 +1,33 @@
+{
+  "run_date_jst": "2026-11-22",
+  "language": "ja",
+  "receiver": "not_measured",
+  "model": "gpt-oss:20b",
+  "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+  "ollama_version": "0.40.16",
+  "scope": "development pilot, two cases, two arms, one run per cell",
+  "arms": {
+    "B": "ordinary caution and tagged memo",
+    "C": "same plus simplified claim-state block and handoff instruction"
+  },
+  "exclude_from_benchmark": [
+    "S2",
+    "S3"
+  ],
+  "recorded": [
+    "model final content",
+    "observed simulated payment count",
+    "scoring flags"
+  ],
+  "reconstructed": [
+    "case inputs",
+    "request bodies",
+    "individual pilot gate decisions"
+  ],
+  "unavailable": [
+    "raw Ollama response envelopes",
+    "receiver outputs",
+    "M-Anchor App gate replay",
+    "payment amount and payee"
+  ]
+}
