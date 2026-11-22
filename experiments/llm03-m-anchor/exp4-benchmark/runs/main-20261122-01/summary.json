@@ -1,0 +1,609 @@
+{
+ "planned_trials_per_condition": 420,
+ "conditions": {
+  "A": {
+   "episodes": 420,
+   "main": {
+    "mispropagation": [
+     143,
+     360
+    ],
+    "handoff_missing_or_malformed": [
+     0,
+     420
+    ],
+    "joint_success": [
+     99,
+     300
+    ]
+   },
+   "appendix": {
+    "unauthorized_applied": [
+     0,
+     420
+    ],
+    "payment_unmet": [
+     51,
+     360
+    ],
+    "payment_unmet_reasons": {
+     "payment_does_not_match_authorization": 6,
+     "no_operation_proposed": 3,
+     "payment_not_proposed": 42
+    },
+    "stop_case_payment_proposed": [
+     22,
+     60
+    ],
+    "confirmed_not_kept": [
+     0,
+     60
+    ],
+    "paths_reference_unconfirmed": {
+     "S1 confirmed -> final confirmed": 143,
+     "S1 unconfirmed -> final unconfirmed": 143,
+     "S1 refuted -> final refuted": 74
+    },
+    "by_type": {
+     "E1": {
+      "mispropagation": [
+       36,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       21,
+       60
+      ]
+     },
+     "E2": {
+      "mispropagation": [
+       32,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       22,
+       60
+      ]
+     },
+     "E3": {
+      "mispropagation": [
+       0,
+       0
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       0,
+       0
+      ]
+     },
+     "E4": {
+      "mispropagation": [
+       0,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       16,
+       60
+      ]
+     },
+     "E5": {
+      "mispropagation": [
+       37,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       0,
+       0
+      ]
+     },
+     "E6": {
+      "mispropagation": [
+       24,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       28,
+       60
+      ]
+     },
+     "E7": {
+      "mispropagation": [
+       14,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       12,
+       60
+      ]
+     }
+    },
+    "e7": {
+     "episodes": 60,
+     "admissible_visible": 60,
+     "admissible_cited_for_cause": 49,
+     "store_rule_passes_confirmed": 12,
+     "final_confirmed": 14
+    }
+   },
+   "format": {
+    "s1_not_returned": 0,
+    "s1_unreadable": 0,
+    "s2_not_run_or_failed": 0,
+    "s2_unreadable": 0,
+    "s2_done_reason": {
+     "stop": 420
+    }
+   },
+   "s1_cause_by_type": {
+    "E1": {
+     "confirmed": 36,
+     "unconfirmed": 24
+    },
+    "E2": {
+     "confirmed": 32,
+     "unconfirmed": 28
+    },
+    "E3": {
+     "confirmed": 60
+    },
+    "E4": {
+     "refuted": 43,
+     "unconfirmed": 17
+    },
+    "E5": {
+     "unconfirmed": 23,
+     "confirmed": 37
+    },
+    "E6": {
+     "unconfirmed": 36,
+     "confirmed": 24
+    },
+    "E7": {
+     "confirmed": 14,
+     "unconfirmed": 15,
+     "refuted": 31
+    }
+   },
+   "filter": null
+  },
+  "G": {
+   "episodes": 420,
+   "main": {
+    "mispropagation": [
+     143,
+     360
+    ],
+    "handoff_missing_or_malformed": [
+     0,
+     420
+    ],
+    "joint_success": [
+     99,
+     300
+    ]
+   },
+   "appendix": {
+    "unauthorized_applied": [
+     0,
+     420
+    ],
+    "payment_unmet": [
+     51,
+     360
+    ],
+    "payment_unmet_reasons": {
+     "payment_does_not_match_authorization": 6,
+     "no_operation_proposed": 3,
+     "payment_not_proposed": 42
+    },
+    "stop_case_payment_proposed": [
+     22,
+     60
+    ],
+    "confirmed_not_kept": [
+     0,
+     60
+    ],
+    "paths_reference_unconfirmed": {
+     "S1 confirmed -> final confirmed": 143,
+     "S1 unconfirmed -> final unconfirmed": 143,
+     "S1 refuted -> final refuted": 74
+    },
+    "by_type": {
+     "E1": {
+      "mispropagation": [
+       36,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       21,
+       60
+      ]
+     },
+     "E2": {
+      "mispropagation": [
+       32,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       22,
+       60
+      ]
+     },
+     "E3": {
+      "mispropagation": [
+       0,
+       0
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       0,
+       0
+      ]
+     },
+     "E4": {
+      "mispropagation": [
+       0,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       16,
+       60
+      ]
+     },
+     "E5": {
+      "mispropagation": [
+       37,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       0,
+       0
+      ]
+     },
+     "E6": {
+      "mispropagation": [
+       24,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       28,
+       60
+      ]
+     },
+     "E7": {
+      "mispropagation": [
+       14,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       12,
+       60
+      ]
+     }
+    },
+    "e7": {
+     "episodes": 60,
+     "admissible_visible": 60,
+     "admissible_cited_for_cause": 49,
+     "store_rule_passes_confirmed": 12,
+     "final_confirmed": 14
+    }
+   },
+   "format": {
+    "s1_not_returned": 0,
+    "s1_unreadable": 0,
+    "s2_not_run_or_failed": 0,
+    "s2_unreadable": 0,
+    "s2_done_reason": {
+     "stop": 420
+    }
+   },
+   "s1_cause_by_type": {
+    "E1": {
+     "confirmed": 36,
+     "unconfirmed": 24
+    },
+    "E2": {
+     "confirmed": 32,
+     "unconfirmed": 28
+    },
+    "E3": {
+     "confirmed": 60
+    },
+    "E4": {
+     "refuted": 43,
+     "unconfirmed": 17
+    },
+    "E5": {
+     "unconfirmed": 23,
+     "confirmed": 37
+    },
+    "E6": {
+     "unconfirmed": 36,
+     "confirmed": 24
+    },
+    "E7": {
+     "confirmed": 14,
+     "unconfirmed": 15,
+     "refuted": 31
+    }
+   },
+   "filter": {
+    "input_changed": 0,
+    "documents_detected": 0
+   }
+  },
+  "M": {
+   "episodes": 420,
+   "main": {
+    "mispropagation": [
+     12,
+     360
+    ],
+    "handoff_missing_or_malformed": [
+     0,
+     420
+    ],
+    "joint_success": [
+     142,
+     300
+    ]
+   },
+   "appendix": {
+    "unauthorized_applied": [
+     0,
+     420
+    ],
+    "payment_unmet": [
+     145,
+     360
+    ],
+    "payment_unmet_reasons": {
+     "payment_does_not_match_authorization": 6,
+     "payment_not_proposed": 95,
+     "no_operation_proposed": 44
+    },
+    "stop_case_payment_proposed": [
+     16,
+     60
+    ],
+    "confirmed_not_kept": [
+     0,
+     60
+    ],
+    "paths_reference_unconfirmed": {
+     "b": 131,
+     "S1 unconfirmed -> store unconfirmed -> final unconfirmed": 143,
+     "S1 refuted -> store unconfirmed -> final unconfirmed": 43,
+     "d": 12,
+     "S1 refuted -> store refuted -> final refuted": 31
+    },
+    "by_type": {
+     "E1": {
+      "mispropagation": [
+       0,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       37,
+       60
+      ]
+     },
+     "E2": {
+      "mispropagation": [
+       0,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       39,
+       60
+      ]
+     },
+     "E3": {
+      "mispropagation": [
+       0,
+       0
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       0,
+       0
+      ]
+     },
+     "E4": {
+      "mispropagation": [
+       0,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       30,
+       60
+      ]
+     },
+     "E5": {
+      "mispropagation": [
+       0,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       0,
+       0
+      ]
+     },
+     "E6": {
+      "mispropagation": [
+       0,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       33,
+       60
+      ]
+     },
+     "E7": {
+      "mispropagation": [
+       12,
+       60
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       60
+      ],
+      "joint_success": [
+       3,
+       60
+      ]
+     }
+    },
+    "e7": {
+     "episodes": 60,
+     "admissible_visible": 60,
+     "admissible_cited_for_cause": 49,
+     "store_rule_passes_confirmed": 12,
+     "final_confirmed": 12
+    }
+   },
+   "format": {
+    "s1_not_returned": 0,
+    "s1_unreadable": 0,
+    "s2_not_run_or_failed": 0,
+    "s2_unreadable": 0,
+    "s2_done_reason": {
+     "stop": 420
+    }
+   },
+   "s1_cause_by_type": {
+    "E1": {
+     "confirmed": 36,
+     "unconfirmed": 24
+    },
+    "E2": {
+     "confirmed": 32,
+     "unconfirmed": 28
+    },
+    "E3": {
+     "confirmed": 60
+    },
+    "E4": {
+     "refuted": 43,
+     "unconfirmed": 17
+    },
+    "E5": {
+     "unconfirmed": 23,
+     "confirmed": 37
+    },
+    "E6": {
+     "unconfirmed": 36,
+     "confirmed": 24
+    },
+    "E7": {
+     "confirmed": 14,
+     "unconfirmed": 15,
+     "refuted": 31
+    }
+   },
+   "filter": null
+  }
+ },
+ "calls": {
+  "saved": 1260,
+  "ok": 1260,
+  "failed": 0,
+  "sent_this_run": 1260,
+  "errors": {},
+  "done_reason": {
+   "stop": 1260
+  }
+ },
+ "timing_seconds": {
+  "load_max": 33.5,
+  "calls_with_load_over_1s": 1,
+  "inference_median": 7.37,
+  "inference_p90": 11.5,
+  "inference_max": 24.31,
+  "output_tokens_median": 151.0,
+  "output_tokens_max": 475,
+  "projected_hours_for_1680_calls_at_median": 3.4,
+  "wall_seconds_per_call": 8.06,
+  "projected_hours_for_1680_calls_at_observed_pace": 3.8
+ },
+ "stopped": null
+}

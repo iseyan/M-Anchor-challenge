@@ -1,0 +1,64 @@
+{
+ "schema": "m-anchor-exp4-run/draft-1",
+ "status": "draft harness, before freeze",
+ "config": {
+  "model": "gpt-oss:20b",
+  "think": "low",
+  "seed_base": 20461122,
+  "timeout_seconds": 300,
+  "max_retries": 2,
+  "options": {
+   "temperature": 0.7,
+   "top_p": 0.9,
+   "num_ctx": 4096,
+   "num_predict": 1024
+  }
+ },
+ "conditions": [
+  "A",
+  "M",
+  "G"
+ ],
+ "reps": 3,
+ "cases_file": "cases\\main-cases.jsonl",
+ "cases_sha256": "b5f0445b2a641412d5ce9c5eb49abfa62bf8f0b9775c6f7a95c2a6b1338f6302",
+ "cases": 140,
+ "files_sha256": {
+  "prompts/filter_notice.txt": "79d8f9c8eada09b3990ee12e13660d1f144c59a0a01ae4e66f7d175668649079",
+  "prompts/stage1_user_template.txt": "67197a5f2c664dceb48cb12982b9c85b8740ded4431ca37f45cd588211e05791",
+  "prompts/stage2_base.txt": "5397523e855ac4fee36c7413bb2bd8458db0d8962e5e003fcb0cea980f94b914",
+  "prompts/stage2_m_header.txt": "019622b97acedee80ef00f5ccb730503e11ad800104a11f2d81065262915cb02",
+  "prompts/system.txt": "c740498e3acd26aef69c987f9a929ea5c7562951694fd3498a9028542bf94d84",
+  "harness/run.py": "a85f607aad2089a5b3abbf6189f57972ae9e07704e98e5be4c2239cbacd6c913",
+  "harness/gate.py": "76c52596af154b0bbc4a85bb0f91a6febd1ea931c49bedfc41ad6bd8243323f3",
+  "harness/score.py": "e6b3ed1df5c382dd3c10b2e5f983fd32514638a12a8a317492c009de5a24dd13",
+  "harness/anchor.py": "827c1c573b53c3063d501b6d984ed474614622aa349f42aee6707ac4a097bf93",
+  "harness/prompt_guard.py": "efbd3fa35176f29bfa09ab70206106c7d34156e05ce8b2ede16ca653f7fcf6c9"
+ },
+ "environment": {
+  "ollama_version": "0.40.16",
+  "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+  "prompt_guard": {
+   "model": "C:\\Users\\ise\\pg2-weights",
+   "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+   },
+   "files_sha256": {
+    ".gitattributes": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+    "checklist.chk": "ca9041264911bf61cdc1b4079a64e293a84592ea85eda64bceddd27dc158a056",
+    "config.json": "cd54ac39a1f2c3c5146bd5295b34038f8b4d9069e2f844450da014a523bb7653",
+    "LICENSE": "73755cee886613ae3135140882289e0a4955d5f0e90f8b1c1ffc962aa9082917",
+    "model.safetensors": "e72017dbbe89c1232dcbc4a74ce0c389db5b468c42afd05850347b2a8c5f6b09",
+    "README.md": "5d2a3e0c46397609a784a5034dc823da408aa8b5a414828609f32dc18ee16933",
+    "special_tokens_map.json": "9463f61e1b109a8eb4688b829260d7c6b1e6dff04c98ff7269bb89e2b92369b9",
+    "tokenizer.json": "3e7e96867c2acdd575f0862c74822e05d1d15b93d9d9a4a2144b1ce83ae3339f",
+    "tokenizer_config.json": "fa09cf22b9d723377f95706967f789ca1a8267e1412385705e1ed51ce0559189",
+    "USE_POLICY.md": "5ae40fe842b87b5773c47cfd25992a496cc09b17cbb246968762f06352d89270"
+   },
+   "rule": "detected when the top class is not index 0"
+  }
+ },
+ "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+ "started_at": 1795364414.798055
+}
