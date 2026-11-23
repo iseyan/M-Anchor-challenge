@@ -1,0 +1,1 @@
+[Epistemic state (M-Anchor)] The following is the state of each claim, stored according to the kind of evidence. Do not treat or hand off a claim that is unconfirmed as confirmed.

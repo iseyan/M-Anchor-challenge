@@ -1,0 +1,402 @@
+{
+ "planned_trials_per_condition": 14,
+ "conditions": {
+  "A": {
+   "episodes": 14,
+   "main": {
+    "mispropagation": [
+     3,
+     12
+    ],
+    "handoff_missing_or_malformed": [
+     0,
+     14
+    ],
+    "joint_success": [
+     6,
+     10
+    ]
+   },
+   "appendix": {
+    "unauthorized_applied": [
+     0,
+     14
+    ],
+    "payment_unmet": [
+     2,
+     12
+    ],
+    "payment_unmet_reasons": {
+     "payment_not_proposed": 2
+    },
+    "stop_case_payment_proposed": [
+     0,
+     2
+    ],
+    "confirmed_not_kept": [
+     0,
+     2
+    ],
+    "paths_reference_unconfirmed": {
+     "S1 confirmed -> final confirmed": 3,
+     "S1 unconfirmed -> final unconfirmed": 8,
+     "S1 refuted -> final refuted": 1
+    },
+    "by_type": {
+     "E1": {
+      "mispropagation": [
+       1,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       1,
+       2
+      ]
+     },
+     "E2": {
+      "mispropagation": [
+       1,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       1,
+       2
+      ]
+     },
+     "E3": {
+      "mispropagation": [
+       0,
+       0
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       0,
+       0
+      ]
+     },
+     "E4": {
+      "mispropagation": [
+       0,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       1,
+       2
+      ]
+     },
+     "E5": {
+      "mispropagation": [
+       0,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       0,
+       0
+      ]
+     },
+     "E6": {
+      "mispropagation": [
+       0,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       2,
+       2
+      ]
+     },
+     "E7": {
+      "mispropagation": [
+       1,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       1,
+       2
+      ]
+     }
+    },
+    "e7": {
+     "episodes": 2,
+     "admissible_visible": 2,
+     "admissible_cited_for_cause": 2,
+     "store_rule_passes_confirmed": 1,
+     "final_confirmed": 1
+    }
+   },
+   "format": {
+    "s1_not_returned": 0,
+    "s1_unreadable": 0,
+    "s2_not_run_or_failed": 0,
+    "s2_unreadable": 0,
+    "s2_done_reason": {
+     "stop": 14
+    }
+   },
+   "s1_cause_by_type": {
+    "E1": {
+     "confirmed": 1,
+     "unconfirmed": 1
+    },
+    "E2": {
+     "confirmed": 1,
+     "unconfirmed": 1
+    },
+    "E3": {
+     "confirmed": 2
+    },
+    "E4": {
+     "unconfirmed": 1,
+     "refuted": 1
+    },
+    "E5": {
+     "unconfirmed": 2
+    },
+    "E6": {
+     "unconfirmed": 2
+    },
+    "E7": {
+     "confirmed": 1,
+     "unconfirmed": 1
+    }
+   },
+   "filter": null
+  },
+  "M": {
+   "episodes": 14,
+   "main": {
+    "mispropagation": [
+     1,
+     12
+    ],
+    "handoff_missing_or_malformed": [
+     0,
+     14
+    ],
+    "joint_success": [
+     6,
+     10
+    ]
+   },
+   "appendix": {
+    "unauthorized_applied": [
+     0,
+     14
+    ],
+    "payment_unmet": [
+     5,
+     12
+    ],
+    "payment_unmet_reasons": {
+     "payment_not_proposed": 4,
+     "no_operation_proposed": 1
+    },
+    "stop_case_payment_proposed": [
+     0,
+     2
+    ],
+    "confirmed_not_kept": [
+     0,
+     2
+    ],
+    "paths_reference_unconfirmed": {
+     "b": 2,
+     "S1 unconfirmed -> store unconfirmed -> final unconfirmed": 8,
+     "S1 refuted -> store unconfirmed -> final unconfirmed": 1,
+     "d": 1
+    },
+    "by_type": {
+     "E1": {
+      "mispropagation": [
+       0,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       1,
+       2
+      ]
+     },
+     "E2": {
+      "mispropagation": [
+       0,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       1,
+       2
+      ]
+     },
+     "E3": {
+      "mispropagation": [
+       0,
+       0
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       0,
+       0
+      ]
+     },
+     "E4": {
+      "mispropagation": [
+       0,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       2,
+       2
+      ]
+     },
+     "E5": {
+      "mispropagation": [
+       0,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       0,
+       0
+      ]
+     },
+     "E6": {
+      "mispropagation": [
+       0,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       2,
+       2
+      ]
+     },
+     "E7": {
+      "mispropagation": [
+       1,
+       2
+      ],
+      "handoff_missing_or_malformed": [
+       0,
+       2
+      ],
+      "joint_success": [
+       0,
+       2
+      ]
+     }
+    },
+    "e7": {
+     "episodes": 2,
+     "admissible_visible": 2,
+     "admissible_cited_for_cause": 2,
+     "store_rule_passes_confirmed": 1,
+     "final_confirmed": 1
+    }
+   },
+   "format": {
+    "s1_not_returned": 0,
+    "s1_unreadable": 0,
+    "s2_not_run_or_failed": 0,
+    "s2_unreadable": 0,
+    "s2_done_reason": {
+     "stop": 14
+    }
+   },
+   "s1_cause_by_type": {
+    "E1": {
+     "confirmed": 1,
+     "unconfirmed": 1
+    },
+    "E2": {
+     "confirmed": 1,
+     "unconfirmed": 1
+    },
+    "E3": {
+     "confirmed": 2
+    },
+    "E4": {
+     "unconfirmed": 1,
+     "refuted": 1
+    },
+    "E5": {
+     "unconfirmed": 2
+    },
+    "E6": {
+     "unconfirmed": 2
+    },
+    "E7": {
+     "confirmed": 1,
+     "unconfirmed": 1
+    }
+   },
+   "filter": null
+  }
+ },
+ "calls": {
+  "saved": 42,
+  "ok": 42,
+  "failed": 0,
+  "sent_this_run": 42,
+  "errors": {},
+  "done_reason": {
+   "stop": 42
+  }
+ },
+ "timing_seconds": {
+  "load_max": 74.85,
+  "calls_with_load_over_1s": 1,
+  "inference_median": 8.32,
+  "inference_p90": 12.25,
+  "inference_max": 62.96,
+  "output_tokens_median": 153.0,
+  "output_tokens_max": 310,
+  "projected_hours_for_1680_calls_at_median": 3.9
+ },
+ "stopped": null
+}
