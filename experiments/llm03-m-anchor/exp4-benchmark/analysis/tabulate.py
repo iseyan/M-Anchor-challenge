@@ -103,6 +103,19 @@ for key in ('mispropagation', 'joint_success', 'payment_unmet'):
             t[('both' if a and b else 'A_only' if a else f'{other}_only' if b else 'neither')] += 1
         paired[f'{key}:A_vs_{other}'] = dict(t)
 out['paired'] = paired
+# Post-hoc (not in the plan): the state of "a valid approval exists" that the state store derived from the first
+# assessment, and whether the expected payment reached the ledger. The first assessment is shared by A and M.
+approval = {}
+for trial, d in by.items():
+    if d['A']['score']['payment_unmet'] is None:
+        continue
+    state = d['M']['store']['states']['approval_valid']
+    row = approval.setdefault(state, {'trials': 0, 'A': 0, 'M': 0})
+    row['trials'] += 1
+    row['A'] += not d['A']['score']['payment_unmet']
+    row['M'] += not d['M']['score']['payment_unmet']
+out['posthoc_approval_state_and_payment'] = approval
+out['posthoc_stop_case_proposals_by_situation'] = {c: dict(Counter(e['situation_id'] for e in eps if e['condition'] == c and e['score']['stop_case_payment_proposed'])) for c in ('A', 'M')}
 g = [e for e in eps if e['condition'] == 'G']
 scores = {}
 for e in g:

@@ -2616,6 +2616,34 @@
    "both": 51
   }
  },
+ "posthoc_approval_state_and_payment": {
+  "unconfirmed": {
+   "trials": 95,
+   "A": 76,
+   "M": 8
+  },
+  "confirmed": {
+   "trials": 235,
+   "A": 227,
+   "M": 207
+  },
+  "refuted": {
+   "trials": 30,
+   "A": 6,
+   "M": 0
+  }
+ },
+ "posthoc_stop_case_proposals_by_situation": {
+  "A": {
+   "S26": 1,
+   "S28": 12,
+   "S30": 9
+  },
+  "M": {
+   "S28": 11,
+   "S30": 5
+  }
+ },
  "filter": {
   "documents_scored": 140,
   "documents_detected": 0,
